@@ -9,12 +9,14 @@ public class Ray {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null ) return false;
+        if(!(o instanceof Ray ray)) return false;
+        return this.dir.equals(ray.dir)&&this.p0.equals(ray.p0);
+    }
 
-        Ray ray = (Ray) o;
-
-        if (!p0.equals(ray.p0)) return false;
-        return dir.equals(ray.dir);
+    @Override
+    public String toString(){
+        return "Point:"+p0.toString()+"\n"+"Vector:"+dir.toString();
     }
 
 
