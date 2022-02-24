@@ -26,6 +26,11 @@ public class Point {
       return  new Vector(this.xyz.d1-vertex.xyz.d1,this.xyz.d2-vertex.xyz.d2,this.xyz.d3-vertex.xyz.d3);
     }
 
+    /**
+     *
+     * @param point
+     * @return
+     */
     public Point add (Vector point){
       return new Point(this.xyz.d1+point.xyz.d1,this.xyz.d2+point.xyz.d2,this.xyz.d3+point.xyz.d3);
     }

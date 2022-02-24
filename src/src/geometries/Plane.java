@@ -4,19 +4,32 @@ import src.primitives.Point;
 import src.primitives.Vector;
 
 public class Plane implements Geometry{
-    Point p0;
-    Vector normal;
+  final Point q0;
+   final Vector normal;
 
-    public Plane(Point point, Point point1, Point point2) {
+    public Plane(Point p1, Point p2, Point p3) {
+      q0=p1;
+      normal=null;
+    }
 
+    public Plane(Point q0, Vector normal) {
+        this.q0 = q0;
+        this.normal = normal;
     }
 
     public Point getP0() {
-        return p0;
+        return q0;
     }
 
     public Vector getNormal() {
         return normal;
+    }
+
+    @Override
+    public String toString() {
+        return "Plane:" +
+                "q0=" + q0 +
+                ", normal=" + normal ;
     }
 
     @Override

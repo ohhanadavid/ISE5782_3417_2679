@@ -45,15 +45,15 @@ public class Vector extends Point {
     }
 
     public double length(){
-       return this.xyz.d1*this.xyz.d1+this.xyz.d2*this.xyz.d2+this.xyz.d3*this.xyz.d3;
+        return Math.sqrt(this.lengthSquared());
     }
 
     public double lengthSquared(){
-       return Math.sqrt(this.length());
+        return this.xyz.d1*this.xyz.d1+this.xyz.d2*this.xyz.d2+this.xyz.d3*this.xyz.d3;
     }
 
     public Vector normalize(){
-       var len=lengthSquared();
+       var len=length();
        return  new Vector(this.xyz.d1/len,this.xyz.d2/len,this.xyz.d3/len);
     }
 
