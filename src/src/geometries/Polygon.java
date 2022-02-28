@@ -87,6 +87,8 @@ public class Polygon implements Geometry {
 	}
 
 	@Override
+	// Returning the normal vector of the plane associated with the polygon.
+	// Returning the normal vector of the plane associated with the polygon.
 	public Vector getNormal(Point point) {
 		return plane.getNormal();
 	}
