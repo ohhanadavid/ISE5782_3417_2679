@@ -1,6 +1,7 @@
-import primitives.*;
+
+import src.primitives.*;
 import static java.lang.System.out;
-import static primitives.Util.*;
+import static src.primitives.Util.*;
 
 /**
  * Test program for the 1st stage
@@ -65,8 +66,11 @@ public final class Main {
 
 		// Test operations with points and vectors
 		Point p1 = new Point(1, 2, 3);
-		if (!(p1.add(new Vector(-1, -2, -3)).equals(new Point(0, 0, 0))))
-			out.println("ERROR: Point + Vector does not work correctly");
+
+			if (!(p1.add(new Vector(-1, -2, -3)).equals(new Point(0, 0, 0))))
+				out.println("ERROR: Point + Vector does not work correctly");
+
+
 		if (!new Vector(1, 1, 1).equals(new Point(2, 3, 4).subtract(p1)))
 			out.println("ERROR: Point - Point does not work correctly");
 
