@@ -2,6 +2,7 @@ package src.primitives;
 
 public class Vector extends Point {
 
+   // Creating a vector from a point.
    public Vector (Point point){
 
        super(point.xyz.d1,point.xyz.d2,point.xyz.d3);
@@ -9,22 +10,28 @@ public class Vector extends Point {
 
        }
 
+    // Creating a vector from a double3.
+    public Vector (Double3 double3){
+        super(double3);
+        checkingVector(double3);
+    }
+
+    // Creating a vector from three numbers.
+    public Vector(double d1,double d2, double d3) {
+        super(d1,d2,d3);
+        checkingVector(getXyz());
+    }
+
+    /**
+     * It checks if the vector is zero.
+     *
+     * @param xyz the vector to be checked.
+     */
     private void checkingVector(Double3 xyz) {
         if( xyz.equals(Double3.ZERO)){
             throw new IllegalArgumentException();}
     }
 
-
-
-   public Vector (Double3 double3){
-       super(double3);
-       checkingVector(double3);
-       }
-
-    public Vector(double d1,double d2, double d3) {
-        super(d1,d2,d3);
-        checkingVector(getXyz());
-    }
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
@@ -45,10 +52,22 @@ public class Vector extends Point {
         return new Vector( add(vector));
     }
 
+    /**
+     * This function takes a double and returns a new Vector
+     *
+     * @param scale the scale factor
+     * @return A new Vector object.
+     */
     public Vector scale (double scale) {
         return new Vector(xyz.scale(scale));
     }
 
+    /**
+     * Given two vectors, return the vector that is perpendicular to both
+     *
+     * @param edge2 the second edge to use in the cross product
+     * @return The cross product of the two vectors.
+     */
     public Vector crossProduct(Vector edge2) {
         var x=xyz.d2*edge2.xyz.d3-xyz.d3*edge2.xyz.d2;
         var y=(xyz.d1*edge2.xyz.d3-xyz.d3*edge2.xyz.d1)*(-1);
@@ -56,25 +75,54 @@ public class Vector extends Point {
         return new Vector(x,y,z);
     }
 
+
+    /**
+     * The dot product of two vectors is the sum of the products of the corresponding components
+     *
+     * @param vector the vector to be dotted with this vector
+     * @return The dot product of the two vectors.
+     */
     public double dotProduct(Vector vector){
         return xyz.d1*vector.xyz.d1+
                 xyz.d2*vector.xyz.d2+
                 xyz.d3*vector.xyz.d3;
     }
 
+    //
+    /**
+     * Returns the length of the vector
+     *
+     * @return The length of the vector.
+     */
     public double length(){
         return Math.sqrt(lengthSquared());
     }
 
+    /**
+     * Returns the length of the vector squared
+     *
+     * @return The length of the vector.
+     */
     public double lengthSquared(){
         return xyz.d1*xyz.d1+xyz.d2*xyz.d2+xyz.d3*xyz.d3;
     }
 
+    /**
+     * Given a vector, return a new vector with the same direction but with a length of 1
+     *
+     * @return Nothing is being returned.
+     */
     public Vector normalize(){
        var len=length();
        return  new Vector(xyz.d1/len,xyz.d2/len,xyz.d3/len);
     }
 
+    /**
+     * Given two vectors, return the dot product of the two vectors
+     *
+     * @param vector the vector to be multiplied by the matrix
+     * @return The dot product of the two vectors.
+     */
     public double dotProdact(Vector vector){
        var prodact=xyz.product(vector.xyz);
        return prodact.d1+prodact.d3+prodact.d2;

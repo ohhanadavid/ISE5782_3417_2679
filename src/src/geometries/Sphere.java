@@ -12,10 +12,20 @@ public class Sphere implements Geometry {
         this.radius = radius;
     }
 
+    /**
+     * Returns the center of the circle
+     *
+     * @return The center of the circle.
+     */
     public Point getCenter() {
         return center;
     }
 
+    /**
+     * Returns the radius of the circle
+     *
+     * @return The radius of the circle.
+     */
     public double getRadius() {
         return radius;
     }

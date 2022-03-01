@@ -17,10 +17,20 @@ public class Plane implements Geometry{
         this.normal = normal;
     }
 
+    /**
+     * Returns the initial point of the quadratic
+     *
+     * @return The method returns a Point object that is a copy of the Point object stored in the q0 field.
+     */
     public Point getP0() {
         return q0;
     }
 
+    /**
+     * Returns the normal vector of the plane
+     *
+     * @return The normal vector of the plane.
+     */
     public Vector getNormal() {
         return normal;
     }

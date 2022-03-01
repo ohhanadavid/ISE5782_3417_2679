@@ -6,13 +6,12 @@ import src.primitives.Vector;
 
 public class Tube implements Geometry {
     final Ray axisRay;
+    final Double radius;
 
     @Override
     public Vector getNormal(Point point) {
         return null;
     }
-
-    final Double radius;
 
     public Tube(Ray axisRay, Double radius) {
         this.axisRay = axisRay;
@@ -40,10 +39,20 @@ public class Tube implements Geometry {
                 '}';
     }
 
+    /**
+     * Get the radius of the circle
+     *
+     * @return The radius of the circle.
+     */
     public Double getRadius() {
         return radius;
     }
 
+    /**
+     * Returns the ray that is used to determine the axis of rotation
+     *
+     * @return The axisRay is being returned.
+     */
     public Ray getAxisRay() {
         return axisRay;
     }
