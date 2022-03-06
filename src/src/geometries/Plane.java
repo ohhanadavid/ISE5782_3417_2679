@@ -3,6 +3,10 @@ package src.geometries;
 import src.primitives.Point;
 import src.primitives.Vector;
 
+/**
+ * A plane is defined by a point and a normal vector
+ * @author David Ochana & Aviad Klein
+ */
 public class Plane implements Geometry{
   final Point q0;
    final Vector normal;

@@ -1,5 +1,9 @@
 package src.primitives;
-
+import src.primitives.Util.*;
+/**
+ * A vector is a point with an additional attribute, a direction
+ * @author David Ochana & Aviad Klein
+ */
 public class Vector extends Point {
 
    // Creating a vector from a point.
@@ -45,11 +49,11 @@ public class Vector extends Point {
     /**
      * Given a vector, add it to this vector and return the result
      *
-     * @param vector the vector to add to this vector.
+     * @param addVector the vector to add to this vector.
      * @return A new vector.
      */
-    public Vector add(Vector vector){
-        return new Vector( add(vector));
+    public Vector add(Vector addVector){
+        return new Vector(super.add(addVector));
     }
 
     /**
@@ -104,7 +108,7 @@ public class Vector extends Point {
      * @return The length of the vector.
      */
     public double lengthSquared(){
-        return xyz.d1*xyz.d1+xyz.d2*xyz.d2+xyz.d3*xyz.d3;
+        return this.dotProduct(this);
     }
 
     /**
@@ -113,8 +117,9 @@ public class Vector extends Point {
      * @return Nothing is being returned.
      */
     public Vector normalize(){
-       var len=length();
-       return  new Vector(xyz.d1/len,xyz.d2/len,xyz.d3/len);
+        var len = length();
+        var n = new Vector((xyz.d1)/len, (xyz.d2)/len, (xyz.d3)/len);
+        return n;
     }
 
     /**
@@ -129,5 +134,8 @@ public class Vector extends Point {
     }
 
 
-
+    public boolean IsZero() {
+        checkingVector(this.xyz);
+        return false;
+    }
 }

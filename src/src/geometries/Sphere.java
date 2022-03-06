@@ -3,6 +3,10 @@ package src.geometries;
 import src.primitives.Point;
 import src.primitives.Vector;
 
+/**
+ * A sphere is a geometric object that is defined by a center point and a radius
+ * @author David Ochana & Aviad Klein
+ */
 public class Sphere implements Geometry {
     final Point center;
     final double radius;

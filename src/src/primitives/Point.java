@@ -1,5 +1,9 @@
 package src.primitives;
 
+/**
+ * A point is a vector from the origin to a point in space
+ * @author David Ochana & Aviad Klein
+ */
 public class Point {
   final  Double3 xyz;
 

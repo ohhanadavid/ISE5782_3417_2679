@@ -4,6 +4,10 @@ import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
 
+/**
+ * A tube is a cylinder with a circular cross section
+ * @author David Ochana & Aviad Klein
+ */
 public class Tube implements Geometry {
     final Ray axisRay;
     final Double radius;

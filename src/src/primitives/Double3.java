@@ -10,7 +10,7 @@ import static src.primitives.Util.*;
  * 
  * @author Dan Zilberstein
  */
-class Double3 {
+public class Double3 {
 	final double d1;
 	final double d2;
 	final double d3;

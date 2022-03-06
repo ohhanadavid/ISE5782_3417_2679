@@ -4,6 +4,10 @@ import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
 
+/**
+ * A cylinder is a tube with a height
+ *@author David Ochana & Aviad Klein
+ */
 public class Cylinder extends Tube  implements Geometry {
    final double height;
 

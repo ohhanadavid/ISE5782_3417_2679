@@ -2,6 +2,10 @@ package src.primitives;
 
 import java.util.Objects;
 
+/**
+ * A ray is a line that starts at a point and has a direction
+ * @author David Ochana & Aviad Klein
+ */
 public class Ray {
   final  Point p0;
    final Vector dir;
