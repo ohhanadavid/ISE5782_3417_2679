@@ -10,7 +10,7 @@ import static src.primitives.Util.isZero;
  * Unit tests for {@link src.primitives.Vector } class.
  *
  */
-class TestVector {
+class testVector {
 
     @Test
     @DisplayName("Add two vectors")
@@ -119,7 +119,8 @@ class TestVector {
     }
 
     @Test
-    void testDotProdact() {
+    // It tests the dot product of two vectors.
+    void testDotProduct() {
         Vector v1 = new Vector(1, 2, 3);
         Vector v2 = new Vector(-2, -4, -6);
         Vector v3 = new Vector(1, -5, 0);

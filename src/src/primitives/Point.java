@@ -38,7 +38,7 @@ public class Point {
      */
     public Vector subtract(Point vertex) {
 
-      return  new Vector(this.xyz.d1-vertex.xyz.d1,this.xyz.d2-vertex.xyz.d2,this.xyz.d3-vertex.xyz.d3);
+      return  new Vector(xyz.d1-vertex.xyz.d1,xyz.d2-vertex.xyz.d2,xyz.d3-vertex.xyz.d3);
     }
 
 

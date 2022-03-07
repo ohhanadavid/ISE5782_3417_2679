@@ -2,7 +2,7 @@ package src.unitTests.primitives;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-class TestDouble3 {
+class testDouble3 {
 
     @Test
     void testAdd() {

@@ -4,13 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestRay {
+class testRay {
 
-    @Test
-    void testGetP0() {
-    }
 
-    @Test
-    void testGetDir() {
-    }
 }

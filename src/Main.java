@@ -64,12 +64,7 @@ public final class Main {
 		if (v.dotProduct(u) < 0)
 			out.println("ERROR: the normalized vector is opposite to the original one");
 
-		// Test operations with points and vectors
-		Point p1 = new Point(1, 2, 3);
-		if (!(p1.add(new Vector(-1, -2, -3)).equals(new Point(0, 0, 0))))
-			out.println("ERROR: Point + Vector does not work correctly");
-		if (!new Vector(1, 1, 1).equals(new Point(2, 3, 4).subtract(p1)))
-			out.println("ERROR: Point - Point does not work correctly");
+
 
 		out.println("If there were no any other outputs - all tests succeeded!");
 	}

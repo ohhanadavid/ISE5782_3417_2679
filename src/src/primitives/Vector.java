@@ -33,7 +33,7 @@ public class Vector extends Point {
      */
     private void checkingVector(Double3 xyz) {
         if( xyz.equals(Double3.ZERO)){
-            throw new IllegalArgumentException();}
+            throw new IllegalArgumentException("This is the zero vector");}
     }
 
     @Override
@@ -73,9 +73,9 @@ public class Vector extends Point {
      * @return The cross product of the two vectors.
      */
     public Vector crossProduct(Vector edge2) {
-        var x=xyz.d2*edge2.xyz.d3-xyz.d3*edge2.xyz.d2;
-        var y=(xyz.d1*edge2.xyz.d3-xyz.d3*edge2.xyz.d1)*(-1);
-        var z=xyz.d1*edge2.xyz.d2-xyz.d2*edge2.xyz.d1;
+        double x = (xyz.d2 * edge2.xyz.d3) - (xyz.d3 * edge2.xyz.d2);
+        double y = (xyz.d3 * edge2.xyz.d1) - (xyz.d1 * edge2.xyz.d3);
+        double z = (xyz.d1 * edge2.xyz.d2) - (xyz.d2 * edge2.xyz.d1);
         return new Vector(x,y,z);
     }
 
@@ -118,7 +118,7 @@ public class Vector extends Point {
      */
     public Vector normalize(){
         var len = length();
-        var n = new Vector((xyz.d1)/len, (xyz.d2)/len, (xyz.d3)/len);
+        var n =scale(1/len);
         return n;
     }
 

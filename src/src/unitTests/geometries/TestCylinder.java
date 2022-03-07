@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestCylinder {
+class testCylinder {
 
     @Test
     void testGetNormal() {
     }
 
-    @Test
-    void testGetHeight() {
-    }
+
 }

@@ -3,17 +3,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestTube {
+class testTube {
 
     @Test
     void testGetNormal() {
     }
 
-    @Test
-    void testGetRadius() {
-    }
 
-    @Test
-    void testGetAxisRay() {
-    }
 }
