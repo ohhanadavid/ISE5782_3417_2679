@@ -12,6 +12,9 @@ public class Sphere implements Geometry {
     final double radius;
 
     public Sphere(Point center, double radius) {
+        if(radius<=0)
+            throw new IllegalArgumentException("Radius can't be equal or low then 0 !");
+
         this.center = center;
         this.radius = radius;
     }

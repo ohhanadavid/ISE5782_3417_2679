@@ -1,8 +1,11 @@
 package src.geometries;
 
+
 import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
+
+import static src.primitives.Util.isZero;
 
 /**
  * A cylinder is a tube with a height
@@ -11,14 +14,44 @@ import src.primitives.Vector;
 public class Cylinder extends Tube  implements Geometry {
    final double height;
 
-    public Cylinder(Ray axisRay, Double radius, double height) {
+    public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
+        if(radius<0)
+            throw new IllegalArgumentException("The radius low then zero!");
+        if(height<0)
+            throw new IllegalArgumentException("The height low then zero!");
+
         this.height = height;
     }
 
     @Override
-    public Vector getNormal(Point point) {
-        return null;
+    public Vector getNormal(Point p) {
+        // Finding the normal:
+        // n = normalize(p - o)
+        // t = v * (p - p0)
+        // o = p0 + t * v
+
+        Vector v= axisRay.getDir();
+        Point p0 =axisRay.getP0();
+
+        //if p=p0, then (p-p0) is zero vector
+        //returns the vector of the base as a normal
+        if(p.equals(p0)){
+            return v.scale(-1);
+        }
+
+        double t= v.dotProduct(p.subtract(p0));
+        //check if the point on the bottom
+        if(isZero(t)){
+            return v.scale(-1);
+        }
+        //check if the point on the top
+        if(isZero(t-height)){
+            return v;
+        }
+
+        Point o=p0.add(v.scale(t));
+        return p.subtract(o).normalize();
     }
 
     @Override
