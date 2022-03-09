@@ -13,6 +13,27 @@ class TestSphere {
      */
     @Test
     void testConstractorSphere(){
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Test for a proper result.
+        try {
+            new Sphere(new Point(1, 2, 3), 5);
+        } catch (IllegalArgumentException error) {
+            fail("Failed constructor of the correct sphere");
+        }
+
+        // ============ Boundary Values Tests =============
+        // TC02: Test when the radius is 0.
+        try {
+            new Sphere(new Point(1, 2, 3), 0);
+            fail("Constructed a sphere while the radius is 0");
+        } catch (IllegalArgumentException ignored) {
+        }
+        // TC03: Test when the radius is negative,-1.
+        try {
+            new Sphere(new Point(1, 2, 3), -1);
+            fail("Constructed a sphere while the radius is negative");
+        } catch (IllegalArgumentException ignored) {
+        }
 
     }
 

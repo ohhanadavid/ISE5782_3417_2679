@@ -10,16 +10,19 @@ import src.primitives.Vector;
  */
 public class Tube implements Geometry {
     final Ray axisRay;
-    final Double radius;
+    final double radius;
+
+    public Tube(Ray axisRay, double radius) {
+        if(radius<=0)
+            throw new IllegalArgumentException("This radius unlegal!");
+
+        this.axisRay = axisRay;
+        this.radius = radius;
+    }
 
     @Override
     public Vector getNormal(Point point) {
         return null;
-    }
-
-    public Tube(Ray axisRay, Double radius) {
-        this.axisRay = axisRay;
-        this.radius = radius;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class Tube implements Geometry {
         Tube tube = (Tube) o;
 
 
-        return this.axisRay.equals(tube.axisRay)&&this.radius.equals(tube.radius);
+        return this.axisRay.equals(tube.axisRay)&&this.radius==tube.radius;
     }
 
 
