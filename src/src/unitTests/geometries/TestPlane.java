@@ -7,6 +7,9 @@ import src.primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link src.geometries.Plane} class.
+ */
 class TestPlane {
 
     @Test
