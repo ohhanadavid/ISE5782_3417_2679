@@ -23,17 +23,11 @@ class TestSphere {
 
         // ============ Boundary Values Tests =============
         // TC02: Test when the radius is 0.
-        try {
-            new Sphere(new Point(1, 2, 3), 0);
-            fail("Constructed a sphere while the radius is 0");
-        } catch (IllegalArgumentException ignored) {
-        }
+        assertThrows(IllegalArgumentException.class,()->new Sphere(new Point(1, 2, 3), 0),"Constructed a sphere while the radius is 0");
+
         // TC03: Test when the radius is negative,-1.
-        try {
-            new Sphere(new Point(1, 2, 3), -1);
-            fail("Constructed a sphere while the radius is negative");
-        } catch (IllegalArgumentException ignored) {
-        }
+        assertThrows(IllegalArgumentException.class,()->new Sphere(new Point(1, 2, 3), -1),"Constructed a sphere while the radius is negative");
+
 
     }
 
@@ -44,7 +38,9 @@ class TestSphere {
     void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         Sphere sphere = new Sphere(new Point (1,0,1),2);
-        assertEquals(new Vector(0,0,1),sphere.getNormal(new Point(1,0,2)),"Uncoorect normal");
+        assertEquals(new Vector(0,0,1),
+                sphere.getNormal(new Point(1,0,2)),
+                "Uncoorect normal");
 
 
     }

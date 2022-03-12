@@ -11,10 +11,6 @@ class testPoint {
 
     // Test operations with points and vectors
 
-
-
-
-
     @Test
     void testSubtract() {
         Point p1 = new Point(1, 2, 3);

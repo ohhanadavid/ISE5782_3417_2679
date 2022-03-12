@@ -1,5 +1,6 @@
 package src.unitTests.geometries;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import src.geometries.*;
 import src.primitives.*;
 
@@ -22,15 +23,15 @@ class testTube {
 
         // =============== Boundary Values Tests ==================
         //TC02: Test when the radius 0
-        try {
-            new Tube(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 0);
-            fail("Constructed a Tube while a radius can not be 0");
-        } catch (IllegalArgumentException ignored) { }
+        assertThrows(IllegalArgumentException.class,
+                ()->new Tube(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 0),
+                "Constructed a Tube while a radius can not be 0");
+
         //TC03:Test when the radius negative, -1
-        try {
-            new Tube(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), -1);
-            fail("Constructed a Tube while a radius can not be negative");
-        } catch (IllegalArgumentException ignored) {}
+        assertThrows(IllegalArgumentException.class,
+                ()->new Tube(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), -1),
+                "Constructed a Tube while a radius can not be negative");
+
     }
 
     /**

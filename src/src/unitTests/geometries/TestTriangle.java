@@ -29,51 +29,35 @@ class testTriangle {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Test for a proper result.
-        try {
-            new Triangle
-                    (
-                            new Point(1, 0, 0),
-                            new Point(0, 1, 0),
-                            new Point(0, 0, 1)
-                    );
-        } catch (IllegalArgumentException error) {
-            fail("Failed constructor of the correct triangle");
-        }
-
+        assertThrows(IllegalArgumentException.class,()->new Triangle
+                (
+                        new Point(1, 0, 0),
+                        new Point(0, 1, 0),
+                        new Point(0, 0, 1)
+                ),"Failed constructor of the correct triangle");
         // ============ Boundary Values Tests =============
         // TC02: Test when a point equal to b point.
-        try {
-            new Triangle
-                    (
-                            new Point(1, 0, 0),
-                            new Point(1, 0, 0),
-                            new Point(0, 0, 1)
-                    );
-            fail("Constructed a triangle while a point equal to b point");
-        } catch (IllegalArgumentException ignored) {
-        }
+        assertThrows(IllegalArgumentException.class,()->new Triangle
+                (
+                        new Point(1, 0, 0),
+                        new Point(1, 0, 0),
+                        new Point(0, 0, 1)
+                ),"Constructed a triangle while a point equal to b point");
+
         //TC03: Test when a point equal to c point.
-        try {
-            new Triangle
-                    (
-                            new Point(1, 0, 0),
-                            new Point(0, 0, 1),
-                            new Point(1, 0, 0)
-                    );
-            fail("Constructed a triangle while a point equal to c point");
-        } catch (IllegalArgumentException ignored) {
-        }
+        assertThrows(IllegalArgumentException.class,()->new Triangle
+                (
+                        new Point(1, 0, 0),
+                        new Point(0, 1, 0),
+                        new Point(1, 0, 0)
+                ),"Constructed a triangle while a point equal to c point");
         //TC04: Test when b point equal to c point.
-        try {
-            new Triangle
-                    (
-                            new Point(1, 0, 0),
-                            new Point(0, 0, 1),
-                            new Point(0, 0, 1)
-                    );
-            fail("Constructed a triangle while b point equal to c point");
-        } catch (IllegalArgumentException ignored) {
-        }
+        assertThrows(IllegalArgumentException.class,()->new Triangle
+                (
+                        new Point(0, 1, 0),
+                        new Point(1, 0, 0),
+                        new Point(1, 0, 0)
+                ),"Constructed a triangle while c point equal to b point");
     }
 
 }

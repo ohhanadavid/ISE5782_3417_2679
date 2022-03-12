@@ -1,8 +1,9 @@
 package src.geometries;
 
-import src.primitives.Point;
-import src.primitives.Ray;
-import src.primitives.Vector;
+import src.primitives.*;
+
+import static src.primitives.Util.isZero;
+
 
 /**
  * A tube is a cylinder with a circular cross section
@@ -22,7 +23,25 @@ public class Tube implements Geometry {
 
     @Override
     public Vector getNormal(Point point) {
-        return null;
+        // Finding the normal:
+        // n = normalize(p - o)
+        // t = v * (p - p0)
+        // o = p0 + t * v
+
+        Vector v= axisRay.getDir();
+        Point p0 =axisRay.getP0();
+
+        double t= v.dotProduct(point.subtract(p0));
+
+        //if t=0, then t*v is the zero vector and o=p0.
+        Point o=p0;
+
+        if(!isZero(t))
+        {
+            o=p0.add(v.scale(t));
+        }
+
+        return point.subtract(o).normalize();
     }
 
     @Override
