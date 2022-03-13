@@ -22,6 +22,7 @@ public class Tube implements Geometry {
     }
 
     @Override
+    // Returning the normal vector of the point on this tube.
     public Vector getNormal(Point point) {
         // Finding the normal:
         // n = normalize(p - o)

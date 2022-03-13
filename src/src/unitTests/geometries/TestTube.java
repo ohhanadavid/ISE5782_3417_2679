@@ -6,7 +6,7 @@ import src.primitives.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class testTube {
+class TestTube {
 
     /**
      * Test method for {@link src.geometries.Tube#Tube(Ray,double)}
@@ -39,12 +39,16 @@ class testTube {
      */
     @Test
     public void testGetNormal() {
+        Tube tube = new Tube(new Ray(new Point(2, 2, 2), new Vector(1, 1, 1)), 5);
         // ============ Equivalence Partitions Tests ==============
-        Tube tube= new Tube( new Ray(new Point(1,1,0),new Vector(0,0,1)),1d);
+        // TC01: Wrong normal calculation (in case the point is not across the ray.p0)
+        assertEquals(new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point(12,2,7))
+                ,"getNormal() - does not work correctly");
 
-        assertEquals(new Vector(0,-1,0), tube.getNormal(new Point(1,0,2)), "Bad normal to tube");
+        // =============== Boundary Values Tests ==================
+        // TC01: Wrong normal calculation (in case the point is across the ray.p0)
+        assertEquals(new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point(7, -3, 2))
+                ,"getNormal() - does not work correctly (Boundary test)");
 
     }
-
-
 }

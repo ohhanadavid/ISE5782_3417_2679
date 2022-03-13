@@ -10,7 +10,7 @@ import static src.primitives.Util.isZero;
  * Unit tests for {@link src.primitives.Vector } class.
  *
  */
-class testVector {
+class TestVector {
 
     @Test
     @DisplayName("Add two vectors")
@@ -92,7 +92,6 @@ class testVector {
             fail("crossProduct() for parallel vectors does not throw an exception");
         } catch (Exception ignored) {}
 
-        vr = (v5.crossProduct(v3));
         try {//same vector
             vr =v1.crossProduct(v1);
             assertTrue(vr.IsZero(), "ERROR: crossProduct() of vector with himself");

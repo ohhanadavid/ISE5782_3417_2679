@@ -15,7 +15,7 @@ import src.primitives.*;
  * @author Dan
  *
  */
-public class testsPolygon {
+public class TestsPolygon {
 
 	/**
 	 * Test method for {@link src.geometries.Polygon#Polygon(src.primitives.Point...)}.

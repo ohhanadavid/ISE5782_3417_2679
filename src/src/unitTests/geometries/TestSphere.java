@@ -40,8 +40,6 @@ class TestSphere {
         Sphere sphere = new Sphere(new Point (1,0,1),2);
         assertEquals(new Vector(0,0,1),
                 sphere.getNormal(new Point(1,0,2)),
-                "Uncoorect normal");
-
-
+                "Uncorrected normal");
     }
 }

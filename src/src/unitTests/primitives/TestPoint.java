@@ -7,7 +7,7 @@ import src.primitives.Vector;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class testPoint {
+class TestPoint {
 
     // Test operations with points and vectors
 

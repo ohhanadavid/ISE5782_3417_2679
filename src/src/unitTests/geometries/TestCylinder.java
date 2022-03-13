@@ -9,7 +9,7 @@ import src.primitives.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class testCylinder {
+class TestCylinder {
     /**
      * Test method for {@link src.geometries.Cylinder#Cylinder(Ray , double , double) }.
      */
@@ -58,7 +58,7 @@ class testCylinder {
 
         // ============ Equivalence Partitions Tests ==============
         //TC01: Test with point on the top of the cylinder
-        assertEquals(new Vector(0,0,1),cylinder.getNormal(new Point(1,1,3)),"Bad normal to the top of the cylinder");
+        assertEquals(new Vector(0, 0, 1), cylinder.getNormal(new Point(1, 1, 3)),"Bad normal to the top of the cylinder");
         //TC02: Test with point on the bottom of the cylinder
         assertEquals(new Vector(0, 0, -1), cylinder.getNormal(new Point(1, 1, 0)), "Bad normal to the bottom of the cylinder");
 
