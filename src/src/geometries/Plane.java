@@ -14,6 +14,7 @@ public class Plane implements Geometry{
 
     public Plane(Point p1, Point p2, Point p3) {
       q0=p1;
+
     if(p1.equals(p2)||p2.equals(p3)||p1.equals(p3))
           throw new IllegalArgumentException("All point should be defendant's ");
       Vector v1=p1.subtract(p2);
