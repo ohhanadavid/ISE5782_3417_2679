@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import src.primitives.*;
 import  src.geometries.*;
 
-class testTriangle {
+class TestTriangle {
     /**
      * Test method for {@link src.geometries.Triangle#getNormal(Point))}.
      */
@@ -29,12 +29,16 @@ class testTriangle {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Test for a proper result.
-        assertThrows(IllegalArgumentException.class,()->new Triangle
-                (
-                        new Point(1, 0, 0),
-                        new Point(0, 1, 0),
-                        new Point(0, 0, 1)
-                ),"Failed constructor of the correct triangle");
+        try{
+            new Triangle
+                    (
+                            new Point(1,0,0),
+                            new Point(0,1,0),
+                            new Point(0,0,1)
+                    );
+        } catch (IllegalArgumentException error) {
+            fail("Failed constructor of the correct triangle");
+        }
         // ============ Boundary Values Tests =============
         // TC02: Test when a point equal to b point.
         assertThrows(IllegalArgumentException.class,()->new Triangle
@@ -59,5 +63,4 @@ class testTriangle {
                         new Point(1, 0, 0)
                 ),"Constructed a triangle while c point equal to b point");
     }
-
 }

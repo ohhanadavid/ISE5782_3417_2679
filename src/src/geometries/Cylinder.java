@@ -16,9 +16,10 @@ public class Cylinder extends Tube  implements Geometry {
 
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
-        if(radius<0)
+        if(radius<=0)
             throw new IllegalArgumentException("The radius low then zero!");
-        if(height<0)
+
+        if(height<=0)
             throw new IllegalArgumentException("The height low then zero!");
 
         this.height = height;
@@ -74,10 +75,8 @@ public class Cylinder extends Tube  implements Geometry {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Cylinder)) return false;
+        if (/*o == null ||*/ !(o instanceof Cylinder cylinder)) return false;
         if (!super.equals(o)) return false;
-
-        Cylinder cylinder = (Cylinder) o;
 
         return this.height==cylinder.height;
     }

@@ -15,7 +15,7 @@ public class Tube implements Geometry {
 
     public Tube(Ray axisRay, double radius) {
         if(radius<=0)
-            throw new IllegalArgumentException("This radius unlegal!");
+            throw new IllegalArgumentException("This radius is not legal!");
 
         this.axisRay = axisRay;
         this.radius = radius;
@@ -47,11 +47,7 @@ public class Tube implements Geometry {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Tube)) return false;
-
-        Tube tube = (Tube) o;
-
-
+        if (/*o == null ||*/ !(o instanceof Tube tube)) return false;
         return this.axisRay.equals(tube.axisRay)&&this.radius==tube.radius;
     }
 
