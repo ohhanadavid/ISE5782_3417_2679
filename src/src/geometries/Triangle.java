@@ -1,7 +1,10 @@
 package src.geometries;
 
 import src.primitives.Point;
+import src.primitives.Ray;
 import src.primitives.Vector;
+
+import java.util.List;
 
 /**
  * A triangle is a polygon with three vertices
@@ -23,8 +26,11 @@ public class Triangle extends Polygon{
         return "Triangle: "+this.plane+this.vertices;
     }
 
+
+
     @Override
-    public Vector getNormal(Point point) {
-       return super.getNormal(point);
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
+
 }

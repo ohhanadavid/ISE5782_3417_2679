@@ -1,7 +1,12 @@
 package src.geometries;
 
 import src.primitives.Point;
+import src.primitives.Ray;
 import src.primitives.Vector;
+
+import java.util.List;
+
+
 
 /**
  * A plane is defined by a point and a normal vector
@@ -61,5 +66,10 @@ public class Plane implements Geometry{
     @Override
     public Vector getNormal(Point point) {
         return normal;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }

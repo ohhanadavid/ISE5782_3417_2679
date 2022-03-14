@@ -1,7 +1,10 @@
 package src.geometries;
 
 import src.primitives.Point;
+import src.primitives.Ray;
 import src.primitives.Vector;
+
+import java.util.List;
 
 /**
  * A sphere is a geometric object that is defined by a center point and a radius
@@ -61,5 +64,10 @@ public class Sphere implements Geometry {
     @Override
     public Vector getNormal(Point point) {
         return point.subtract(center).normalize();
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }

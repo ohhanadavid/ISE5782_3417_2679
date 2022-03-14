@@ -2,6 +2,8 @@ package src.geometries;
 
 import src.primitives.*;
 
+import java.util.List;
+
 import static src.primitives.Util.isZero;
 
 
@@ -78,5 +80,10 @@ public class Tube implements Geometry {
      */
     public Ray getAxisRay() {
         return axisRay;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package src.geometries;
 
 import src.primitives.Point;
+import src.primitives.Ray;
 import src.primitives.Vector;
 
 import java.util.List;
@@ -90,5 +91,10 @@ public class Polygon implements Geometry {
 	// Returning the normal vector of the plane associated with the polygon.
 	public Vector getNormal(Point point) {
 		return plane.getNormal();
+	}
+
+	@Override
+	public List<Point> findIntersections(Ray ray) {
+		return null;
 	}
 }

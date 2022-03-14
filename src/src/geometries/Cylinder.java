@@ -5,6 +5,8 @@ import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
 
+import java.util.List;
+
 import static src.primitives.Util.isZero;
 
 /**
@@ -16,11 +18,10 @@ public class Cylinder extends Tube  implements Geometry {
 
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
-        if(radius<=0)
+        if(radius<0)
             throw new IllegalArgumentException("The radius low then zero!");
-
         if(height<=0)
-            throw new IllegalArgumentException("The height low then zero!");
+            throw new IllegalArgumentException("The height low equal to zero!");
 
         this.height = height;
     }
@@ -75,11 +76,17 @@ public class Cylinder extends Tube  implements Geometry {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (/*o == null ||*/ !(o instanceof Cylinder cylinder)) return false;
+        if (o == null || !(o instanceof Cylinder)) return false;
         if (!super.equals(o)) return false;
+
+        Cylinder cylinder = (Cylinder) o;
 
         return this.height==cylinder.height;
     }
 
 
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 }
