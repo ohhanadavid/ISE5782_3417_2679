@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import src.primitives.*;
 import  src.geometries.*;
 
+import java.util.List;
+
 class TestTriangle {
     /**
      * Test method for {@link src.geometries.Triangle#getNormal(Point))}.

@@ -37,6 +37,13 @@ public abstract class Util {
 		return getExp(number) < ACCURACY;
 	}
 
+//	public static double twoDotNumber(double num) {
+//		num *= 100;
+//		num -= (num) % 1;
+//		num /= 100;
+//		return num;
+//	}
+
 	/**
 	 * Aligns the number to zero if it is almost zero
 	 * 

@@ -1,9 +1,9 @@
 package src.unitTests.geometries;
 
 import org.junit.jupiter.api.Test;
-import src.geometries.Plane;
-import src.primitives.Point;
-import src.primitives.Vector;
+import src.geometries.*;
+import src.primitives.*;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
