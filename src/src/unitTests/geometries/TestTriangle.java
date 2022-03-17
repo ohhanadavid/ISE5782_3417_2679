@@ -83,7 +83,7 @@ class TestTriangle {
         result = triangle.findIntersections(new Ray(new Point(-1, -1, -2), new Vector(1, 1, 2)));
 
         assertEquals(1, result.size(), "Wrong number of points");
-        assertEquals(new Point(0.25d, 0.25d, 0.5d), result.get(0).twoDotNumber(), "Ray doesn't intersect the triangle");
+        assertEquals(new Point(0.25d, 0.25d, 0.5d), result.get(0), "Ray doesn't intersect the triangle");
 
         //TC02:Ray outside against vertex
         assertNull(triangle.findIntersections(new Ray(new Point(-2, -2, -2), new Vector(1, 1, 2))), "Ray isn't outside against vertex");

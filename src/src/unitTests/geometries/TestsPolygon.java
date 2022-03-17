@@ -113,7 +113,7 @@ public class TestsPolygon {
 		//TC11: Ray On edge
 		result = polygon.findIntersections(new Ray(new Point(-2, 0, 3), new Vector(1.03d, 0.51d, -3)));
 		assertEquals(1, result.size(), "Wrong number of points");
-		//assertEquals(new Point(-0.96d, 0.51d, 0d), result.get(0).getXyz()., "Ray  isn't on edge of the polygon");
+		assertEquals(new Point(-0.96d, 0.51d, 0d), result.get(0), "Ray  isn't on edge of the polygon");
 
 		///TC12: Ray in vertex
 		assertNull(polygon.findIntersections(new Ray(new Point(0, 1, 0), new Vector(-2d, -1d, 3))),  "Ray  isn't on vertex of the polygon");
