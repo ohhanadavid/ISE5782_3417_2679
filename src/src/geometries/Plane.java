@@ -6,6 +6,7 @@ import src.primitives.Vector;
 
 import java.util.List;
 
+import static src.primitives.Util.isZero;
 
 
 /**
@@ -39,8 +40,6 @@ public class Plane implements Geometry{
     }
 
     /**
-     * Returns the initial point of the quadratic
-     *
      * @return The method returns a Point object that is a copy of the Point object stored in the q0 field.
      */
     public Point getP0() {
@@ -48,8 +47,6 @@ public class Plane implements Geometry{
     }
 
     /**
-     * Returns the normal vector of the plane
-     *
      * @return The normal vector of the plane.
      */
     public Vector getNormal() {
@@ -63,13 +60,50 @@ public class Plane implements Geometry{
                 ", normal=" + normal ;
     }
 
+    /**
+     * @param point
+     * @return the normal of this plane
+     */
     @Override
     public Vector getNormal(Point point) {
         return normal;
     }
 
+    /**
+     * @param ray
+     * @return a list of points that are the intersections of the ray and the plane.
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
+        //t=n*(q0-Po)/n*v
+        Vector v= ray.getDir();
+        Point p0=ray.getP0();
+
+        //Ray on the plane
+        if(q0.equals(p0)){
+            return null;
+        }
+
+        double nqp=normal.dotProduct(q0.subtract(p0));
+        //Ray on the plane
+        if(isZero(nqp)){
+            return null;
+        }
+
+        double nv= normal.dotProduct(v);
+
+        if(isZero(nv)){
+            return null;
+        }
+
+        double t=nqp/nv;
+
+        //Ray after the plane
+        if(t<0){
+            return null;
+        }
+
+        //Ray crosses the plane
+        return List.of(ray.getPoint(t));
     }
 }

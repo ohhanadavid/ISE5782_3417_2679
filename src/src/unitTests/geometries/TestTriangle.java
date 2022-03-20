@@ -66,11 +66,10 @@ class TestTriangle {
                 ),"Constructed a triangle while c point equal to b point");
     }
 
-    @Test
-
     /**
-     * Test method for {@link Triangle.FindIntersections}
+     * Test method for {@link src.geometries.Triangle#findIntersections(Ray)}.
      */
+    @Test
     void testFindIntersections() {
         Triangle triangle = new Triangle(
                 new Point(1, 0, 0),

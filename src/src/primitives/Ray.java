@@ -32,23 +32,24 @@ public class Ray {
 
 
     /**
-     * Returns the value of the first point
-     *
-     * @return The method returns the value of the instance variable p0.
+     * @return the value of the instance variable p0.
      */
     public Point getP0() {
         return p0;
     }
 
     /**
-     * Returns the direction of the particle
-     *
      * @return The direction vector of the particle.
      */
     public Vector getDir() {
         return dir;
     }
 
+    /**
+     * Gets a point on the ray by calculating p0 + t*v.
+     * @param t A scalar to calculate the point.
+     * @return A point on the ray.
+     */
     public Point getPoint (double t){
         return p0.add(dir.scale(t));
     }

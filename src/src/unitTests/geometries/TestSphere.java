@@ -46,11 +46,12 @@ class TestSphere {
                 "Uncorrected normal");
     }
 
-    @Test
+
 
     /**
-     * Test method for {@link Sphere.FindIntersections}
+     * Test method for {@link Sphere#findIntersections(Ray)}.
      */
+    @Test
     void testFindIntersections() {
         Sphere sphere = new Sphere(new Point(-2, 0, 0),Math.sqrt(21));
         List<Point> result;

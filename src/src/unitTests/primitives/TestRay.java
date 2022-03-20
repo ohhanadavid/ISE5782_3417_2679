@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestRay {
 
-
-    @Test
+    
 
     /**
-     * Test method for {@link Ray.GetPoint}
+     * Test method for {@link src.primitives.Ray#getPoint(double)}
      */
+    @Test
     void testGetPoint() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: Tests when t = 1 and since the vector is normalized in the beam we multiply in length

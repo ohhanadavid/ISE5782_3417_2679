@@ -27,6 +27,7 @@ public class Cylinder extends Tube  implements Geometry {
     }
 
     @Override
+    // Returning the normal of the cylinder at the point p.
     public Vector getNormal(Point p) {
         // Finding the normal:
         // n = normalize(p - o)
@@ -65,8 +66,6 @@ public class Cylinder extends Tube  implements Geometry {
     }
 
     /**
-     * Returns the height of the cylinder.
-     *
      * @return The height of the cylinder.
      */
     public double getHeight() {
@@ -85,6 +84,10 @@ public class Cylinder extends Tube  implements Geometry {
     }
 
 
+    /**
+     * @param ray
+     * @return a list of points that are the intersections of the ray and the cylinder.
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         return null;

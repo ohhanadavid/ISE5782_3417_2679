@@ -52,11 +52,11 @@ public class Point {
       return new Point(xyz.d1+point.xyz.d1,xyz.d2+point.xyz.d2,xyz.d3+point.xyz.d3);
     }
 
-//    public Point twoDotNumber()
-//    {
-//        return new Point(Util.twoDotNumber(xyz.d1), Util.twoDotNumber(xyz.d2), Util.twoDotNumber(xyz.d3));
-//
-//    }
+    public Point twoDotNumber()
+    {
+        return new Point(Util.twoDotNumber(xyz.d1), Util.twoDotNumber(xyz.d2), Util.twoDotNumber(xyz.d3));
+
+    }
     public double getX() {
         return xyz.d1;
     }

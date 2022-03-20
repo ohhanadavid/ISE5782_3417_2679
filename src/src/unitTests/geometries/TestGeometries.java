@@ -6,19 +6,17 @@ import  src.primitives.*;
 
 import java.util.List;
 
-import static src.primitives.Util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestGeometrys {
+class TestGeometries {
 
-    @Test
 
     /**
-     * Test method for {@link Geometrys.FindIntersections}
+     * Test method for {@link src.geometries.Geometries#findIntersections(Ray)}.
      */
+    @Test
     void testFindIntersections() {
-        Geometrys geometries = new Geometrys(
+        Geometries geometries = new Geometries(
                     new Sphere(new Point(0, 0, 2), 0.5),
                     new Polygon(
                             new Point( 1, 0, 0),
@@ -52,9 +50,6 @@ class TestGeometrys {
             assertNull(geometries.findIntersections(new Ray(new Point(1, 1, 1), new Vector(1, 1, 1))), "No geometries intersects");
 
             //TC05: Empty list of geometries
-            assertNull(new Geometrys().findIntersections(new Ray(new Point(1,2,3), new Vector(2,2,2))), "Empty list of geometries");
-
-
-
+            assertNull(new Geometries().findIntersections(new Ray(new Point(1,2,3), new Vector(2,2,2))), "Empty list of geometries");
     }
 }

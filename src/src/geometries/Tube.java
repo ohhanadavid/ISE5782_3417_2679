@@ -23,8 +23,11 @@ public class Tube implements Geometry {
         this.radius = radius;
     }
 
+    /**
+     * @param point
+     * @return the normal vector of the point on this tube.
+     */
     @Override
-    // Returning the normal vector of the point on this tube.
     public Vector getNormal(Point point) {
         // Finding the normal:
         // n = normalize(p - o)
@@ -65,8 +68,6 @@ public class Tube implements Geometry {
     }
 
     /**
-     * Get the radius of the circle
-     *
      * @return The radius of the circle.
      */
     public Double getRadius() {
@@ -74,14 +75,16 @@ public class Tube implements Geometry {
     }
 
     /**
-     * Returns the ray that is used to determine the axis of rotation
-     *
      * @return The axisRay is being returned.
      */
     public Ray getAxisRay() {
         return axisRay;
     }
 
+    /**
+     * @param ray
+     * @return a list of points that are the intersections of the ray and the tube.
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         return null;

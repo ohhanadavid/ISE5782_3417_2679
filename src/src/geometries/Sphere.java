@@ -23,8 +23,6 @@ public class Sphere implements Geometry {
     }
 
     /**
-     * Returns the center of the circle
-     *
      * @return The center of the circle.
      */
     public Point getCenter() {
@@ -32,8 +30,6 @@ public class Sphere implements Geometry {
     }
 
     /**
-     * Returns the radius of the circle
-     *
      * @return The radius of the circle.
      */
     public double getRadius() {
@@ -61,11 +57,19 @@ public class Sphere implements Geometry {
                 '}';
     }
 
+    /**
+     * @param point
+     * @return the normal vector of the sphere at the given point.
+     */
     @Override
     public Vector getNormal(Point point) {
         return point.subtract(center).normalize();
     }
 
+    /**
+     * @param ray
+     * @return the intersection points of the ray with the sphere.
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getP0();

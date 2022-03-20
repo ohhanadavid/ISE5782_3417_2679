@@ -75,6 +75,15 @@ class TestCylinder {
 
     }
 
-
-
+    /**
+     * Test methode for {@link src.geometries.Cylinder#findIntersections(Ray)}(src.primitives.Point)}
+     */
+    @Test
+    void testFindIntersections() {
+        //
+        //
+        //
+        //
+        //
+    }
 }

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import src.primitives.Point;
 import src.primitives.Vector;
 
-import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestPoint {
