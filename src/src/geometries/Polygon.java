@@ -105,6 +105,7 @@ public class Polygon implements Geometry {
 		List<Point>result=plane.findIntersections(ray);
 		if (result==null){
 			return null;
+
 		}
 
 		int numV=vertices.size();
