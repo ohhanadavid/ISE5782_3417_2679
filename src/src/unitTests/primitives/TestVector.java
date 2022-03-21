@@ -51,16 +51,9 @@ class TestVector {
 
         //=============== Boundary Values Tests ==================
         //multiply in zero
-        try {
-            v = v0.scale(0);
-            assertTrue(v.IsZero(), "scale() wrong result");
-            fail("Didn't throw zero exception!");
-        } catch ( IllegalArgumentException e) {
-            assertTrue(true);
-        }
+       assertThrows(IllegalArgumentException.class,()->new Vector(1,2,3).scale(0),"scale in zero dont throw exception!");
         //multiply in 1
-        v=v0.scale(1);
-        assertEquals(v,v0, "scale() wrong result");
+        assertEquals(v0,v0.scale(1), "scale() wrong result");
     }
 
     @Test
@@ -82,24 +75,16 @@ class TestVector {
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
 
-        assertFalse(v1.crossProduct(v2).IsZero(), "ERROR: dotProduct() wrong value in opposite direction");//opposite direction
-        assertFalse(v1.crossProduct(v6).IsZero(), "ERROR: dotProduct() wrong value in acute angle");//acute angle
-        assertFalse(v1.crossProduct(v5).IsZero(), "ERROR: dotProduct() wrong value in obtuse angle");//obtuse angle
+        assertEquals(v1.crossProduct(v2),new Vector(-13,2,3), "ERROR: dotProduct() wrong value in opposite direction");//opposite direction
+        assertEquals(v1.crossProduct(v6),new Vector(8,-4,0), "ERROR: dotProduct() wrong value in acute angle");//acute angle
+        assertEquals(v1.crossProduct(v5),new Vector(3,-15,9), "ERROR: dotProduct() wrong value in obtuse angle");//obtuse angle
 
         // =============== Boundary Values Tests ==================
         //check if the vectors is parallel
-        try {
-            v1.crossProduct(v3);
-            fail("crossProduct() for parallel vectors does not throw an exception");
-        } catch (Exception ignored) {}
+        assertThrows(IllegalArgumentException.class,()->v1.crossProduct(v3),"crossProduct() for parallel vectors does not throw an exception");
+        //same vector
+        assertThrows(IllegalArgumentException.class,()->v1.crossProduct(v1),"Didn't throw parallel exception!");
 
-        try {//same vector
-            vr =v1.crossProduct(v1);
-            assertTrue(vr.IsZero(), "ERROR: crossProduct() of vector with himself");
-            fail("Didn't throw parallel exception!");
-        } catch ( IllegalArgumentException e) {
-            assertTrue(true);
-        }
     }
 
     @Test

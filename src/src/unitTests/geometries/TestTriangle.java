@@ -31,16 +31,7 @@ class TestTriangle {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Test for a proper result.
-        try{
-            new Triangle
-                    (
-                            new Point(1,0,0),
-                            new Point(0,1,0),
-                            new Point(0,0,1)
-                    );
-        } catch (IllegalArgumentException error) {
-            fail("Failed constructor of the correct triangle");
-        }
+        assertDoesNotThrow(()->new Triangle(new Point(1,0,0),new Point(0,1,0),new Point(0,0,1)),"aFailed constructor of the correct triangle");
         // ============ Boundary Values Tests =============
         // TC02: Test when a point equal to b point.
         assertThrows(IllegalArgumentException.class,()->new Triangle

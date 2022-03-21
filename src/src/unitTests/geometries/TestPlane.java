@@ -20,12 +20,7 @@ class TestPlane {
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Test for a proper result.
-        try{
-            new Plane(new Point(1,0,0),new Point(0,1,0),new Point(0,0,1));
-        }catch (IllegalArgumentException e){
-            // This is a fail test. It is a test that is expected to fail.
-            fail("The constarctor throw error for nothing");
-        }
+        assertDoesNotThrow(()-> new Plane(new Point(1,0,0),new Point(0,1,0),new Point(0,0,1)),"The constarctor throw error for nothing");
         // ============ Boundary Values Tests =============
         // TC02: Test when a point equal to all points.
         assertThrows(IllegalArgumentException.class,

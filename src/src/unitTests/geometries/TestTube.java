@@ -16,11 +16,7 @@ class TestTube {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: Test for a proper result
-        try {
-            new Tube(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 1);
-        } catch (IllegalArgumentException error) {
-            throw new IllegalArgumentException("Failed constructor of the correct Tube");
-        }
+        assertDoesNotThrow(()-> new Tube(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 1),"Failed constructor of the correct Tube");
 
         // =============== Boundary Values Tests ==================
         //TC02: Test when the radius 0

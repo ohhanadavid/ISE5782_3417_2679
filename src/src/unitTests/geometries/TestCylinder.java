@@ -17,34 +17,17 @@ class TestCylinder {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: Test for a proper result
-        try {
-            new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 2d, 3);
-        } catch (IllegalArgumentException error) {
-            throw new IllegalArgumentException("Failed constructor of the correct cylinder");
-        }
+        assertDoesNotThrow(()-> new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 2d, 3),"Failed constructor of the correct cylinder");
 
         // =============== Boundary Values Tests ==================
         //TC02: Test when the radius 0
-        try {
-            new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 0d,5);
-            fail("Constructed a cylinder while a radius can not be 0");
-        } catch (IllegalArgumentException ignored) {
-        }
+        assertThrows(IllegalArgumentException.class,()->new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 0d,5),"Constructed a cylinder while a radius can not be 0");
         //TC03:Test when the radius negative, -1
-        try {
-            new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), -1d,5);
-            fail("Constructed a cylinder while a radius can not be negative");
-        } catch (IllegalArgumentException ignored) {}
+        assertThrows(IllegalArgumentException.class,()->new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), -1d,5),"Constructed a cylinder while a radius can not be negative");
         //TC04: Test when the height 0
-        try {
-            new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 5d,0);
-            fail("Constructed a cylinder while a height can not be 0");
-        } catch (IllegalArgumentException ignored) { }
+        assertThrows(IllegalArgumentException.class,()-> new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 5d,0),"Constructed a cylinder while a height can not be 0");
         //TC03:Test when the height negative, -1
-        try {
-            new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 5d,-1);
-            fail("Constructed a cylinder while a height can not be negative");
-        } catch (IllegalArgumentException ignored) {}
+        assertThrows(IllegalArgumentException.class,()-> new Cylinder(new Ray(new Point(1, 2, 3), new Vector(1, 5, 4)), 5d,-1),"Constructed a cylinder while a height can not be negative");
     }
 
 

@@ -27,11 +27,7 @@ public class TestsPolygon {
 		// ============ Equivalence Partitions Tests ==============
 
 		// TC01: Correct concave quadrangular with vertices in correct order
-		try {
-			new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1));
-		} catch (IllegalArgumentException e) {
-			fail("Failed constructing a correct polygon");
-		}
+		assertDoesNotThrow(()->new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1)),"Failed constructing a correct polygon");
 
 		// TC02: Wrong vertices order
 		assertThrows(IllegalArgumentException.class, //
@@ -112,7 +108,7 @@ public class TestsPolygon {
 		//TC11: Ray On edge
 		result = polygon.findIntersections(new Ray(new Point(-2, 0, 3), new Vector(1.03d, 0.51d, -3)));
 		assertEquals(1, result.size(), "Wrong number of points");
-		assertEquals(new Point(-0.96d, 0.51d, 0d), result.get(0).twoDotNumber(), "Ray  isn't on edge of the polygon");
+		assertEquals(new Point(-0.97d, 0.51d, 0d), result.get(0).twoDotNumber(), "Ray  isn't on edge of the polygon");
 
 		///TC12: Ray in vertex
 		assertNull(polygon.findIntersections(new Ray(new Point(0, 1, 0), new Vector(-2d, -1d, 3))),  "Ray  isn't on vertex of the polygon");

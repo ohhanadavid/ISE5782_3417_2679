@@ -126,8 +126,5 @@ public class Vector extends Point {
         return new Vector(xyz.reduce(len));
     }
 
-    public boolean IsZero() {
-        checkingVector(this.xyz);
-        return false;
-    }
+
 }
