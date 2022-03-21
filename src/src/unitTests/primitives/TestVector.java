@@ -3,7 +3,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.primitives.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static src.primitives.Util.isZero;
+import static src.primitives.Util.*;
+
 
 /**
  * It tests the Vector class.

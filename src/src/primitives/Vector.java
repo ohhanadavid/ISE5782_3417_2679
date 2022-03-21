@@ -1,5 +1,8 @@
 package src.primitives;
 import src.primitives.Util.*;
+
+import static src.primitives.Util.isZero;
+
 /**
  * A vector is a point with an additional attribute, a direction
  * @author David Ochana & Aviad Klein
@@ -63,6 +66,8 @@ public class Vector extends Point {
      * @return A new Vector object.
      */
     public Vector scale (double scale) {
+        if(isZero(scale))
+            throw new IllegalArgumentException("scale cant be 0!");
         return new Vector(xyz.scale(scale));
     }
 
@@ -118,21 +123,8 @@ public class Vector extends Point {
      */
     public Vector normalize(){
         var len = length();
-        var n =scale(1/len);
-        return n;
+        return new Vector(xyz.reduce(len));
     }
-
-    /**
-     * Given two vectors, return the dot product of the two vectors
-     *
-     * @param vector the vector to be multiplied by the matrix
-     * @return The dot product of the two vectors.
-     */
-    public double dotProdact(Vector vector){
-       var prodact=xyz.product(vector.xyz);
-       return prodact.d1+prodact.d3+prodact.d2;
-    }
-
 
     public boolean IsZero() {
         checkingVector(this.xyz);

@@ -12,6 +12,7 @@ public class Point {
 
   }
 
+    // This is a constructor. It is a method that is called when you create a new object.
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
@@ -67,6 +68,15 @@ public class Point {
 
     public double getZ() {
         return xyz.d3;
+    }
+
+    /**
+     * Returns true if the point is the zero point
+     *
+     * @return A boolean value.
+     */
+    public boolean isZeroPoint(){
+        return xyz.equals(Double3.ZERO);
     }
 
     @Override
