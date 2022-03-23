@@ -9,14 +9,12 @@ public class Point {
 
   public Point(double d1, double d2, double d3){
       this.xyz=new Double3(d1,d2,d3);
-
   }
 
     // This is a constructor. It is a method that is called when you create a new object.
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
-
     /**
      * Returns the xyz coordinates of the atom
      *
@@ -38,10 +36,8 @@ public class Point {
      * @return A vector.
      */
     public Vector subtract(Point vertex) {
-
       return  new Vector(xyz.d1-vertex.xyz.d1,xyz.d2-vertex.xyz.d2,xyz.d3-vertex.xyz.d3);
     }
-
 
     /**
      * Add a vector to a point
@@ -86,6 +82,4 @@ public class Point {
         if(!(o instanceof Point other)) return false;
         return  xyz.equals(other.xyz) ;
     }
-
-
 }
