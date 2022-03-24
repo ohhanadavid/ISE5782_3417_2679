@@ -38,6 +38,18 @@ public class Camera {
         vRight =x.crossProduct(z).normalize();
     }
 
+    public Camera (Point p , Vector x,Vector z,double height,double width){
+        if(!isZero(z.dotProduct(x)))
+            throw new IllegalArgumentException("those two vector not orthogonal");
+        if(height<=0||width<=0)
+            throw new IllegalArgumentException("Height or width can't be equal or low then zero! ");
+        p0 = p;
+        vTo = x.normalize();
+        vUp = z.normalize();
+        vRight =x.crossProduct(z).normalize();
+
+    }
+
 
 
     /**
