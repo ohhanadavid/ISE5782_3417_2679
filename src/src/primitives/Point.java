@@ -5,7 +5,8 @@ package src.primitives;
  * @author David Ochana & Aviad Klein
  */
 public class Point {
-  final  Double3 xyz;
+    public static final Point ZERO =new Point(Double3.ZERO) ;
+    final  Double3 xyz;
 
   public Point(double d1, double d2, double d3){
       this.xyz=new Double3(d1,d2,d3);

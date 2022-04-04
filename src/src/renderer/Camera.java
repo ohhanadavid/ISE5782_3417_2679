@@ -1,5 +1,6 @@
 package src.renderer;
 
+import src.primitives.Color;
 import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
@@ -165,4 +166,20 @@ public class Camera {
 
         return new Ray(p0,vIJ);
     }
+
+    public void renderImage() {
+
+
+    }
+
+    public void printGrid(int i, Color color) {
+    }
+
+    public void writeToImage() {
+    }
+
+    public  Camera setImageWriter(ImageWriter base_render_test) {
+        return this;
+    }
+
 }
