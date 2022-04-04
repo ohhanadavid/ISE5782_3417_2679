@@ -20,6 +20,8 @@ public class Camera {
     private  double height;
     private  double width;
     private  double distance;
+    ImageWriter imageWriter;
+    //RatTracerBase rayTracer
 
 /**
  * Constructs a camera with location, to and up vectors.

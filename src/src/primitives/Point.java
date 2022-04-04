@@ -8,7 +8,7 @@ public class Point {
     public static final Point ZERO =new Point(Double3.ZERO) ;
     final  Double3 xyz;
 
-  public Point(double d1, double d2, double d3){
+    public Point(double d1, double d2, double d3){
       this.xyz=new Double3(d1,d2,d3);
   }
 
@@ -54,6 +54,29 @@ public class Point {
     {
         return new Point(Util.twoDotNumber(xyz.d1), Util.twoDotNumber(xyz.d2), Util.twoDotNumber(xyz.d3));
 
+    }
+    /**
+     * return the  distance squared between 2 points
+     */
+    public double distanceSquared(Point p) {
+        double sum = 0;
+        double temp;
+        temp = p.getX() - this.getX();
+        temp *= temp;
+        sum += temp;
+        temp = p.getY()- getY();
+        temp *= temp;
+        sum += temp;
+        temp = p.getZ() - getZ();
+        temp *= temp;
+        sum += temp;
+        return sum;
+    }
+    /**
+     * return the  distance between 2 points
+     */
+    public double distance(Point p) {
+        return (Math.sqrt(distanceSquared(p)));
     }
     public double getX() {
         return xyz.d1;
