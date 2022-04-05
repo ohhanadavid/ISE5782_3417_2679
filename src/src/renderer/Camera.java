@@ -4,6 +4,10 @@ import src.primitives.Color;
 import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
+import src.scene.Scene;
+
+import java.util.MissingResourceException;
+
 import static src.primitives.Util.*;
 
 /**
@@ -21,7 +25,7 @@ public class Camera {
     private  double width;
     private  double distance;
     ImageWriter imageWriter;
-    //RatTracerBase rayTracer
+    RayTracerBase rayTracer;
 
 /**
  * Constructs a camera with location, to and up vectors.
@@ -41,7 +45,7 @@ public class Camera {
         vRight =x.crossProduct(z).normalize();
     }
 
-    public Camera (Point p , Vector x,Vector z,double height,double width){
+    public Camera (Point p, Vector x, Vector z, double height, double width){
         if(!isZero(z.dotProduct(x)))
             throw new IllegalArgumentException("those two vector not orthogonal");
         if(height<=0||width<=0)
@@ -50,7 +54,6 @@ public class Camera {
         vTo = x.normalize();
         vUp = z.normalize();
         vRight =x.crossProduct(z).normalize();
-
     }
 
 
@@ -136,9 +139,6 @@ public class Camera {
         return this;
     }
 
-//    public Ray constructRay(int nX,int nY, int j , int i) {
-//        return  null;
-//    }
     /**
      * Constructs a ray through a given pixel on the view plane.
      * @param nX Total number of pixels in the x dimension.
@@ -169,19 +169,85 @@ public class Camera {
         return new Ray(p0,vIJ);
     }
 
-    public void renderImage() {
 
 
-    }
-
-    public void printGrid(int i, Color color) {
-    }
-
-    public void writeToImage() {
-    }
-
-    public  Camera setImageWriter(ImageWriter base_render_test) {
+    public  Camera setImageWriter(ImageWriter imageWriterT) {
+        this.imageWriter = imageWriterT;
         return this;
     }
+    public  Camera setRayTracer(RayTracerBase rayTracerT) {
+        this.rayTracer = rayTracerT;
+        return this;
+    }
+
+
+    public void renderImage(){
+
+        //check that all the parameters OK
+        try {
+
+            if (imageWriter == null) {
+                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
+            }
+            if (rayTracer == null) {
+                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+            }
+
+            //Rendering the image
+            int nX = imageWriter.getNx();
+            int nY = imageWriter.getNy();
+
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                    imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
+                }
+            }
+        }
+        catch (MissingResourceException e){
+            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
+        }
+
+    }
+
+    private Color castRay(int nX, int nY, int j, int i)
+    {
+        Ray ray = constructRayThroughPixel(nX, nY, j, i);
+        return rayTracer.traceRay(ray);
+    }
+
+    /**
+     * The function make the grid lines
+     * @param interval between the lines
+     * @param color of the lines
+     */
+    public void printGrid(int interval, Color color){
+        if(imageWriter==null) {
+            throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+        }
+
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
+
+        for (int i = 0; i < nY; i++) {
+            for (int j = 0; j < nX; j++) {
+
+                if( i % interval == 0 || j% interval ==0) {
+                    imageWriter.writePixel(j,i,color);
+                }
+            }
+        }
+    }
+    //Turn on the function of the imageWriter writeToImage
+    public void writeToImage(){
+
+        if(imageWriter==null) {
+            throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+        }
+        imageWriter.writeToImage();
+
+    }
+
+
+
 
 }

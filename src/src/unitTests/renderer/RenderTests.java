@@ -2,16 +2,16 @@ package src.unitTests.renderer;
 
 import org.junit.jupiter.api.Test;
 
-import lighting.AmbientLight;
+import src.lighting.AmbientLight;
 import src.geometries.*;
 import src.primitives.*;
 import src.renderer.*;
 import src.scene.Scene;
-import src.lighting.*;
+
 
 /**
  * Test rendering a basic image
- * 
+ *
  * @author Dan
  */
 public class RenderTests {
@@ -36,7 +36,7 @@ public class RenderTests {
 		Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setVPDistance(100) //
 				.setVPSize(500, 500) //
-				.setImageWriter(new ImageWriter("base render test", 1000, 1000))				
+				.setImageWriter(new ImageWriter("base render test", 1000, 1000))
 				.setRayTracer(new RayTracerBasic(scene));
 
 		camera.renderImage();
@@ -44,22 +44,22 @@ public class RenderTests {
 		camera.writeToImage();
 	}
 
-	/**
-	 * Test for XML based scene - for bonus
-	 */
-	@Test
-	public void basicRenderXml() {
-		Scene scene = new Scene("XML Test scene");
-		// enter XML file name and parse from XML file into scene object
-		// ...
-
-		Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setVPDistance(100) //
-				.setVPSize(500, 500)
-				.setImageWriter(new ImageWriter("xml render test", 1000, 1000))
-				.setRayTracer(new RayTracerBasic(scene));
-		camera.renderImage();
-		camera.printGrid(100, new Color(java.awt.Color.YELLOW));
-		camera.writeToImage();
-	}
+//	/**
+//	 * Test for XML based scene - for bonus
+//	 */
+//	@Test
+//	public void basicRenderXml() {
+//		Scene scene = new Scene("XML Test scene");
+//		// enter XML file name and parse from XML file into scene object
+//		// ...
+//
+//		Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+//				.setVPDistance(100) //
+//				.setVPSize(500, 500)
+//				.setImageWriter(new ImageWriter("xml render test", 1000, 1000))
+//				.setRayTracer(new RayTracerBasic(scene));
+//		camera.renderImage();
+//		camera.printGrid(100, new Color(java.awt.Color.YELLOW));
+//		camera.writeToImage();
+//	}
 }

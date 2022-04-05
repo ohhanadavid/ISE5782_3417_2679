@@ -25,7 +25,7 @@ class ImageWriterTest {
                 }
 
                 else {
-                    imageWriter.writePixel(i,j, new Color(20,200,200));
+                    imageWriter.writePixel(i,j, Color.YELLOW);
                 }
 
             }
