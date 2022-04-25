@@ -12,7 +12,7 @@ import java.util.List;
 * It is using Composite design.
 * @author David Ochana & Aviad Klein
 */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
     private final List<Intersectable> geometries;
 
@@ -63,5 +63,21 @@ public class Geometries implements Intersectable {
 
         return result;
 
+    }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> intersection = null;
+        for(var geometry:this.geometries) {
+            List<GeoPoint> geometryIntersection= geometry.findGeoIntersections(ray);
+
+            if (geometryIntersection!=null) {
+                if (intersection==null)
+                    intersection = new LinkedList<>();
+                intersection.addAll(geometryIntersection);
+            }
+        }
+        return intersection;
+        }
     }
 }

@@ -11,7 +11,7 @@ import static src.primitives.Util.isZero;
  * A tube is a cylinder with a circular cross section
  * @author David Ochana & Aviad Klein
  */
-public class Tube implements Geometry {
+public class Tube extends Geometry {
     final Ray axisRay;
     final double radius;
 

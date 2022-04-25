@@ -13,7 +13,7 @@ import static src.primitives.Util.isZero;
  * A cylinder is a tube with a height
  *@author David Ochana & Aviad Klein
  */
-public class Cylinder extends Tube  implements Geometry {
+public class Cylinder extends Tube   {
    final double height;
 
     public Cylinder(Ray axisRay, double radius, double height) {

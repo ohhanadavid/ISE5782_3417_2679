@@ -10,7 +10,7 @@ import java.util.List;
  * A sphere is a geometric object that is defined by a center point and a radius
  * @author David Ochana & Aviad Klein
  */
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
     final Point center;
     final double radius;
 
