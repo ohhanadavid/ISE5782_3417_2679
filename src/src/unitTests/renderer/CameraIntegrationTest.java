@@ -40,7 +40,7 @@ public class CameraIntegrationTest {
         };
         int[] expected = new int[]{2, 18, 10, 9, 0};
 
-        testIntersectsAndCamera(spheres, expected);
+        testIntersectsAndCamera(expected, spheres, 3, 3);
     }
 
     /**
@@ -58,7 +58,7 @@ public class CameraIntegrationTest {
         };
         int[] expected = new int[]{9, 9, 6};
 
-        testIntersectsAndCamera(planes, expected);
+        testIntersectsAndCamera(expected, planes, 3, 3);
     }
 
     /**
@@ -75,16 +75,17 @@ public class CameraIntegrationTest {
 
         int[] expected = new int[]{1, 2};
 
-        testIntersectsAndCamera(triangles, expected);
+        testIntersectsAndCamera(expected, triangles, 3, 3);
     }
 
     /**
      * Helper method for testing intersectables and a camera, now with 3x3 view plane
-     * @param intersectables Intersectables to check the number of intersections for each one.
      * @param expectedIntersections All expected intersections for the intersectables (in the same order of intersectables).
+     * @param intersectables Intersectables to check the number of intersections for each one.
+     * @param nX
+     * @param nY
      */
-    private void testIntersectsAndCamera(Intersectable[] intersectables, int[] expectedIntersections) {
-        int nX = 3, nY = 3;
+    private void testIntersectsAndCamera(int[] expectedIntersections, Intersectable[] intersectables, int nX, int nY) {
         Camera cam = new Camera(new Point(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0))
                 .setVPDistance(1)
                 .setVPSize(3, 3);

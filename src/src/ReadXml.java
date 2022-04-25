@@ -19,8 +19,6 @@ package src;
         import src.scene.Scene;
         import java.io.File;
         import java.io.IOException;
-        import java.util.ArrayList;
-        import java.util.List;
         import java.util.regex.Matcher;
         import java.util.regex.Pattern;
 
@@ -49,12 +47,12 @@ public class ReadXml {
             Element node = doc.getDocumentElement();
 
             //get the background color and set in the scene
-            Point backColor = getP(node.getAttribute("background-color"));
+            Point backColor = parsePoint(node.getAttribute("background-color"));
             Color Cb = new Color(backColor.getX(), backColor.getY(), backColor.getZ());
             scene.setBackground(Cb);
 
             //get the ambient light color and set in the scene
-            Point ambientColor = getP(((Element) doc.getElementsByTagName("ambient-light").item(0)).getAttribute("color"));
+            Point ambientColor = parsePoint(((Element) doc.getElementsByTagName("ambient-light").item(0)).getAttribute("color"));
             Color Ca = new Color(ambientColor.getX(), ambientColor.getY(), ambientColor.getZ());
             scene.setAmbientLight(new AmbientLight(Ca, new Double3(1,1,1)));
 
@@ -104,9 +102,9 @@ public class ReadXml {
         Triangle geo = null;
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
-            Point p0 = getP(((Element) node).getAttribute("p0"));
-            Point p1 = getP(((Element) node).getAttribute("p1"));
-            Point p2 = getP(((Element) node).getAttribute("p2"));
+            Point p0 = parsePoint(((Element) node).getAttribute("p0"));
+            Point p1 = parsePoint(((Element) node).getAttribute("p1"));
+            Point p2 = parsePoint(((Element) node).getAttribute("p2"));
             geo = new Triangle(p0, p1, p2);
         }
         return geo;
@@ -124,7 +122,7 @@ public class ReadXml {
         if (node.getNodeType() == Node.ELEMENT_NODE) {
 
             Element element = (Element) node;
-            Point p0 = getP(((Element) node).getAttribute("center"));
+            Point p0 = parsePoint(((Element) node).getAttribute("center"));
             int r= Integer.parseInt( ((Element) node).getAttribute("radius"));
             geo=new Sphere(p0,r);
         }
@@ -142,8 +140,8 @@ public class ReadXml {
         if (node.getNodeType() == Node.ELEMENT_NODE) {
 
             Element element = (Element) node;
-            Point p0 = getP(((Element) node).getAttribute("p0"));
-            Point v0 = getP(((Element) node).getAttribute("vector"));
+            Point p0 = parsePoint(((Element) node).getAttribute("p0"));
+            Point v0 = parsePoint(((Element) node).getAttribute("vector"));
             Vector v=new Vector(v0.getX(),v0.getY(),v0.getZ());
             geo=new Plane(p0,v);
         }
@@ -166,7 +164,7 @@ public class ReadXml {
             //  var points=node.getAttributes();
             for (int i=0;i<len;i++)
             {
-                Point p0 = getP(((Element) node).getAttribute("p"+i));
+                Point p0 = parsePoint(((Element) node).getAttribute("p"+i));
                 arr[i]=p0;
             }
             geo=new Polygon(arr);
@@ -185,7 +183,7 @@ public class ReadXml {
      * @param s string
      * @return Point
      */
-    public static Point getP(String s) {
+    public static Point parsePoint(String s) {
 
         Pattern p = Pattern.compile("-?\\d+");
         Matcher m = p.matcher(s);
