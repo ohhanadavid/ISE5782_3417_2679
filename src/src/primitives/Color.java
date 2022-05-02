@@ -20,6 +20,8 @@ public class Color {
 	 */
 	public static final Color BLACK = new Color();
 
+	public static final Color YELLOW = new Color(255,255,0);
+
 	/**
 	 * Default constructor - to generate Black Color (privately)
 	 */

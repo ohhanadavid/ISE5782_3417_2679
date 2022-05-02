@@ -3,25 +3,31 @@ package src.lighting;
 import src.primitives.*;
 import static src.primitives.Double3.*;
 
+/**
+ * AmbientLight of the scene
+ *
+ * @author David Ohhana & Aviad Klein
+ */
+public class AmbientLight extends Light {
 
-public class AmbientLight {
 
-    private Color intensity;
+        /**
+         * default constructor that create ambientLight in black
+         */
+        public AmbientLight(){
+            super(Color.BLACK);
+        }
 
-    public AmbientLight(Color Ia, Double3 Ka) {
+        /**
+         * create AmbientLight of the scene
+         * @param Ia the color of ambientLight
+         * @param Ka factor of the ambientLight
+         */
+        public AmbientLight(Color Ia , Double3 Ka) {
+            super(Ia.scale(Ka));
+        }
 
-        intensity=Ia.scale(Ka);
-    }
-
-    public Color getIntensity() {
-        return intensity;
-    }
-
-    public AmbientLight() {
-        intensity = Color.BLACK;
-    }
-
-    public AmbientLight(Color in) {
-        this.intensity = in;
-    }
+        public AmbientLight(Color in) {
+            super(in);
+        }
 }

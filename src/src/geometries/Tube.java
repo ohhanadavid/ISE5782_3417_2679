@@ -57,7 +57,10 @@ public class Tube extends Geometry {
         return this.axisRay.equals(tube.axisRay)&&this.radius==tube.radius;
     }
 
-
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        return null;
+    }
 
     @Override
     public String toString() {
@@ -81,12 +84,5 @@ public class Tube extends Geometry {
         return axisRay;
     }
 
-    /**
-     * @param ray
-     * @return a list of points that are the intersections of the ray and the tube.
-     */
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-        return null;
-    }
+
 }

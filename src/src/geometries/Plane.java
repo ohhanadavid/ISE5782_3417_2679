@@ -69,41 +69,33 @@ public class Plane extends Geometry{
         return normal;
     }
 
-    /**
-     * @param ray
-     * @return a list of points that are the intersections of the ray and the plane.
-     */
+
+
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         //t=n*(q0-Po)/n*v
         Vector v= ray.getDir();
         Point p0=ray.getP0();
-
         //Ray on the plane
         if(q0.equals(p0)){
             return null;
         }
-
         double nqp=normal.dotProduct(q0.subtract(p0));
         //Ray on the plane
         if(isZero(nqp)){
             return null;
         }
-
         double nv= normal.dotProduct(v);
-
         if(isZero(nv)){
             return null;
         }
-
         double t=nqp/nv;
-
         //Ray after the plane
         if(t<0){
             return null;
         }
 
         //Ray crosses the plane
-        return List.of(ray.getPoint(t));
+        return List.of(new GeoPoint(this,ray.getPoint(t)));
     }
 }

@@ -96,13 +96,11 @@ public class Polygon extends Geometry {
 		return plane.getNormal();
 	}
 
-	/**
-	 * @param ray
-	 * @return the list of intersections of the ray with the polygon.
-	 */
+
+
 	@Override
-	public List<Point> findIntersections(Ray ray) {
-		List<Point>result=plane.findIntersections(ray);
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		List<GeoPoint>result=plane.findGeoIntersectionsHelper(ray);
 		if (result==null){
 			return null;
 

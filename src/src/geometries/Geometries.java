@@ -26,6 +26,7 @@ public class Geometries extends Intersectable {
 
     /**
      * Creates a list of given geometries.
+     *
      * @param geometries List of Intersectables
      */
     public Geometries(Intersectable... geometries) {
@@ -34,50 +35,34 @@ public class Geometries extends Intersectable {
 
     /**
      * Adds a list of given geometries to the current list.
+     *
      * @param geometries List of intersectables to add
      */
     public void add(Intersectable... geometries) {
         this.geometries.addAll(Arrays.asList(geometries));
     }
 
+
+
     /**
-     * @param ray
-     * @return a list of points that are intersections of the ray and the geometries that in "geometries" list.
+     * If the ray intersects with one of the geometries, add the intersection points to the list of intersection points
+     *
+     * @param ray The ray that intersects the geometry.
+     * @return A list of GeoPoints
      */
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
-
-        for (Intersectable geo : geometries) {
-            List<Point> geoPoints = geo.findIntersections(ray);
-
-            if (geoPoints != null) {
-
-                if (result == null) {
-                    result = new LinkedList<>();
-                }
-
-                result.addAll(geoPoints);
-            }
-        }
-
-        return result;
-
-    }
-
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         List<GeoPoint> intersection = null;
         for(var geometry:this.geometries) {
             List<GeoPoint> geometryIntersection= geometry.findGeoIntersections(ray);
 
-            if (geometryIntersection!=null) {
-                if (intersection==null)
+            if (geometryIntersection != null) {
+                if (intersection == null)
                     intersection = new LinkedList<>();
                 intersection.addAll(geometryIntersection);
             }
         }
         return intersection;
-        }
     }
 }
+

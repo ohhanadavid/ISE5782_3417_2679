@@ -8,7 +8,7 @@ import src.primitives.Color;
 public class Scene {
    public String name;
    public Color background= Color.BLACK;;
-   public AmbientLight ambientLight; // = new AmbientLight(new Color(192,192,192),1);
+   public AmbientLight ambientLight = new AmbientLight(); // = new AmbientLight(new Color(192,192,192),1);
    public Geometries geometries;
 
    public Scene(String sceneName) {

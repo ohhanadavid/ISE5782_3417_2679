@@ -1,5 +1,6 @@
 package src.primitives;
 
+import src.geometries.Intersectable.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,24 +62,52 @@ public class Ray {
      * @return Point3D the closes point
      */
     public Point findClosestPoint(List<Point> points) {
+        return points == null || points.isEmpty() ?null
+                : findClosestGeoPoint(points.stream().map(p->new GeoPoint(null,p)).toList()).point;
 
+//        double minDistance = Double.MAX_VALUE;
+//        double d;
+//        Point closePoint = null;
+//        if(points==null){
+//            return null;
+//        }
+//
+//        for (Point p : points) {
+//            d = p.distance(p0);
+//            //check if the distance of p is smaller then minDistance
+//            if (d < minDistance) {
+//                minDistance = d;
+//                closePoint = p;
+//            }
+//        }
+//        return closePoint;
+    }
+
+    /**
+     *
+     * @param intersections
+     * @return
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
         double minDistance = Double.MAX_VALUE;
         double d;
-        Point closePoint = null;
+        GeoPoint closePoint = null;
 
-        if(points==null){
+        if(intersections==null){
             return null;
         }
 
-        for (Point p : points) {
-
-            d = p.distance(p0);
+        for (GeoPoint geoP : intersections) {
+            d = geoP.point.distance(p0);
             //check if the distance of p is smaller then minDistance
             if (d < minDistance) {
                 minDistance = d;
-                closePoint = p;
+                closePoint = geoP;
             }
         }
         return closePoint;
     }
+
+
+
 }

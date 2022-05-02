@@ -181,7 +181,7 @@ public class Camera {
     }
 
 
-    public void renderImage(){
+    public Camera renderImage(){
 
         //check that all the parameters OK
         try {
@@ -206,6 +206,7 @@ public class Camera {
         catch (MissingResourceException e){
             throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
         }
+        return this;
 
     }
 

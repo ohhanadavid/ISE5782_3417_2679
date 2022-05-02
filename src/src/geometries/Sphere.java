@@ -66,12 +66,10 @@ public class Sphere extends Geometry {
         return point.subtract(center).normalize();
     }
 
-    /**
-     * @param ray
-     * @return the intersection points of the ray with the sphere.
-     */
+
+
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point p0 = ray.getP0();
         Vector dir = ray.getDir();
         Vector distanceVec;
@@ -79,7 +77,7 @@ public class Sphere extends Geometry {
         try {
             distanceVec = center.subtract(p0);
         } catch (IllegalArgumentException e) {
-            return List.of(ray.getPoint(radius));
+            return List.of(new GeoPoint(this,ray.getPoint(radius)));
         }
         //distance=dir*distanceVec the distance between p0 and the point with makes 90 degrees with the center
         double distance = alignZero(dir.dotProduct(distanceVec));
@@ -102,11 +100,11 @@ public class Sphere extends Geometry {
         if (t1 <= 0 && t2 <= 0) return null;
 
         if (t1 > 0 && t2 > 0)
-            return List.of(ray.getPoint(t1), ray.getPoint(t2)); //P1 , P2
+            return List.of(new GeoPoint(this,ray.getPoint(t1)),new GeoPoint(this, ray.getPoint(t2))); //P1 , P2
         if (t1 > 0)
-            return List.of(ray.getPoint(t1)); //just one point
+            return List.of(new GeoPoint(this,ray.getPoint(t1))); //just one point
         if (t2 > 0)
-            return List.of(ray.getPoint(t2));
+            return List.of(new GeoPoint(this,ray.getPoint(t2)));
         return null;
     }
 }

@@ -28,16 +28,13 @@ public class Triangle extends Polygon{
     }
 
 
-    /**
-     * @param ray
-     * @return the ray intersects with  the plane of the triangle.
-     */
-    @Override
-    public List<Point> findIntersections(Ray ray) {
 
-        List<Point> result =plane.findIntersections(ray);
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> result =plane.findGeoIntersectionsHelper(ray);
         if(result == null)
             return null;
+        result.get(0).geometry=this;
 
         Point P0=ray.getP0();
         Vector v=ray.getDir();
@@ -62,7 +59,6 @@ public class Triangle extends Polygon{
         {
             return result;
         }
-        return super.findIntersections(ray);
+        return super.findGeoIntersectionsHelper(ray);
     }
-
 }

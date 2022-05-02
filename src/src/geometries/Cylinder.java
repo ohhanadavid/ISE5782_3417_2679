@@ -84,12 +84,10 @@ public class Cylinder extends Tube   {
     }
 
 
-    /**
-     * @param ray
-     * @return a list of points that are the intersections of the ray and the cylinder.
-     */
+
+
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         return null;
     }
 }
