@@ -14,13 +14,21 @@ public abstract class Intersectable {
      * @return list of intersection points
      */
     public List<Point> findIntersections(Ray ray) {
-        return null;
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null
+                : geoList.stream().map(gp -> gp.point).toList();
     }
-
+    /**
+     * psd help static class
+     */
     public static class GeoPoint {
-        public final Geometry geometry;
-        public final Point point;
-
+        public Geometry geometry;
+        public Point point;
+        /**
+         * constructor
+         * @param geometry
+         * @param point
+         */
         public GeoPoint(Geometry geometry, Point point) {
             this.geometry = geometry;
             this.point = point;
@@ -39,11 +47,11 @@ public abstract class Intersectable {
 
         @Override
         public String toString() {
-            return "Intersectable class";
+            return "Intersect-able class";
         }
     }
 
-    public final  List<GeoPoint> findGeoIntersections (Ray ray){
+    public final List<GeoPoint> findGeoIntersections (Ray ray){
         return findGeoIntersectionsHelper(ray);
     }
 

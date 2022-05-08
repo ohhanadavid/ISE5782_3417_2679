@@ -5,8 +5,14 @@ import src.geometries.Intersectable.*;
 import src.primitives.Color;
 import src.primitives.Point;
 import src.primitives.Ray;
+import src.primitives.Vector;
 import src.scene.Scene;
 import java.util.List;
+import src.geometries.Intersectable.GeoPoint;
+import src.lighting.*;
+import src.primitives.*;
+
+import static src.primitives.Util.alignZero;
 
 /**
  *  RayTracerBasic class extends RayTracerBase and implement the abstract function traceRay

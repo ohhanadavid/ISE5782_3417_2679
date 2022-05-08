@@ -59,8 +59,14 @@ public class Ray {
     /**
      * The function find the closest points to P0 of the ray
      * @param points
-     * @return Point3D the closes point
+     * @return Point the closes point
      */
+//    public List<Point> findIntersections(Ray ray) {
+//        var geoList = findGeoIntersections(ray);
+//        return geoList == null ? null
+//                : geoList.stream().map(gp -> gp.point).toList();
+//    }
+
     public Point findClosestPoint(List<Point> points) {
         return points == null || points.isEmpty() ?null
                 : findClosestGeoPoint(points.stream().map(p->new GeoPoint(null,p)).toList()).point;
