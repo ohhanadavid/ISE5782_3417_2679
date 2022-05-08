@@ -21,7 +21,7 @@ class TestPoint {
     @Test
     void testAdd() {
         Point p1 = new Point(1, 2, 3);
-        assertEquals(p1.add(new Vector(-1, -2, -3)),new Point(0, 0, 0),"ERROR: Point + Vector does not work correctly");
+        assertEquals(new Point(0, 0, 0),p1.add(new Vector(-1, -2, -3)),"ERROR: Point + Vector does not work correctly");
 
     }
 }

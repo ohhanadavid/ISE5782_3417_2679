@@ -21,7 +21,7 @@ class TestVector {
         Vector v1 = new Vector(3,2,4);
         Vector v2 = v0.add(v1);
         Vector v = new Vector(5,1,8);
-        assertEquals(v2,v, "add() wrong result of adding");
+        assertEquals(v,v2, "add() wrong result of adding");
         // =============== Boundary Values Tests ==================
         //not checks the Zero vector because can not build the zero vector
     }
@@ -38,15 +38,15 @@ class TestVector {
 
         //multiply in number<0
         Vector v=v0.scale(-1);
-        assertEquals(v1,v,"scale() wrong result");
+        assertEquals(v,v1,"scale() wrong result");
 
         //multiply in 0<number<1
         v=v0.scale(0.5);
-        assertEquals(v2,v,"scale() wrong result");
+        assertEquals(v,v2,"scale() wrong result");
 
         //multiply in 1<number
         v=v0.scale(5);
-        assertEquals(v3,v, "scale() wrong result");
+        assertEquals(v,v3, "scale() wrong result");
 
 
         //=============== Boundary Values Tests ==================
@@ -69,15 +69,15 @@ class TestVector {
         Vector vr = v1.crossProduct(v2);
 
         // TC01: Test that length of cross-product is proper (orthogonal vectors taken for simplicity)
-        assertEquals( v1.length() * v2.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
+        assertEquals( vr.length(),v1.length() * v2.length(),  0.00001, "crossProduct() wrong result length");
 
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
 
-        assertEquals(v1.crossProduct(v2),new Vector(-13,2,3), "ERROR: dotProduct() wrong value in opposite direction");//opposite direction
-        assertEquals(v1.crossProduct(v6),new Vector(8,-4,0), "ERROR: dotProduct() wrong value in acute angle");//acute angle
-        assertEquals(v1.crossProduct(v5),new Vector(3,-15,9), "ERROR: dotProduct() wrong value in obtuse angle");//obtuse angle
+        assertEquals(new Vector(-13,2,3),v1.crossProduct(v2), "ERROR: dotProduct() wrong value in opposite direction");//opposite direction
+        assertEquals(new Vector(8,-4,0),v1.crossProduct(v6), "ERROR: dotProduct() wrong value in acute angle");//acute angle
+        assertEquals(new Vector(3,-15,9),v1.crossProduct(v5), "ERROR: dotProduct() wrong value in obtuse angle");//obtuse angle
 
         // =============== Boundary Values Tests ==================
         //check if the vectors is parallel
@@ -91,8 +91,8 @@ class TestVector {
     @DisplayName("the length of the vector")
     void testLength() {
         Vector v1 = new Vector(1, 2, 3);
-        assertEquals(v1.lengthSquared(),14,0.00001, "ERROR: lengthSquared() wrong value");
-        assertEquals(new Vector(0, 3, 4).length() , 5,0.00001, "ERROR: length() wrong value");
+        assertEquals(14,v1.lengthSquared(),0.00001, "ERROR: lengthSquared() wrong value");
+        assertEquals(5,new Vector(0, 3, 4).length() , 0.00001, "ERROR: length() wrong value");
     }
 
     @Test

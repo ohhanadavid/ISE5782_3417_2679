@@ -57,9 +57,7 @@ class TestPlane {
     void testGetNormal() {
         Plane plane = new Plane(new Point(1,0,0),new Point(0,1,0),new Point(0,0,1));
         double n = Math.sqrt(1d/3);
-        assertEquals(new Vector(n,n,n),
-                plane.getNormal(new Point(0,0,1)),
-                "This normal bad for plane");
+        assertEquals(new Vector(n,n,n),plane.getNormal(new Point(0,0,1)),"This normal bad for plane");
     }
 
 
@@ -80,7 +78,7 @@ class TestPlane {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray intersects the plane (1 points)
         result=plane.findIntersections(new Ray(new Point(0,1,1),new Vector(0,0,-1)));
-        assertEquals(result.size(),1,"Wrong number of points");
+        assertEquals(1,result.size(),"Wrong number of points");
       //  assertEquals(new Point(0,1,0),result.get(0).twoDotNumber(),"Ray intersects the plane");
 
         // TC02: Ray doesn't intersect the plane (0 points)
@@ -98,7 +96,7 @@ class TestPlane {
         //TC13: Ray starts before the plane (1 points)
         result=plane.findIntersections(new Ray(new Point(-1,-1,-1),new Vector(1,1,1)));
         double n = 0.33;    //(1/3)
-        assertEquals(result.size(),1,"Wrong number of points");
+        assertEquals(1,result.size(),"Wrong number of points");
         assertEquals(new Point(n,n,n), result.get(0).twoDotNumber()," Ray starts before the plane. Ray is orthogonal to the plane");
 
         //TC14: Ray starts inside the plane
