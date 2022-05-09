@@ -52,14 +52,14 @@ public abstract class Intersectable {
     }
 
     public final List<GeoPoint> findGeoIntersections (Ray ray){
-        return findGeoIntersectionsHelper(ray);
+        return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
     }
 
     public final List<GeoPoint> findGeoIntersections (Ray ray, double maxDistance){
         return findGeoIntersectionsHelper(ray, maxDistance);
     }
 
-    protected abstract List<GeoPoint> findGeoIntersectionsHelper (Ray ray);
+    protected abstract List<GeoPoint> findGeoIntersectionsHelper (Ray ray, double maxDistance);
 
     public List<Point> findIntersection(Ray ray, double maxDistance) {
         var geoList=findGeoIntersectionsHelper(ray,maxDistance);

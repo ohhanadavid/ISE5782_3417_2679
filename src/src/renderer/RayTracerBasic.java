@@ -17,7 +17,7 @@ import static src.primitives.Util.alignZero;
 /**
  *  RayTracerBasic class extends RayTracerBase and implement the abstract function traceRay
  */
-public class RayTracerBasic extends RayTracerBase{
+public class RayTracerBasic extends RayTracerBase {
 
 
     /**
@@ -27,9 +27,10 @@ public class RayTracerBasic extends RayTracerBase{
 
     /**
      * A builder
+     *
      * @param scene that the ray cross
      */
-    public RayTracerBasic(Scene scene){
+    public RayTracerBasic(Scene scene) {
         super(scene);
     }
 
@@ -95,6 +96,7 @@ public class RayTracerBasic extends RayTracerBase{
      */
     private Color calcLocalEffects(GeoPoint point, Ray ray) {
 
+//
         Vector v = ray.getDir();
         Vector n = point.geometry.getNormal(point.point);
         double nv = alignZero(n.dotProduct(v));
@@ -113,9 +115,11 @@ public class RayTracerBasic extends RayTracerBase{
                 specularN=((SpotLight) lightSource).getSpecularN();
             }
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                Color lightIntensity = lightSource.getIntensity(point.point);
-                color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-                        calcSpecular(ks, l, n,nl, v, nShininess, lightIntensity,specularN));
+                if(unshaded(lightSource,l, n,point)) {
+                    Color lightIntensity = lightSource.getIntensity(point.point);
+                    color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+                            calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity, specularN));
+                }
             }
         }
         return color;
@@ -150,7 +154,6 @@ public class RayTracerBasic extends RayTracerBase{
         double ln=Math.abs(n.dotProduct(l));
         return lightIntensity.scale(kd*ln);
     }
-
 
 }
 
