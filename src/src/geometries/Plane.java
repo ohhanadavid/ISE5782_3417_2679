@@ -6,6 +6,7 @@ import src.primitives.Vector;
 
 import java.util.List;
 
+import static src.primitives.Util.alignZero;
 import static src.primitives.Util.isZero;
 
 
@@ -72,7 +73,7 @@ public class Plane extends Geometry{
 
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         //t=n*(q0-Po)/n*v
         Vector v= ray.getDir();
         Point p0=ray.getP0();
@@ -94,6 +95,8 @@ public class Plane extends Geometry{
         if(t<0){
             return null;
         }
+//        if(alignZero(t-maxDistance)<=0)
+//            return null;
 
         //Ray crosses the plane
         return List.of(new GeoPoint(this,ray.getPoint(t)));

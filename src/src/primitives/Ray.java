@@ -9,14 +9,37 @@ import java.util.Objects;
  * @author David Ochana & Aviad Klein
  */
 public class Ray {
-  final  Point p0;
-   final Vector dir;
+    final  Point p0;
+    final Vector dir;
+    private static final double DELTA = 0.1;
 
     // A constructor. It is a method that is called when an object is created.
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalize();
 
+    }
+
+    /**
+     * New constructor
+     * @param head
+     * @param head
+     * @param direction
+     * @param normal
+     */
+    public Ray(Point head, Vector direction, Vector normal) {
+        if (direction.dotProduct(normal) == 0) {
+            p0 = head;
+            dir = direction;
+        } else {
+            int sign = 1;
+            // if (direction.dotProduct(normal)>0)
+            // sign=1;
+            if (direction.dotProduct(normal) < 0)
+                sign = -1;
+            p0 = head.add(normal.scale(sign * DELTA));
+            dir = direction;
+        }
     }
 
     @Override
@@ -56,37 +79,11 @@ public class Ray {
         return p0.add(dir.scale(t));
     }
 
-    /**
-     * The function find the closest points to P0 of the ray
-     * @param points
-     * @return Point the closes point
-     */
-//    public List<Point> findIntersections(Ray ray) {
-//        var geoList = findGeoIntersections(ray);
-//        return geoList == null ? null
-//                : geoList.stream().map(gp -> gp.point).toList();
-//    }
+
 
     public Point findClosestPoint(List<Point> points) {
         return points == null || points.isEmpty() ?null
                 : findClosestGeoPoint(points.stream().map(p->new GeoPoint(null,p)).toList()).point;
-
-//        double minDistance = Double.MAX_VALUE;
-//        double d;
-//        Point closePoint = null;
-//        if(points==null){
-//            return null;
-//        }
-//
-//        for (Point p : points) {
-//            d = p.distance(p0);
-//            //check if the distance of p is smaller then minDistance
-//            if (d < minDistance) {
-//                minDistance = d;
-//                closePoint = p;
-//            }
-//        }
-//        return closePoint;
     }
 
     /**

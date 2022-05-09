@@ -19,6 +19,12 @@ import static src.primitives.Util.alignZero;
  */
 public class RayTracerBasic extends RayTracerBase{
 
+
+    /**
+     * constant number for size moving first rays for shading rays
+     */
+    private static final double DELTA = 0.1;
+
     /**
      * A builder
      * @param scene that the ray cross
@@ -27,6 +33,33 @@ public class RayTracerBasic extends RayTracerBase{
         super(scene);
     }
 
+    /**
+     * Unshading test operation between a point and the source of the light
+     *
+     * @param light
+     * @param l
+     * @param n
+     * @param geopoint
+     * @return true if unshaded
+     * @return false if there is a shadow
+     */
+    private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint geopoint) {
+        Vector lightDirection = l.scale(-1); // from point to light source
+        Ray lightRay = new Ray(geopoint.point, lightDirection, n); // refactored ray head move
+        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
+        Point point = geopoint.point.add(delta);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+
+        if (intersections == null)
+            return true;
+        double lightDistance = light.getDistance(geopoint.point);
+        for (GeoPoint gp : intersections) {
+            if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0)
+                    //&& gp.geometry.getMaterial().kT == 0)
+                return false;
+        }
+        return true;
+    }
 
 
 
@@ -119,19 +152,6 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
 
-    /*  @Override
-    public Color traceRay(Ray ray) {
-        List<Point> intersections= scene.geometries.findIntersections(ray);
-        if(intersections != null){
-            Point closePoint=ray.findClosestPoint(intersections);
-            return calcColor(closePoint);
-        }
-        //no intersections
-        return scene.background;
-    }
-
-    private Color calcColor(Point point){
-        return scene.ambientLight.getIntensity();
-    }*/
-
 }
+
+

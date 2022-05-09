@@ -30,8 +30,8 @@ public class Triangle extends Polygon{
 
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        List<GeoPoint> result =plane.findGeoIntersectionsHelper(ray);
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+        List<GeoPoint> result =plane.findGeoIntersectionsHelper(ray,maxDistance);
         if(result == null)
             return null;
         result.get(0).geometry=this;
@@ -59,6 +59,6 @@ public class Triangle extends Polygon{
         {
             return result;
         }
-        return super.findGeoIntersectionsHelper(ray);
+        return super.findGeoIntersectionsHelper(ray,maxDistance);
     }
 }

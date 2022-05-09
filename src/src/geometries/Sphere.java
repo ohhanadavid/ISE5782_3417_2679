@@ -69,7 +69,7 @@ public class Sphere extends Geometry {
 
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         Point p0 = ray.getP0();
         Vector dir = ray.getDir();
         Vector distanceVec;
@@ -81,6 +81,8 @@ public class Sphere extends Geometry {
         }
         //distance=dir*distanceVec the distance between p0 and the point with makes 90 degrees with the center
         double distance = alignZero(dir.dotProduct(distanceVec));
+//        if(distance-maxDistance<=0)
+//            return null;
         //d=distanceVec^2+distance^2 distance between the center and the point that  makes 90 degrees with the center
         double cap;
         if (distance == 0)
@@ -93,7 +95,7 @@ public class Sphere extends Geometry {
         if (thsquared <= 0) return null;
         //th=radius^2-distance^2 between p1 and center
         double th = alignZero(Math.sqrt(thsquared));
-        if (th == 0) return null;
+        if (th == 0 ) return null;
 
         double t1 = alignZero(distance - th);
         double t2 = alignZero(distance + th);

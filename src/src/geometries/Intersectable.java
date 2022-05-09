@@ -55,10 +55,14 @@ public abstract class Intersectable {
         return findGeoIntersectionsHelper(ray);
     }
 
+    public final List<GeoPoint> findGeoIntersections (Ray ray, double maxDistance){
+        return findGeoIntersectionsHelper(ray, maxDistance);
+    }
+
     protected abstract List<GeoPoint> findGeoIntersectionsHelper (Ray ray);
 
-    public List<Point> findIntersection(Ray ray) {
-        var geoList=findGeoIntersections(ray);
+    public List<Point> findIntersection(Ray ray, double maxDistance) {
+        var geoList=findGeoIntersectionsHelper(ray,maxDistance);
         return geoList==null?null
                 :geoList.stream().map(gp->gp.point).toList();
     }

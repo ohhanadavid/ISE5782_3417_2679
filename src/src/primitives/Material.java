@@ -14,6 +14,11 @@ public class Material {
      * factor of the shininess
      */
     public int nShininess=0;
+    /**
+     * factor for refraction both fields between 0 and 1
+     * factor for reflection both fields between 0 to
+     */
+    public double kT=0.0,kR=0.0;
 
     /**
      * @param kD factor of the diffuse affect of the material
