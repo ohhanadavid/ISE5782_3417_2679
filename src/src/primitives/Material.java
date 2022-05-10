@@ -7,24 +7,22 @@ package src.primitives;
 public class Material {
 
     /**
-     * factors of the diffuse and specular light
+     * factors
      */
-    public double kD=0,kS=0;
+    public double
+            kD=0,//Diffuse
+            kS=0,//Specular
+            kT=0,//Transparency
+            kR=0;//Reflection
     /**
      * factor of the shininess
      */
     public int nShininess=0;
     /**
-     * factor for refraction both fields between 0 and 1
-     * factor for reflection both fields between 0 to
-     */
-    public double kT=0.0,kR=0.0;
-
-    /**
      * @param kD factor of the diffuse affect of the material
      * @return this Material
      */
-    public Material setkD(double kD) {
+    public Material setKd(double kD) {
         this.kD = kD;
         return this;
     }
@@ -33,7 +31,7 @@ public class Material {
      * @param kS factor of the specular affect of the material
      * @return this Material
      */
-    public Material setkS(double kS) {
+    public Material setKs(double kS) {
         this.kS = kS;
         return this;
     }
@@ -42,8 +40,29 @@ public class Material {
      * @param nShininess factor of the reflection of the material
      * @return this Material
      */
-    public Material setnShininess(int nShininess) {
+    public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;
     }
+    /**
+     * @param kT factor of the Transparency of the material
+     * @return this Material
+     */
+    public Material setKt(double kT) {
+        this.kT = kT;
+        return this;
+    }
+    /**
+     * @param kR factor of the reflection of the material
+     * @return this Material
+     */
+    public Material setKr(double kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    public int getShininess(){
+        return nShininess;
+    }
+
 }

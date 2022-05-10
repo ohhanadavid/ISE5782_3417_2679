@@ -49,14 +49,13 @@ public class RayTracerBasic extends RayTracerBase {
         Ray lightRay = new Ray(geopoint.point, lightDirection, n); // refactored ray head move
         Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
         Point point = geopoint.point.add(delta);
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, 100);
 
         if (intersections == null)
             return true;
         double lightDistance = light.getDistance(geopoint.point);
         for (GeoPoint gp : intersections) {
             if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0)
-                    //&& gp.geometry.getMaterial().kT == 0)
                 return false;
         }
         return true;
