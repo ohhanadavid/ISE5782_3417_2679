@@ -236,7 +236,7 @@ public class LightsTests {
 
 		ImageWriter imageWriter = new ImageWriter("ImproveLightTriangles", 500, 500);
 		camera2.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene2)) //
+				.setRayTracer(new  RayTracerBasic(scene2)) //
 				.renderImage()
 				.writeToImage(); //
 	}
