@@ -26,6 +26,10 @@ public class Render {
         return this;
     }
 
+    public Camera getCamera() {
+        return camera;
+    }
+
     public Render setCamera(Camera camera) {
         this.camera = camera;
         return this;

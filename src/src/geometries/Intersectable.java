@@ -3,6 +3,8 @@ package src.geometries;
 import src.primitives.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 /**
 * Gives interface for an object that is Intersectable.
 * @author DavidOchana & AviadKlein
@@ -18,6 +20,9 @@ public abstract class Intersectable {
         return geoList == null ? null
                 : geoList.stream().map(gp -> gp.point).toList();
     }
+
+
+
     /**
      * psd help static class
      */
@@ -66,6 +71,8 @@ public abstract class Intersectable {
         return geoList==null?null
                 :geoList.stream().map(gp->gp.point).toList();
     }
+
+
 
 }
 

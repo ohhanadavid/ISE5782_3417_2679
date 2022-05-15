@@ -4,6 +4,9 @@ import src.geometries.Intersectable.*;
 import java.util.List;
 import java.util.Objects;
 
+import static src.primitives.Util.alignZero;
+import static src.primitives.Util.isZero;
+
 /**
  * A ray is a line that starts at a point and has a direction
  * @author David Ochana & Aviad Klein
@@ -70,47 +73,81 @@ public class Ray {
         return dir;
     }
 
+//    /**
+//     * Gets a point on the ray by calculating p0 + t*v.
+//     * @param t A scalar to calculate the point.
+//     * @return A point on the ray.
+//     */
+//    public Point getPoint (double t){
+//        return p0.add(dir.scale(t));
+//    }
+
     /**
-     * Gets a point on the ray by calculating p0 + t*v.
-     * @param t A scalar to calculate the point.
-     * @return A point on the ray.
+     * Refactoring must be performed for the calculation code of a point on a ray:
+     * P = p0 + t∙v.
+     * Used wherever required in the implementations of findIntersections function.
+     *
+     * @param t The distance to be calculated for the ray from its head
+     *
+     * @return The 3D-point on the ray that is at a distance of t from the head of the ray
      */
-    public Point getPoint (double t){
-        return p0.add(dir.scale(t));
+    public Point getPoint(double t) {
+        if (!isZero(alignZero(t))) {
+            return getP0().add(dir.scale(alignZero(t)));
+        }
+        return getP0();
     }
-
-
 
     public Point findClosestPoint(List<Point> points) {
         return points == null || points.isEmpty() ?null
                 : findClosestGeoPoint(points.stream().map(p->new GeoPoint(null,p)).toList()).point;
     }
 
+//    /**
+//     *
+//     * @param intersections
+//     * @return
+//     */
+//    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
+//        double minDistance = Double.MAX_VALUE;
+//        double d;
+//        GeoPoint closePoint = null;
+//
+//        if(intersections==null){
+//            return null;
+//        }
+//
+//        for (GeoPoint geoP : intersections) {
+//            d = geoP.point.distance(p0);
+//            //check if the distance of p is smaller then minDistance
+//            if (d < minDistance) {
+//                minDistance = d;
+//                closePoint = geoP;
+//            }
+//        }
+//        return closePoint;
+//    }
     /**
+     * calculate and return closest GeoPoint from the list of GeoPoints to the head of the ray
      *
-     * @param intersections
-     * @return
+     * @param geoPoints list of GeoPoints
+     *
+     * @return closest GeoPoint from the list of GeoPoints to the head of the ray
      */
-    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
-        double minDistance = Double.MAX_VALUE;
-        double d;
-        GeoPoint closePoint = null;
-
-        if(intersections==null){
-            return null;
-        }
-
-        for (GeoPoint geoP : intersections) {
-            d = geoP.point.distance(p0);
-            //check if the distance of p is smaller then minDistance
-            if (d < minDistance) {
-                minDistance = d;
-                closePoint = geoP;
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPoints){
+        GeoPoint minPoint = null;
+        if(geoPoints != null) {
+            double distance = Double.POSITIVE_INFINITY;
+            for (GeoPoint p : geoPoints) {
+                double temp = p.point.distance(p0);
+                if (temp < distance) {
+                    distance = temp;
+                    minPoint = p;
+                }
             }
         }
-        return closePoint;
+        return minPoint;
     }
-
 
 
 }

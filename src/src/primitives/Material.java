@@ -9,11 +9,44 @@ public class Material {
     /**
      * factors
      */
-    public double
-            kD=0,//Diffuse
-            kS=0,//Specular
-            kT=0,//Transparency
-            kR=0;//Reflection
+    public Double3 kD=new Double3(0);//Diffuse
+    public Double3 kS=new Double3(0);//Specular
+    public Double3 kT=new Double3 (0.0);//Transparency
+    public Double3 kR=new Double3(0.0);//Reflection
+
+    public Double3 kG=new Double3(1);
+
+    public Double3 getKg() {
+        return kG;
+    }
+
+    public Material setKg(Double3 kG) {
+        this.kG = kG;
+        return this;
+    }
+    public Material setKg(double kG) {
+        this.kG =new Double3( kG);
+        return this;
+    }
+
+    public Material setKt(double kT) {
+        this.kT =new Double3( kT);
+        return this;
+    }
+
+    public Double3 getKt() {
+        return kT;
+    }
+
+    public Double3 getKr() {
+        return kR;
+    }
+
+    public Material setKr(double kR) {
+        this.kR = new Double3( kR);
+        return this;
+    }
+
     /**
      * factor of the shininess
      */
@@ -22,8 +55,12 @@ public class Material {
      * @param kD factor of the diffuse affect of the material
      * @return this Material
      */
-    public Material setKd(double kD) {
+    public Material setKd(Double3 kD) {
         this.kD = kD;
+        return this;
+    }
+    public Material setKd(double kD) {
+        this.kD =new Double3( kD);
         return this;
     }
 
@@ -31,8 +68,13 @@ public class Material {
      * @param kS factor of the specular affect of the material
      * @return this Material
      */
-    public Material setKs(double kS) {
+    public Material setKs(Double3 kS) {
         this.kS = kS;
+        return this;
+    }
+
+    public Material setKs(double kS) {
+        this.kS = new Double3(kS);
         return this;
     }
 
@@ -48,7 +90,7 @@ public class Material {
      * @param kT factor of the Transparency of the material
      * @return this Material
      */
-    public Material setKt(double kT) {
+    public Material setKt(Double3 kT) {
         this.kT = kT;
         return this;
     }
@@ -56,7 +98,7 @@ public class Material {
      * @param kR factor of the reflection of the material
      * @return this Material
      */
-    public Material setKr(double kR) {
+    public Material setKr(Double3 kR) {
         this.kR = kR;
         return this;
     }

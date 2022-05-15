@@ -26,8 +26,61 @@ public class Camera {
     private  double distance;
     ImageWriter imageWriter;
     RayTracerBase rayTracer;
+    /**
+     * The number of rays sent by the camera.
+     */
+    private int numOfRays = 0;
+    private boolean focus = false;
 
-/**
+    public Camera setP0(Point p0) {
+        this.p0 = p0;
+        return this;
+    }
+
+    private Point focalPix = null;
+    public double disFocal = 0;
+
+    /**
+     * set the focus
+     *
+     * @param fp     point
+     * @param length
+     * @return the camera itself.
+     */
+    public Camera setFocus(Point fp, double length) {
+        focalPix = fp;
+        disFocal = length;
+        focus = true;
+        return this;
+    }
+
+    /**
+     * check if it's focus
+     * @param j
+     * @param i
+     * @return
+     */
+    private boolean isFocus(int j, int i) {
+        return focalPix.getX() <= j &&
+                j <= focalPix.getX() + disFocal &&
+                focalPix.getY() <= i &&
+                i <= focalPix.getY() + disFocal;
+    }
+
+    public boolean isFocus() {
+        return focus;
+    }
+
+    public Camera setNumOfRays(int numOfRays) {
+        this.numOfRays = numOfRays;
+        return this;
+    }
+
+    public int getNumOfRays() {
+        return numOfRays;
+    }
+
+    /**
  * Constructs a camera with location, to and up vectors.
  * The right vector is being calculated by the to and up vectors.
  *
@@ -247,7 +300,51 @@ public class Camera {
         imageWriter.writeToImage();
 
     }
+    /**
+     * Adds the given amount to the camera's position
+     *
+     * @return the current camera
+     */
+    public Camera move(Vector amount) {
+        p0 = p0.add(amount);
+        return this;
+    }
 
+    /**
+     * Adds x, y, z to the camera's position
+     *
+     * @return the current camera
+     */
+    public Camera move(double x, double y, double z) {
+        return move(new Vector(x, y, z));
+    }
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     *
+     * @param amount vector of angles
+     * @return the current camera
+     */
+    public Camera rotate(Vector amount) {
+        return rotate(amount.getX(), amount.getY(), amount.getZ());
+    }
+
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     *
+     * @param x angles to rotate around the x axis
+     * @param y angles to rotate around the y axis
+     * @param z angles to rotate around the z axis
+     * @return the current camera
+     */
+    public Camera rotate(double x, double y, double z) {
+        vTo.rotateX(x).rotateY(y).rotateZ(z);
+        vUp.rotateX(x).rotateY(y).rotateZ(z);
+        vRight = vTo.crossProduct(vUp);
+
+        return this;
+    }
 
 
 
