@@ -402,7 +402,7 @@ Triangle pyramidWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new P
                 pyramidWigC.setEmission(new Color(BLACK)),
                 pyramidWigD.setEmission(new Color(WHITE)),
                 sun.setEmission(new Color(java.awt.Color.orange))
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.2)),
+                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.2).setKr(0.5)),
                 A.setEmission(new Color(pink)),
                 B.setEmission(new Color(pink)),
                 C.setEmission(new Color(pink)),
