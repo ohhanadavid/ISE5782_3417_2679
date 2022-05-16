@@ -4,6 +4,8 @@ package src.unitTests.renderer;
 import org.testng.annotations.Test;
 import src.geometries.*;
 import src.lighting.AmbientLight;
+import src.lighting.DirectionalLight;
+import src.lighting.PointLight;
 import src.lighting.SpotLight;
 import src.primitives.*;
 import src.renderer.Camera;
@@ -11,6 +13,8 @@ import src.renderer.ImageWriter;
 import src.renderer.RayTracerBasic;
 import src.renderer.Render;
 import src.scene.Scene;
+
+import static java.awt.Color.*;
 
 @Test
 public class ExSevenTest {
@@ -298,13 +302,13 @@ private void dc() {
                         new Color(500, 500, 500),
                         new Point(-50, 100, 100),
                         new Vector(-0.5, -1, -0.5)
-                        )
-                        .setKl(0.004)
-                        .setKq(0.000006));
+                )
+                        .setKl(0.04)
+                        .setKq(0.0006));
         scene.geometries.add(
                 new Sphere(new Point(50, 0, 0), 50)
                         .setEmission(new Color(5, 5, 5))
-                        .setMaterial(new Material()
+                        .setMaterial(new Material().setKd(0.3).setKs(0.5)
                                 .setKr(1.0).setKg(0.8)),
                 new Cylinder(new Ray(
                         new Point(-90, -35, 0),
@@ -312,7 +316,7 @@ private void dc() {
                         25, 100)
                         .setEmission(new Color(100, 75, 0))
                         .setMaterial(new Material()
-                                .setKd(0.6).setKd(0.4)
+                                .setKd(0.6).setKd(0.4).setKs(0.4)
                                 .setShininess(80)),
                 new Polygon(
                         new Point(-100, -50, -150),
@@ -334,32 +338,103 @@ private void dc() {
                                 .setShininess(50))
         );
 
-//        int frames = 16;
-//        double angle = 360d / frames;
-//        double angleRadians = 2 * Math.PI / frames;
-//
-//        double radius = camera.getP0().subtract(Point.ZERO).length();
-//
-//        for (int i = 0; i < frames; i++) {
-//            System.out.println("Start frame " + (i + 1));
-//
-//            camera.rotate(0, angle, 0);
-//            camera.setP0(new Point(
-//                    Math.sin(angleRadians * (i + 1)) * radius,
-//                    0,
-//                    Math.cos(angleRadians * (i + 1)) * radius)
-//            );
+        int frames = 16;
+        double angle = 360d / frames;
+        double angleRadians = 2 * Math.PI / frames;
 
-                 camera.setImageWriter(new ImageWriter("project" , 750, 500))
+        double radius = camera.getP0().subtract(Point.ZERO).length();
+
+        for (int i = 0; i < frames; i++) {
+            System.out.println("Start frame " + (i + 1));
+
+            camera.rotate(0, angle, 0);
+            camera.setP0(new Point(
+                    Math.sin(angleRadians * (i + 1)) * radius,
+                    0,
+                    Math.cos(angleRadians * (i + 1)) * radius)
+            );
+
+            camera.setImageWriter(new ImageWriter("project", 750, 500))
                     .setRayTracer(new RayTracerBasic(scene)
                             .setGlossinessRays(20))
-                         .renderImage()
-                         .writeToImage();
+                    .renderImage()
+                    .writeToImage();
 
 
         }
-
     }
+
+    @Test
+    private void dfdf(){
+         Scene scene = new Scene("Test scene");
+        Camera camera = new Camera(new Point(-2500, 0, 200), new Vector(10, 0, 0), new Vector(0, 0, 1)) //
+                .setVPSize(600, 600).setVPDistance(1000);
+
+//        Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0,-1), new Vector(0, 1, 0)) //
+//               .setVPSize(600, 600).setVPDistance(1000);
+
+Triangle pyramidWigA = new Triangle(new Point(0,-200,0),new Point(200,0,0),new Point(0,0,200));
+Triangle pyramidWigB =new Triangle(new Point(200,0,0),new Point(0,200,0),new Point(0,0,200));
+Triangle pyramidWigC = new Triangle(new Point(0,200,0),new Point(-200,0,0),new Point(0,0,200));
+Triangle pyramidWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new Point(0,-200,0));
+
+        Sphere sun = new Sphere(new Point(400,500,600),100);
+
+        Sphere A= new Sphere(new Point(519.070390744984252,440.107162582189176,0),50);
+        Sphere B= new Sphere(new Point(568.560487306058349,330.381775783034186,0),100);
+        Sphere C=new Sphere(new Point(507.452522044068246,192.73059510366852,0),65);
+        Sphere D=new Sphere(new Point(500.713789922087472,78.895843857937507,0),144.03253);
+        Sphere E=new Sphere(new Point(500.713789922087472,78.895843857937507,0),117.774);
+        Sphere F=new Sphere(new Point(531.970492287884554,-117.758343954578777,0),115.0555);
+        Sphere G=new Sphere(new Point(555.040695576198686,-275.299697925167038,0),92.138);
+        Sphere H=new Sphere(new Point(626.427425256983042,-450.751787923952179,0),102.8875);
+
+       Cylinder AB=new Cylinder(new Ray(new Point(200,0,0),new Vector(-200,0,200)),0.10,282.84271247461902);
+        Cylinder BC=new Cylinder(new Ray(new Point(0,200,0),new Vector(0,-200,200)),0.10,282.84271247461902);
+        Cylinder CD=new Cylinder(new Ray(new Point(-200,0,0),new Vector(200,0,200)),4,282.84271247461902);
+        Cylinder DA=new Cylinder(new Ray(new Point(0,-200,0),new Vector(0,200,200)),0.10,282.84271247461902);
+
+        scene.geometries.add(
+                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(new Color(BLUE)),
+                new Plane(new Point(0,0,1500),new Point(1500,0,0),new Point(1500,200,0)).setEmission(new Color(java.awt.Color.cyan)),
+                pyramidWigA.setEmission(new Color(RED)),
+                pyramidWigB.setEmission(new Color(BLUE) ),
+                pyramidWigC.setEmission(new Color(BLACK)),
+                pyramidWigD.setEmission(new Color(WHITE)),
+                sun.setEmission(new Color(java.awt.Color.orange))
+                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.2)),
+                A.setEmission(new Color(pink)),
+                B.setEmission(new Color(pink)),
+                C.setEmission(new Color(pink)),
+                D.setEmission(new Color(pink)),
+                E.setEmission(new Color(pink)),
+                F.setEmission(new Color(pink)),
+                G.setEmission(new Color(pink)),
+                H.setEmission(new Color(pink)),
+
+               CD.setEmission(new Color(RED)),
+//                BC.setEmission(new Color(WHITE)),
+                AB.setEmission(new Color(WHITE))
+              //  DA.setEmission(new Color(WHITE))
+        );
+
+
+        scene.lights.add(
+                new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2))
+                        .setKl(0.0004).setKq(0.0000006));
+        scene.lights.add(
+                new PointLight(new Color(235,236,166),sun.getCenter()).setKl(0.5).setKq(0.3));
+        scene.lights.add(
+                new SpotLight(new Color(yellow),new Point(-2500, 0, 200), new Vector(10, 0, 0)
+                        ).setSpecularN(50));
+
+        camera.setImageWriter(new ImageWriter("שבנ", 500, 500)) //
+                .setRayTracer(new RayTracerBasic(scene)) //
+                .renderImage() //
+                .writeToImage();
+    }
+
+}
 
 
 
