@@ -4,8 +4,6 @@ import src.primitives.Color;
 import src.primitives.Ray;
 import src.scene.Scene;
 
-import java.util.LinkedList;
-
 /**
  * RayTracerBase abstract class that use as an interface for RayTracerBasic
  */
@@ -27,6 +25,4 @@ public abstract class RayTracerBase {
      * @return Color
      */
     public abstract Color traceRay(Ray ray);
-
-    public abstract Color averageColor(LinkedList<Ray> rays);
 }
