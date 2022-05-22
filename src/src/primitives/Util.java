@@ -1,5 +1,6 @@
 package src.primitives;
 
+
 /**
  * Util class is used for some internal utilities, e.g. controlling accuracy
  * 
@@ -75,5 +76,8 @@ public abstract class Util {
 	public static double random(double min, double max) {
 		return Math.random() * (max - min) + min;
 	}
+
+
+
 
 }

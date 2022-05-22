@@ -105,7 +105,7 @@ public class ReflectionRefractionTests {
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
 		camera.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene)) //
+				.setRayTracer(new RayTracerBasic(scene).setGlossinessRays(50)) //
 				.renderImage() //
 				.writeToImage();
 	}
@@ -189,7 +189,7 @@ public class ReflectionRefractionTests {
 		ImageWriter imageWriter = new ImageWriter("bonus", 600, 600);
 
 				camera.setImageWriter(imageWriter)
-				.setRayTracer(new RayTracerBasic(scene))
+				.setRayTracer(new RayTracerBasic(scene).setGlossinessRays(20))
 						.renderImage()
 						.writeToImage();
 	}

@@ -429,7 +429,7 @@ Triangle pyramidWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new P
                         ).setSpecularN(50));
 
         camera.setImageWriter(new ImageWriter("שבנ", 500, 500)) //
-                .setRayTracer(new RayTracerBasic(scene)) //
+                .setRayTracer(new RayTracerBasic(scene).setGlossinessRays(50)) //
                 .renderImage() //
                 .writeToImage();
     }
