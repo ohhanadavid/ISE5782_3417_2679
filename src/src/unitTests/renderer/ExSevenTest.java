@@ -372,7 +372,23 @@ private void dc() {
 
 //        Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0,-1), new Vector(0, 1, 0)) //
 //               .setVPSize(600, 600).setVPDistance(1000);
+        Color Pyramid = new Color(245,245,245);
+        Color Sky = new Color(135,206,235);
+        Color LightSky = new Color(135,206,250);
+        Color Sand1 = new Color(238,232,170);
+        Color Sand2 = new Color(194, 190, 128);
+        Color Sand3 = new Color(194,183,128);
+        Color Sand4 = new Color(194, 178, 128);
+        Color Sand5 = new Color(194, 171, 128);
+        Color Sand6 = new Color(194, 164, 128);
 
+        Color Cloud1 = new Color(245,245,245);
+        Color Cloud2 = new Color(248,248,255);
+        Color Cloud3 = new Color(255,250,240);
+        scene.background= LightSky;
+
+
+        //-------------------------pyramids--------------------------------//
 Triangle pyramidAWigA = new Triangle(new Point(0,-200,0),new Point(200,0,0),new Point(0,0,200));
 Triangle pyramidAWigB =new Triangle(new Point(200,0,0),new Point(0,200,0),new Point(0,0,200));
 Triangle pyramidAWigC = new Triangle(new Point(0,200,0),new Point(-200,0,0),new Point(0,0,200));
@@ -430,19 +446,51 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 ,new Point(1160.643651708754987,-884.212750300565176,0)
                 ,new Point(1288.525267063434285,-740.303030548339393,272.263530370434808));
 
+        //-----------------------------------sky-----------------------------------//
+
         Sphere sun = new Sphere(new Point(400,500,600),100);
 
-        Sphere a1= new Sphere(new Point(519.070390744984252,440.107162582189176,0),50);
-        Sphere a2= new Sphere(new Point(568.560487306058349,330.381775783034186,0),100);
-        Sphere a3=new Sphere(new Point(507.452522044068246,192.73059510366852,0),65);
-        Sphere a4=new Sphere(new Point(500.713789922087472,78.895843857937507,0),144.03253);
-        Sphere a5=new Sphere(new Point(500.713789922087472,78.895843857937507,0),117.774);
+        Sphere cloudA1=new Sphere(new Point(-400,100,600),100);
+        Sphere cloudA2=new Sphere(new Point(-420,130,600),90);
+        Sphere cloudA3=new Sphere(new Point(-380,160,600),120);
+        Sphere cloudA4=new Sphere(new Point(-430,170,600),85);
+        Sphere cloudA5=new Sphere(new Point(-440,190,600),110);
+
+        Sphere cloudB1=new Sphere(new Point(1400,700,600),100);
+        Sphere cloudB2=new Sphere(new Point(1490,750,600),150);
+        Sphere cloudB3=new Sphere(new Point(1550,650,600),90);
+        Sphere cloudB4=new Sphere(new Point(1300,800,600),170);
+        Sphere cloudB5=new Sphere(new Point(1250,6000,600),200);
+
+        Sphere cloudC1=new Sphere(new Point(-1200,-500,600),80);
+        Sphere cloudC2=new Sphere(new Point(-1300,-550,600),100);
+        Sphere cloudC3=new Sphere(new Point(-1350,-600,600),90);
+        Sphere cloudC4=new Sphere(new Point(-1400,-650,600),110);
+        Sphere cloudC5=new Sphere(new Point(-1450,-700,600),70);
+
+        Sphere cloudD1=new Sphere(new Point(400,500,600),100);
+        Sphere cloudD2=new Sphere(new Point(400,500,600),100);
+        Sphere cloudD3=new Sphere(new Point(400,500,600),100);
+        Sphere cloudD4=new Sphere(new Point(400,500,600),100);
+        Sphere cloudD5=new Sphere(new Point(400,500,600),100);
+
+        Sphere cloudE1=new Sphere(new Point(400,500,600),100);
+        Sphere cloudE2=new Sphere(new Point(400,500,600),100);
+        Sphere cloudE3=new Sphere(new Point(400,500,600),100);
+        Sphere cloudE4=new Sphere(new Point(400,500,600),100);
+        Sphere cloudE5=new Sphere(new Point(400,500,600),100);
+        //-------------------------------Dunes---------------------------------------//
+        Sphere a1= new Sphere(new Point(519.070390744984252,440.107162582189176,-10),50);
+        Sphere a2= new Sphere(new Point(568.560487306058349,330.381775783034186,-20),100);
+        Sphere a3=new Sphere(new Point(507.452522044068246,192.73059510366852,-30),65);
+        Sphere a4=new Sphere(new Point(500.713789922087472,78.895843857937507,-15),144.03253);
+        Sphere a5=new Sphere(new Point(500.713789922087472,78.895843857937507,-60),117.774);
         Sphere a6=new Sphere(new Point(531.970492287884554,-117.758343954578777,0),115.0555);
         Sphere a7=new Sphere(new Point(555.040695576198686,-275.299697925167038,0),92.138);
         Sphere a8=new Sphere(new Point(-626.427425256983042,-450.751787923952179,-65),102.8875);
-        Sphere a9= new Sphere(new Point(600,440.107162582189176,0),250);
-        Sphere a10= new Sphere(new Point(-40,330.381775783034186,0),25);
-        Sphere a11=new Sphere(new Point(-507.452522044068246,300,0),65);
+        Sphere a9= new Sphere(new Point(600,440.107162582189176,-100),250);
+        Sphere a10= new Sphere(new Point(-40,330.381775783034186,-5),25);
+        Sphere a11=new Sphere(new Point(-507.452522044068246,300,-40),65);
         Sphere a12=new Sphere(new Point(-160,78.895843857937507,-80),100);
         Sphere a13=new Sphere(new Point(-700,78.895843857937507,-250),300);
         Sphere a14=new Sphere(new Point(-650,-150,0),90);
@@ -460,10 +508,30 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
         Sphere a26= new Sphere(new Point(-385,721,0),64);
         Sphere a27=new Sphere(new Point(-95,100,0),38);
         Sphere a28=new Sphere(new Point(-26,30,0),40);
-        Sphere a29=new Sphere(new Point(-800,78.895843857937507,0),62);
+        Sphere a29=new Sphere(new Point(-1000,78.895843857937507,-15),62);
         Sphere a30=new Sphere(new Point(-42,-100,0),34);
         Sphere a31=new Sphere(new Point(-269,-742,0),79);
         Sphere a32=new Sphere(new Point(-430,150,0),23);
+
+        Sphere a33=new Sphere(new Point(-150,-150.751787923952179,0),16);
+        Sphere a34= new Sphere(new Point(-25,34,0),5);
+        Sphere a35= new Sphere(new Point(90,450,0),19);
+        Sphere a36=new Sphere(new Point(420,250,0),65);
+        Sphere a37=new Sphere(new Point(640,10,0),75);
+        Sphere a38=new Sphere(new Point(800,150,0),118);
+        Sphere a39=new Sphere(new Point(-670,117,0),73);
+        Sphere a40=new Sphere(new Point(325,-75,0),92.138);
+        Sphere a41=new Sphere(new Point(-348,-162,0),102);
+        Sphere a42= new Sphere(new Point(-400,440.107162582189176,0),16);
+        Sphere a43= new Sphere(new Point(-385,721,0),64);
+        Sphere a44=new Sphere(new Point(-95,100,0),38);
+        Sphere a45=new Sphere(new Point(-26,30,0),40);
+        Sphere a46=new Sphere(new Point(-1000,78.895843857937507,-15),62);
+        Sphere a47=new Sphere(new Point(-42,-100,0),34);
+        Sphere a49=new Sphere(new Point(-269,-742,0),79);
+        Sphere a50=new Sphere(new Point(-430,150,0),23);
+
+
 
        Cylinder ab=new Cylinder(new Ray(new Point(200,0,0),new Vector(-200,0,200)),0.10,282.84271247461902);
         Cylinder bc=new Cylinder(new Ray(new Point(0,200,0),new Vector(0,-200,200)),0.10,282.84271247461902);
@@ -471,12 +539,16 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
         Cylinder da=new Cylinder(new Ray(new Point(0,-200,0),new Vector(0,200,200)),0.10,282.84271247461902);
 
         scene.geometries.add(
-                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(new Color(BLUE)),
-                new Plane(new Point(0,0,1500),new Point(1500,0,0),new Point(1500,200,0)).setEmission(new Color(java.awt.Color.cyan)),
-                pyramidAWigA.setEmission(new Color(RED)),
-                pyramidAWigB.setEmission(new Color(BLUE) ),
-                pyramidAWigC.setEmission(new Color(BLACK)),
-                pyramidAWigD.setEmission(new Color(WHITE)),
+                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(Sand1),
+              //  new Plane(new Point(0,0,1500),new Point(1500,0,0),new Point(1500,200,0)).setEmission(LightSky),
+                pyramidAWigA.setEmission(Sand1),
+                pyramidAWigB.setEmission(Sand2 ),
+                pyramidAWigC.setEmission(Sand3),
+                pyramidAWigD.setEmission(Sand2),
+                cd.setEmission(Sand3),
+//                bc.setEmission(new Color(WHITE)),
+                ab.setEmission(Sand3),
+                //  da.setEmission(new Color(WHITE))
 
                 pyramidBWigA.setEmission(new Color(BLUE)),
                 pyramidBWigB.setEmission(new Color(RED)),
@@ -493,10 +565,11 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 pyramidDWigC.setEmission(new Color(PINK)),
                 pyramidDWigD.setEmission(new Color(WHITE)),
 
-                pyramidEWigA.setEmission(new Color(BLUE)),
-                pyramidEWigB.setEmission(new Color(RED)),
-                pyramidEWigC.setEmission(new Color(PINK)),
-                pyramidEWigD.setEmission(new Color(WHITE)),
+                pyramidEWigA.setEmission(Sand4),
+                pyramidEWigB.setEmission(Sand4),
+                pyramidEWigC.setEmission(Sand4),
+                pyramidEWigD.setEmission(Sand4),
+
 
                 sun.setEmission(new Color(java.awt.Color.orange))
                         .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(200).setKt(0.2).setKr(0.70)),
@@ -528,15 +601,43 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 a26.setEmission(new Color(orange)),
                 a27.setEmission(new Color(gray)),
                 a28.setEmission(new Color(green)),
-                a29.setEmission(new Color(pink)),
+                a29.setEmission(new Color(pink)),//
                 a30.setEmission(new Color(pink)),
                 a31.setEmission(new Color(pink)),
                 a32.setEmission(new Color(pink)),
 
-               cd.setEmission(new Color(RED)),
-//                bc.setEmission(new Color(WHITE)),
-                ab.setEmission(new Color(WHITE))
-              //  da.setEmission(new Color(WHITE))
+                cloudA1.setEmission(Cloud1).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudA2.setEmission(Cloud3),
+                cloudA3.setEmission(Cloud1),
+                cloudA4.setEmission(Cloud3),
+                cloudA5.setEmission(Cloud2),
+
+                cloudB1.setEmission(new Color(WHITE)),
+                cloudB2.setEmission(new Color(WHITE)),
+                cloudB3.setEmission(new Color(WHITE)),
+                cloudB4.setEmission(new Color(WHITE)),
+                cloudB5.setEmission(new Color(WHITE)),
+
+                cloudC1.setEmission(new Color(WHITE)),
+                cloudC2.setEmission(new Color(WHITE)),
+                cloudC3.setEmission(new Color(WHITE)),
+                cloudC4.setEmission(new Color(WHITE)),
+                cloudC5.setEmission(new Color(WHITE)),
+
+                cloudD1.setEmission(new Color(WHITE)),
+                cloudD2.setEmission(new Color(WHITE)),
+                cloudD3.setEmission(new Color(WHITE)),
+                cloudD4.setEmission(new Color(WHITE)),
+                cloudD5.setEmission(new Color(WHITE)),
+
+                cloudE1.setEmission(new Color(WHITE)),
+                cloudE2.setEmission(new Color(WHITE)),
+                cloudE3.setEmission(new Color(WHITE)),
+                cloudE4.setEmission(new Color(WHITE)),
+                cloudE5.setEmission(new Color(WHITE))
+
+
         );
 
 
