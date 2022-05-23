@@ -550,20 +550,20 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 ab.setEmission(Sand3),
                 //  da.setEmission(new Color(WHITE))
 
-                pyramidBWigA.setEmission(new Color(BLUE)),
-                pyramidBWigB.setEmission(new Color(RED)),
-                pyramidBWigC.setEmission(new Color(PINK)),
-                pyramidBWigD.setEmission(new Color(WHITE)),
+                pyramidBWigA.setEmission(Sand2),
+                pyramidBWigB.setEmission(Sand2),
+                pyramidBWigC.setEmission(Sand2),
+                pyramidBWigD.setEmission(Sand2),
 
-                pyramidCWigA.setEmission(new Color(BLUE)),
-                pyramidCWigB.setEmission(new Color(RED)),
-                pyramidCWigC.setEmission(new Color(PINK)),
-                pyramidCWigD.setEmission(new Color(WHITE)),
+                pyramidCWigA.setEmission(Sand2),
+                pyramidCWigB.setEmission(Sand3),
+                pyramidCWigC.setEmission(Sand3),
+                pyramidCWigD.setEmission(Sand3),
 
-                pyramidDWigA.setEmission(new Color(BLUE)),
-                pyramidDWigB.setEmission(new Color(RED)),
-                pyramidDWigC.setEmission(new Color(PINK)),
-                pyramidDWigD.setEmission(new Color(WHITE)),
+                pyramidDWigA.setEmission(Sand4),
+                pyramidDWigB.setEmission(Sand4),
+                pyramidDWigC.setEmission(Sand4),
+                pyramidDWigD.setEmission(Sand4),
 
                 pyramidEWigA.setEmission(Sand4),
                 pyramidEWigB.setEmission(Sand4),
