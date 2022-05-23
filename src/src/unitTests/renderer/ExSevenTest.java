@@ -368,54 +368,175 @@ private void dc() {
     private void dfdf(){
          Scene scene = new Scene("Test scene");
         Camera camera = new Camera(new Point(-2500, 0, 200), new Vector(10, 0, 0), new Vector(0, 0, 1)) //
-                .setVPSize(600, 600).setVPDistance(1000);
+                .setVPSize(900, 900).setVPDistance(1000);
 
 //        Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0,-1), new Vector(0, 1, 0)) //
 //               .setVPSize(600, 600).setVPDistance(1000);
 
-Triangle pyramidWigA = new Triangle(new Point(0,-200,0),new Point(200,0,0),new Point(0,0,200));
-Triangle pyramidWigB =new Triangle(new Point(200,0,0),new Point(0,200,0),new Point(0,0,200));
-Triangle pyramidWigC = new Triangle(new Point(0,200,0),new Point(-200,0,0),new Point(0,0,200));
-Triangle pyramidWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new Point(0,-200,0));
+Triangle pyramidAWigA = new Triangle(new Point(0,-200,0),new Point(200,0,0),new Point(0,0,200));
+Triangle pyramidAWigB =new Triangle(new Point(200,0,0),new Point(0,200,0),new Point(0,0,200));
+Triangle pyramidAWigC = new Triangle(new Point(0,200,0),new Point(-200,0,0),new Point(0,0,200));
+Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new Point(0,-200,0));
+
+        Triangle pyramidBWigA = new Triangle(new Point(-589.994341128794986,450.286959177999051,0)
+                ,new Point(-694.538033043532778, 1117.952116537043594, 0)
+                ,new Point(-976.098765765686153, 731.847691900152427, 675.800374275156287));
+        Triangle pyramidBWigB =new Triangle(new Point(-694.538033043532778, 1117.952116537043594, 0)
+                ,new Point(-1362.20319040257732, 1013.408424622305802, 0)
+                ,new Point(-976.098765765686153, 731.847691900152427, 675.800374275156287));
+        Triangle pyramidBWigC = new Triangle(new Point(-1257.659498487839528, 345.743267263261259, 0)
+                ,new Point(-589.994341128794986,450.286959177999051,0)
+                ,new Point(-976.098765765686153, 731.847691900152427, 675.800374275156287));
+        Triangle pyramidBWigD = new Triangle(new Point(-1362.20319040257732,1013.408424622305802,0)
+                ,new Point(-1257.659498487839528, 345.743267263261259, 0)
+                ,new Point(-976.098765765686153, 731.847691900152427, 675.800374275156287));
+
+        Triangle pyramidCWigA = new Triangle(new Point(-1000,-1000,0)
+                ,new Point(-1500, -1000, -0.000000000000061)
+                ,new Point(-1250, -750, 500));
+        Triangle pyramidCWigB =new Triangle(new Point(-1500, -1000, -0.000000000000061)
+                ,new Point(-1500, -500, -0.000000000000061)
+                ,new Point(-1250, -750, 500));
+        Triangle pyramidCWigC = new Triangle(new Point(-1500, -500, -0.000000000000061)
+                ,new Point(-1000, -500, 0)
+                ,new Point(-1250, -750, 500));
+        Triangle pyramidCWigD = new Triangle(new Point(-1000, -500, 0)
+                ,new Point(-1000,-1000,0)
+                ,new Point(-1250, -750, 500));
+
+        Triangle pyramidDWigA = new Triangle(new Point(903.617579714595195,564.402427344720309,0)
+                ,new Point(617.524146711446519,529.32719915949292,0)
+                ,new Point(743.033249120407163, 689.911529753680952, 288.235535699144634));
+        Triangle pyramidDWigB =new Triangle(new Point(617.524146711446519,529.32719915949292,0)
+                ,new Point(582.448918526219131,815.420632162641596,0)
+                ,new Point(743.033249120407163, 689.911529753680952, 288.235535699144634));
+        Triangle pyramidDWigC = new Triangle(new Point(582.448918526219131,815.420632162641596,0)
+                ,new Point(868.542351529367807,850.495860347868984,0)
+                ,new Point(743.033249120407163, 689.911529753680952, 288.235535699144634));
+        Triangle pyramidDWigD = new Triangle(new Point(868.542351529367807,850.495860347868984,0)
+                ,new Point(903.617579714595195,564.402427344720309,0)
+                ,new Point(743.033249120407163, 689.911529753680952, 288.235535699144634));
+
+        Triangle pyramidEWigA = new Triangle(new Point(1160.643651708754987,-884.212750300565176,0)
+                ,new Point(1144.615547311208502,-612.421415193659982,0)
+                ,new Point(1288.525267063434285,-740.303030548339393,272.263530370434808));
+        Triangle pyramidEWigB =new Triangle(new Point(1144.615547311208502,-612.421415193659982,0)
+                ,new Point(1416.406882418113582,-596.393310796113497,0)
+                ,new Point(1288.525267063434285,-740.303030548339393,272.263530370434808));
+        Triangle pyramidEWigC = new Triangle(new Point(1416.406882418113582,-596.393310796113497,0)
+                ,new Point(1432.434986815660068,-868.184645903018691,0)
+                ,new Point(1288.525267063434285,-740.303030548339393,272.263530370434808));
+        Triangle pyramidEWigD = new Triangle(new Point(1432.434986815660068,-868.184645903018691,0)
+                ,new Point(1160.643651708754987,-884.212750300565176,0)
+                ,new Point(1288.525267063434285,-740.303030548339393,272.263530370434808));
 
         Sphere sun = new Sphere(new Point(400,500,600),100);
 
-        Sphere A= new Sphere(new Point(519.070390744984252,440.107162582189176,0),50);
-        Sphere B= new Sphere(new Point(568.560487306058349,330.381775783034186,0),100);
-        Sphere C=new Sphere(new Point(507.452522044068246,192.73059510366852,0),65);
-        Sphere D=new Sphere(new Point(500.713789922087472,78.895843857937507,0),144.03253);
-        Sphere E=new Sphere(new Point(500.713789922087472,78.895843857937507,0),117.774);
-        Sphere F=new Sphere(new Point(531.970492287884554,-117.758343954578777,0),115.0555);
-        Sphere G=new Sphere(new Point(555.040695576198686,-275.299697925167038,0),92.138);
-        Sphere H=new Sphere(new Point(626.427425256983042,-450.751787923952179,0),102.8875);
+        Sphere a1= new Sphere(new Point(519.070390744984252,440.107162582189176,0),50);
+        Sphere a2= new Sphere(new Point(568.560487306058349,330.381775783034186,0),100);
+        Sphere a3=new Sphere(new Point(507.452522044068246,192.73059510366852,0),65);
+        Sphere a4=new Sphere(new Point(500.713789922087472,78.895843857937507,0),144.03253);
+        Sphere a5=new Sphere(new Point(500.713789922087472,78.895843857937507,0),117.774);
+        Sphere a6=new Sphere(new Point(531.970492287884554,-117.758343954578777,0),115.0555);
+        Sphere a7=new Sphere(new Point(555.040695576198686,-275.299697925167038,0),92.138);
+        Sphere a8=new Sphere(new Point(-626.427425256983042,-450.751787923952179,-65),102.8875);
+        Sphere a9= new Sphere(new Point(600,440.107162582189176,0),250);
+        Sphere a10= new Sphere(new Point(-40,330.381775783034186,0),25);
+        Sphere a11=new Sphere(new Point(-507.452522044068246,300,0),65);
+        Sphere a12=new Sphere(new Point(-160,78.895843857937507,-80),100);
+        Sphere a13=new Sphere(new Point(-700,78.895843857937507,-250),300);
+        Sphere a14=new Sphere(new Point(-650,-150,0),90);
+        Sphere a15=new Sphere(new Point(-90,-300,0),92);
+        Sphere a16=new Sphere(new Point(-150,-150.751787923952179,0),16);
+        Sphere a17= new Sphere(new Point(-25,34,0),5);
+        Sphere a18= new Sphere(new Point(90,450,0),19);
+        Sphere a19=new Sphere(new Point(420,250,0),65);
+        Sphere a20=new Sphere(new Point(640,10,0),75);
+        Sphere a21=new Sphere(new Point(800,150,0),118);
+        Sphere a22=new Sphere(new Point(-670,117,0),73);
+        Sphere a23=new Sphere(new Point(325,-75,0),92.138);
+        Sphere a24=new Sphere(new Point(-348,-162,0),102);
+        Sphere a25= new Sphere(new Point(-400,440.107162582189176,0),16);
+        Sphere a26= new Sphere(new Point(-385,721,0),64);
+        Sphere a27=new Sphere(new Point(-95,100,0),38);
+        Sphere a28=new Sphere(new Point(-26,30,0),40);
+        Sphere a29=new Sphere(new Point(-800,78.895843857937507,0),62);
+        Sphere a30=new Sphere(new Point(-42,-100,0),34);
+        Sphere a31=new Sphere(new Point(-269,-742,0),79);
+        Sphere a32=new Sphere(new Point(-430,150,0),23);
 
-       Cylinder AB=new Cylinder(new Ray(new Point(200,0,0),new Vector(-200,0,200)),0.10,282.84271247461902);
-        Cylinder BC=new Cylinder(new Ray(new Point(0,200,0),new Vector(0,-200,200)),0.10,282.84271247461902);
-        Cylinder CD=new Cylinder(new Ray(new Point(-200,0,0),new Vector(200,0,200)),4,282.84271247461902);
-        Cylinder DA=new Cylinder(new Ray(new Point(0,-200,0),new Vector(0,200,200)),0.10,282.84271247461902);
+       Cylinder ab=new Cylinder(new Ray(new Point(200,0,0),new Vector(-200,0,200)),0.10,282.84271247461902);
+        Cylinder bc=new Cylinder(new Ray(new Point(0,200,0),new Vector(0,-200,200)),0.10,282.84271247461902);
+        Cylinder cd=new Cylinder(new Ray(new Point(-200,0,0),new Vector(200,0,200)),4,282.84271247461902);
+        Cylinder da=new Cylinder(new Ray(new Point(0,-200,0),new Vector(0,200,200)),0.10,282.84271247461902);
 
         scene.geometries.add(
                 new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(new Color(BLUE)),
                 new Plane(new Point(0,0,1500),new Point(1500,0,0),new Point(1500,200,0)).setEmission(new Color(java.awt.Color.cyan)),
-                pyramidWigA.setEmission(new Color(RED)),
-                pyramidWigB.setEmission(new Color(BLUE) ),
-                pyramidWigC.setEmission(new Color(BLACK)),
-                pyramidWigD.setEmission(new Color(WHITE)),
-                sun.setEmission(new Color(java.awt.Color.orange))
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.2).setKr(0.5)),
-                A.setEmission(new Color(pink)),
-                B.setEmission(new Color(pink)),
-                C.setEmission(new Color(pink)),
-                D.setEmission(new Color(pink)),
-                E.setEmission(new Color(pink)),
-                F.setEmission(new Color(pink)),
-                G.setEmission(new Color(pink)),
-                H.setEmission(new Color(pink)),
+                pyramidAWigA.setEmission(new Color(RED)),
+                pyramidAWigB.setEmission(new Color(BLUE) ),
+                pyramidAWigC.setEmission(new Color(BLACK)),
+                pyramidAWigD.setEmission(new Color(WHITE)),
 
-               CD.setEmission(new Color(RED)),
-//                BC.setEmission(new Color(WHITE)),
-                AB.setEmission(new Color(WHITE))
-              //  DA.setEmission(new Color(WHITE))
+                pyramidBWigA.setEmission(new Color(BLUE)),
+                pyramidBWigB.setEmission(new Color(RED)),
+                pyramidBWigC.setEmission(new Color(PINK)),
+                pyramidBWigD.setEmission(new Color(WHITE)),
+
+                pyramidCWigA.setEmission(new Color(BLUE)),
+                pyramidCWigB.setEmission(new Color(RED)),
+                pyramidCWigC.setEmission(new Color(PINK)),
+                pyramidCWigD.setEmission(new Color(WHITE)),
+
+                pyramidDWigA.setEmission(new Color(BLUE)),
+                pyramidDWigB.setEmission(new Color(RED)),
+                pyramidDWigC.setEmission(new Color(PINK)),
+                pyramidDWigD.setEmission(new Color(WHITE)),
+
+                pyramidEWigA.setEmission(new Color(BLUE)),
+                pyramidEWigB.setEmission(new Color(RED)),
+                pyramidEWigC.setEmission(new Color(PINK)),
+                pyramidEWigD.setEmission(new Color(WHITE)),
+
+                sun.setEmission(new Color(java.awt.Color.orange))
+                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(200).setKt(0.2).setKr(0.70)),
+                a1.setEmission(new Color(pink)),
+                a2.setEmission(new Color(pink)),
+                a3.setEmission(new Color(pink)),
+                a4.setEmission(new Color(pink)),
+                a5.setEmission(new Color(pink)),
+                a6.setEmission(new Color(pink)),
+                a7.setEmission(new Color(pink)),
+                a8.setEmission(new Color(pink)),
+                a9.setEmission(new Color(pink)),
+                a10.setEmission(new Color(YELLOW)),
+                a11.setEmission(new Color(BLACK)),
+                a12.setEmission(new Color(BLUE)),
+                a13.setEmission(new Color(red)),//a12
+                a14.setEmission(new Color(cyan)),
+                a15.setEmission(new Color(white)),
+                a16.setEmission(new Color(orange)),
+                a17.setEmission(new Color(gray)),
+                a18.setEmission(new Color(green)),
+                a19.setEmission(new Color(darkGray)),
+                a20.setEmission(new Color(MAGENTA)),
+                a21.setEmission(new Color(WHITE)),
+                a22.setEmission(new Color(red)),//a22
+                a23.setEmission(new Color(pink)),
+                a24.setEmission(new Color(blue)),
+                a25.setEmission(new Color(black)),
+                a26.setEmission(new Color(orange)),
+                a27.setEmission(new Color(gray)),
+                a28.setEmission(new Color(green)),
+                a29.setEmission(new Color(pink)),
+                a30.setEmission(new Color(pink)),
+                a31.setEmission(new Color(pink)),
+                a32.setEmission(new Color(pink)),
+
+               cd.setEmission(new Color(RED)),
+//                bc.setEmission(new Color(WHITE)),
+                ab.setEmission(new Color(WHITE))
+              //  da.setEmission(new Color(WHITE))
         );
 
 
@@ -429,7 +550,7 @@ Triangle pyramidWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new P
                         ).setSpecularN(50));
 
         camera.setImageWriter(new ImageWriter("שבנ", 500, 500)) //
-                .setRayTracer(new RayTracerBasic(scene).setGlossinessRays(50)) //
+                .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage();
     }

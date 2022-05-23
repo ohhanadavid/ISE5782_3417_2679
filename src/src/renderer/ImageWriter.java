@@ -1,9 +1,13 @@
 package src.renderer;
 
 import src.primitives.Color;
+import src.primitives.Point;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,5 +93,6 @@ public class ImageWriter {
 	public void writePixel(int xIndex, int yIndex, Color color) {
 		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
 	}
+
 
 }

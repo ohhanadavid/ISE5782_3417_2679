@@ -14,20 +14,17 @@ public class Material {
     public Double3 kT=new Double3 (0.0);//Transparency
     public Double3 kR=new Double3(0.0);//Reflection
 
-    public Double3 kG=new Double3(1);
+    public double kG=1.0;
 
-    public Double3 getKg() {
+    public double getKg() {
         return kG;
     }
 
-    public Material setKg(Double3 kG) {
+    public Material setKg(double kG) {
         this.kG = kG;
         return this;
     }
-    public Material setKg(double kG) {
-        this.kG =new Double3( kG);
-        return this;
-    }
+
 
     public Material setKt(double kT) {
         this.kT =new Double3( kT);
