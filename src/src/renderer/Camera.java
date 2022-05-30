@@ -31,7 +31,7 @@ public class Camera {
     /**
      * The number of rays sent by the camera.
      */
-    private int numOfRays = 20;
+    private int numOfRays = 1;
     private boolean focus = false;
 
     public Camera setP0(Point p0) {
@@ -278,9 +278,9 @@ public class Camera {
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
 //                    if(checkColor(nX,nY,j,i))
-                   imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
-//                    else
-                    //               imageWriter.writePixel(j,i,castRaysAntiAliasing(nX,nY,j,i));
+ //                  imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
+  //                  else
+                                   imageWriter.writePixel(j,i,castRaysAntiAliasing(nX,nY,j,i));
                 }
             }
         }
@@ -301,10 +301,7 @@ public class Camera {
         }
         return color.reduce(Double.valueOf(rays.size()));
     }
-//    private boolean checkColor(int nX, int nY, int j, int i) {
-//
-//
-//    }
+
     private Color castRay(int nX, int nY, int j, int i){
 
         Ray ray = constructRayThroughPixel(nX, nY, j, i);

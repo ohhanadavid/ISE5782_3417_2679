@@ -19,359 +19,14 @@ import static java.awt.Color.*;
 @Test
 public class ExSevenTest {
 
-@Test
-private void dc() {
-        Camera camera = new Camera(
-                new Point(0, 0, 1000),
-                new Vector(0, 0, -1),
-                new Vector(0, 1, 0))
-                .setVPSize(200, 125)
-                .setVPDistance(800)
-                .setNumOfRays(70);
-
-        Scene scene = new Scene("Test Scene");
-    scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), new Double3(0.1)));
-
-        setLights(scene);
-
-        setGeometries(scene);
-
-        Render render = new Render() //
-                .setCamera(camera) //
-                .setRayTracer(new RayTracerBasic(scene).setGlossinessRays(20));
-
-        int frames = 16;
-        double angle = 360d / frames;
-        double angleRadians = 2 * Math.PI / frames;
-
-        double radius = camera.getP0().subtract(Point.ZERO).length();
-        for (int i = 0; i < frames; i++) {
-            System.out.println("Start frame " + (i + 1));
-            camera.rotate(0, angle, 0);
-            camera.setP0(new Point(
-                    Math.sin(angleRadians * (i + 1)) * radius,
-                    0,
-                    Math.cos(angleRadians * (i + 1)) * radius));
-
-            ImageWriter imageWriter = new ImageWriter("project" + (i + 1), 600, 450);
-            camera.setImageWriter(imageWriter).
-                    setRayTracer(new RayTracerBasic(scene))
-                    .renderImage()
-                    .writeToImage();
-        }
-    }
-
-
-
-
-    private void setLights(Scene scene){
-        scene.lights.add(
-                new SpotLight(
-                        new Color(400, 400, 400),
-                        new Point(-50, 100, 100),
-                        new Vector(-0.5, -1, -0.5)
-                       )
-                        .setKl(0.004)
-                        .setKq(0.000006)
-        );
-        scene.lights.add(new SpotLight(new Color(0,250,350) ,new Point(-200, 100, 0), new Vector(1, 1, -2)).setSpecularN(40) //
-                .setKl(0.00000005).setKq(0.000000005));
-        scene.lights.add(new SpotLight(new Color(0,250,350), new Point(-200, 50, 0), new Vector(1, 0.5, -2)).setSpecularN(20) //
-                .setKl(0.00000005).setKq(0.000000005));
-        scene.lights.add(new SpotLight(new Color(0,250,350), new Point(-200, 55, 0), new Vector(1, 1, -2)).setSpecularN(10) //
-                .setKl(0.00000005).setKq(0.000000005));
-
-
-    }
-
-
-    private void setGeometries(Scene scene) {
-        //triangles
-        Point h=new Point(60,-50,30);
-        Point g=new Point(45,-30,0);
-        Point a=new Point(30,-50,30);
-        Point b=new Point(40,0,15);
-
-
-
-        scene.geometries.add(
-                //sphere
-
-                new Sphere(new Point(80, -28, 0), 22)
-                        .setEmission(new Color(30,40,50))
-                        .setMaterial(new Material()
-                                .setKr(0.8)),
-
-                new Sphere(new Point(-45, -45, -5), 5)
-                        .setEmission(new Color(0,60,0))
-                        .setMaterial(new Material()
-                                .setKr(0.8).setKg(0.95)),
-
-                //triangles
-
-                new Triangle(a,g,h)
-                        .setEmission(new Color(0, 75, 66))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4).setKt(0.6)
-                                .setShininess(80)),
-                new Triangle(a,b,h)
-                        .setEmission(new Color(0, 75, 66))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4).setKt(0.6)
-                                .setShininess(80)),
-                new Triangle(a,b,g)
-                        .setEmission(new Color(0, 75, 66))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4).setKt(0.6)
-                                .setShininess(80)),
-                new Triangle(g,b,h)
-                        .setEmission(new Color(0, 75, 66))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4).setKt(0.6)
-                                .setShininess(80)),
-
-                //cylinder
-                new Cylinder(new Ray(
-                        new Point(-80, -45, 0),
-                        new Vector(60, 85, 0)),
-                        13, 50)
-                        .setEmission(new Color(0,100,70))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50))
-                ,
-                new Cylinder(new Ray(
-                        new Point(-70, -61, 0),
-                        new Vector(1, 0, 0)),
-                        11, 140)
-                        .setEmission(new Color(0,51,102))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4).setKg(0.9)
-                                .setShininess(50)),
-
-
-                //square
-                //1
-                new Polygon(new Point(-25,-50,-30),
-                        new Point(-25,-50,30),
-                        new Point(15,-50,30),
-                        new Point(15,-50,-30))
-                        .setEmission(new Color(0,75,100))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                new Polygon(new Point(-25,-25,-30),
-                        new Point(-25,-25,30),
-                        new Point(15,-25,30),
-                        new Point(15,-25,-30))
-                        .setEmission(new Color(0,75,100))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                new Polygon(new Point(-25,-50,-30),
-                        new Point(-25,-50,30),
-                        new Point(-25,-25,30),
-                        new Point(-25,-25,-30))
-                        .setEmission(new Color(0,75,100))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                new Polygon(new Point(15,-50,-30),
-                        new Point(15,-50,30),
-                        new Point(15,-25,30),
-                        new Point(15,-25,-30))
-                        .setEmission(new Color(0,75,100))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                new Polygon(new Point(-25,-50,30),
-                        new Point(15,-50,30),
-                        new Point(15,-25,30),
-                        new Point(-25,-25,30))
-                        .setEmission(new Color(0,75,100))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                new Polygon(new Point(-25,-50,-30),
-                        new Point(15,-50,-30),
-                        new Point(15,-25,-30),
-                        new Point(-25,-25,-30))
-                        .setEmission(new Color(0,75,100))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                //2
-                new Polygon(new Point(-15,-25,-20),
-                        new Point(-15,-25,20),
-                        new Point(5,-25,20),
-                        new Point(5,-25,-20))
-                        .setEmission(new Color(0,90,100))
-                        .setMaterial(new Material()
-                                .setKr(0.1).setKd(0.5).setKs(0.5).setKt(0.2)
-                                .setShininess(60)),
-                new Polygon(new Point(-15,-15,-20),
-                        new Point(-15,-15,20),
-                        new Point(5,-15,20),
-                        new Point(5,-15,-20))
-                        .setEmission(new Color(0,90,100))
-                        .setMaterial(new Material()
-                                .setKr(0.1).setKd(0.5).setKs(0.5).setKt(0.2)
-                                .setShininess(60)),
-                new Polygon(new Point(-15,-25,-20),
-                        new Point(-15,-25,20),
-                        new Point(-15,-15,20),
-                        new Point(-15,-15,-20))
-                        .setEmission(new Color(0,90,100))
-                        .setMaterial(new Material()
-                                .setKr(0.1).setKd(0.5).setKs(0.5).setKt(0.2)
-                                .setShininess(60)),
-                new Polygon(new Point(5,-25,-20),
-                        new Point(5,-25,20),
-                        new Point(5,-15,20),
-                        new Point(5,-15,-20))
-                        .setEmission(new Color(0,90,100))
-                        .setMaterial(new Material()
-                                .setKr(0.1).setKd(0.5).setKs(0.5).setKt(0.2)
-                                .setShininess(60)),
-                new Polygon(new Point(-15,-25,20),
-                        new Point(5,-25,20),
-                        new Point(5,-15,20),
-                        new Point(-15,-15,20))
-                        .setEmission(new Color(0,90,100))
-                        .setMaterial(new Material()
-                                .setKr(0.1).setKd(0.5).setKs(0.5).setKt(0.2)
-                                .setShininess(30)),
-                new Polygon(new Point(-15,-25,-20),
-                        new Point(5,-25,-20),
-                        new Point(5,-15,-20),
-                        new Point(-15,-15,-20))
-                        .setEmission(new Color(0,90,100))
-                        .setMaterial(new Material()
-                                .setKr(0.1).setKd(0.5).setKs(0.5).setKt(0.2)
-                                .setShininess(60)),
-
-
-                // surface
-                new Polygon(
-                        new Point(-100, -50, -150),
-                        new Point(-100, -50, 200),
-                        new Point(100, -50, 200),
-                        new Point(100, -50, -150))
-                        .setEmission(new Color(102, 153, 153))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4).setKt(0.2)
-                                .setShininess(50)),
-                //front block
-                new Polygon(
-                        new Point(0, -50, 75),
-                        new Point(0, 30, 75),
-                        new Point(38, 30, 75),
-                        new Point(38, -50, 75))
-                        .setEmission(new Color(40, 40, 40))
-                        .setMaterial(new Material()
-                                .setKt(1.0).setKg(0.8)),
-                new Polygon(
-                        new Point(42, -50, 75),
-                        new Point(42, 30, 75),
-                        new Point(80 ,30, 75),
-                        new Point(80, -50, 75))
-                        .setEmission(new Color(40, 40, 40))
-                        .setMaterial(new Material()
-                                .setKt(1.0).setKg(0.8))
-
-
-
-        );
-    }
-    @Test
-    public void project2() {
-        Camera camera = new Camera(
-                new Point(0, 0, 1000),
-                new Vector(0, 0, -1),
-                new Vector(0, 1, 0))
-                .setVPSize(225, 150)
-                .setVPDistance(800)
-                .setNumOfRays(10)
-                .setFocus(new Point(0, 0, 0), 500);
-
-        Scene scene = new Scene("Test Scene");
-        scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), new Double3(0.1)));
-        scene.lights.add(
-
-                new SpotLight(
-                        new Color(500, 500, 500),
-                        new Point(-50, 100, 100),
-                        new Vector(-0.5, -1, -0.5)
-                )
-                        .setKl(0.04)
-                        .setKq(0.0006));
-        scene.geometries.add(
-                new Sphere(new Point(50, 0, 0), 50)
-                        .setEmission(new Color(5, 5, 5))
-                        .setMaterial(new Material().setKd(0.3).setKs(0.5)
-                                .setKr(1.0).setKg(0.8)),
-                new Cylinder(new Ray(
-                        new Point(-90, -35, 0),
-                        new Vector(60, 85, 0)),
-                        25, 100)
-                        .setEmission(new Color(100, 75, 0))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKd(0.4).setKs(0.4)
-                                .setShininess(80)),
-                new Polygon(
-                        new Point(-100, -50, -150),
-                        new Point(-100, -50, 150),
-                        new Point(100, -50, 150),
-                        new Point(100, -50, -150))
-                        .setEmission(new Color(40, 40, 40))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50)),
-                new Polygon(
-                        new Point(-100, -50, -150),
-                        new Point(-100, 75, -150),
-                        new Point(100, 75, -150),
-                        new Point(100, -50, -150))
-                        .setEmission(new Color(40, 40, 40))
-                        .setMaterial(new Material()
-                                .setKd(0.6).setKs(0.4)
-                                .setShininess(50))
-        );
-
-        int frames = 16;
-        double angle = 360d / frames;
-        double angleRadians = 2 * Math.PI / frames;
-
-        double radius = camera.getP0().subtract(Point.ZERO).length();
-
-        for (int i = 0; i < frames; i++) {
-            System.out.println("Start frame " + (i + 1));
-
-            camera.rotate(0, angle, 0);
-            camera.setP0(new Point(
-                    Math.sin(angleRadians * (i + 1)) * radius,
-                    0,
-                    Math.cos(angleRadians * (i + 1)) * radius)
-            );
-
-            camera.setImageWriter(new ImageWriter("project", 750, 500))
-                    .setRayTracer(new RayTracerBasic(scene)
-                            .setGlossinessRays(20))
-                    .renderImage()
-                    .writeToImage();
-
-
-        }
-    }
-
     @Test
     private void dfdf(){
-         Scene scene = new Scene("Test scene");
-        Camera camera = new Camera(new Point(-2500, 0, 200), new Vector(10, 0, 0), new Vector(0, 0, 1)) //
-                .setVPSize(900, 900).setVPDistance(1000);
+        Scene scene = new Scene("Test scene");
+        Camera camera = new Camera(new Point(-2500, 0, 300), new Vector(10, 0, 0), new Vector(0, 0, 1)) //
+                .setVPSize(900, 900).setVPDistance(1000)
+                ;
 
-//        Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0,-1), new Vector(0, 1, 0)) //
-//               .setVPSize(600, 600).setVPDistance(1000);
+
         Color Pyramid = new Color(245,245,245);
         Color Sky = new Color(135,206,235);
         Color LightSky = new Color(135,206,250);
@@ -384,12 +39,12 @@ private void dc() {
         Color dune1 =new Color(248,240,164);
         Color dune2 = new Color(226,209,186);
         Color dune3 = new Color(239,219,188);
-
         Color Cloud1 = new Color(245,245,245);
         Color Cloud2 = new Color(248,248,255);
         Color Cloud3 = new Color(255,250,240);
         Color marble =new Color(240, 235, 215);
         scene.background= LightSky;
+//        scene.background= new Color(black);
 
         Point p3=new Point(-2013.136284832225783,357.051460824943433,-5.133775151772667),//
                 q3=new Point(-1942.03008605314858,190.915033619817848,39.868082062413876),//
@@ -558,19 +213,19 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
         Sphere a50=new Sphere(new Point(-1430,150,-190),230);
 
 //----------------------------------------------------------------------------------------------------------//
-        Cylinder wathera1=new Cylinder
-                (new Ray(new Point(-1700,-260,0),new Vector(0,0, 1))
-                        ,50,0.01);
-        Cylinder wathera2=new Cylinder
-                (new Ray(new Point(-1650,-300,0),new Vector(0,0, 1))
-                        ,40,0.01);
-        Cylinder wathera3=new Cylinder
-                (new Ray(new Point(-1680,-340,0),new Vector(0,0, 1))
-                        ,60,0.01);
+//        Cylinder wathera1=new Cylinder
+//                (new Ray(new Point(-1700,-260,0),new Vector(1,1, 0))
+//                        ,50,10);
+//        Cylinder wathera2=new Cylinder
+//                (new Ray(new Point(-1650,-300,0),new Vector(1,1, 1))
+//                        ,40,10);
+//        Cylinder wathera3=new Cylinder
+//                (new Ray(new Point(-1680,-340,0),new Vector(1,1, 0))
+//                        ,60,10);
 
 
-        Cylinder marblePillar= new Cylinder( new Ray(new Point(-1980, 160, -15),new Vector(0.9,-2.1,0.55)),35,230);
-//        Polygon base=new Polygon(new Point(-2022.35420716223075, 127.542994702076911, -67.168860551636655)
+//        Cylinder marblePillar= new Cylinder( new Ray(new Point(-1980, 160, -15),new Vector(0.9,-2.1,0.55)),35,230);
+////        Polygon base=new Polygon(new Point(-2022.35420716223075, 127.542994702076911, -67.168860551636655)
 //                ,new Point(-1926.792077806360794, 169.958220746950815, -61.576772490359375)
 //                ,new Point(-1997.305901611361378, 334.710590535864412, -106.203726046940972)
 //                ,new Point(-2093.49330611887126, 293.756291688580518, -112.191539707066681)
@@ -578,116 +233,150 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
 //                ,new Point(-2037.592215409018536, 148.499807574943901, 34.275994001136567)
 //                ,new Point(-1942.03008605314858, 190.915033619817848, 39.868082062413876)
 //                ,new Point(-2013.136284832225783, 357.051460824943433, -5.133775151772667));
-      //  Polygon qube1=new Polygon()
-        //Sphere boolInMarble=new Sphere(new Point(-1981.96880580567904, 164.593880213250714, -16.203159103470433),35);
+
+        Sphere boolInMarble=new Sphere(new Point(-1981.96880580567904, 164.593880213250714, -16.203159103470433),35);
 
 
         scene.geometries.add(
-                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(Sand1),
-              //  new Plane(new Point(0,0,1500),new Point(1500,0,0),new Point(1500,200,0)).setEmission(LightSky),
-                pyramidAWigA.setEmission(Sand1),
-                pyramidAWigB.setEmission(Sand2 ),
-                pyramidAWigC.setEmission(Sand3),
-                pyramidAWigD.setEmission(Sand2),
-                cd.setEmission(Sand3),
-//                bc.setEmission(new Color(WHITE)),
-                ab.setEmission(Sand3),
-                //  da.setEmission(new Color(WHITE))
+                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(Sand1).setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+           //    new Plabe((new Point(-1700,-260,0.2)),new Point(-1650,-300,0.2),new Point(-1680,-340,0.2)).setEmission(Sky),
+               // new Plane(new Point(0,0,1500),new Point(2000,0,0),new Point(2000,200,0)).setEmission(LightSky),
+//                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(new Color(black)),
+//                new Plane(new Point(0,0,1500),new Point(1500,0,0),new Point(1500,200,0)).setEmission(new Color(black)),
 
-                pyramidBWigA.setEmission(Sand2),
-                pyramidBWigB.setEmission(Sand2),
-                pyramidBWigC.setEmission(Sand2),
-                pyramidBWigD.setEmission(Sand2),
+                pyramidAWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(30)),
+                pyramidAWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(30)),
+                pyramidAWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(30)),
+                pyramidAWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(30)),
+                //cd.setEmission(Sand3),
+                //bc.setEmission(new Color(WHITE)),
+                //ab.setEmission(Sand3),
+                //da.setEmission(new Color(WHITE))
+                pyramidBWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                pyramidBWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                pyramidBWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                pyramidBWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                pyramidCWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+                pyramidCWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+                pyramidCWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+                pyramidCWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+                pyramidDWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
+                pyramidDWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
+                pyramidDWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
+                pyramidDWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
+                pyramidEWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(10)),
+                pyramidEWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(10)),
+                pyramidEWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(10)),
+                pyramidEWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(10)),
 
-                pyramidCWigA.setEmission(Sand2),
-                pyramidCWigB.setEmission(Sand3),
-                pyramidCWigC.setEmission(Sand3),
-                pyramidCWigD.setEmission(Sand3),
-
-                pyramidDWigA.setEmission(Sand4),
-                pyramidDWigB.setEmission(Sand4),
-                pyramidDWigC.setEmission(Sand4),
-                pyramidDWigD.setEmission(Sand4),
-
-                pyramidEWigA.setEmission(Sand4),
-                pyramidEWigB.setEmission(Sand4),
-                pyramidEWigC.setEmission(Sand4),
-                pyramidEWigD.setEmission(Sand4),
+//                pyramidBWigA.setEmission(Sand2),
+//                pyramidBWigB.setEmission(Sand2),
+//                pyramidBWigC.setEmission(Sand2),
+//                pyramidBWigD.setEmission(Sand2),
+//
+//                pyramidCWigA.setEmission(Sand2),
+//                pyramidCWigB.setEmission(Sand3),
+//                pyramidCWigC.setEmission(Sand3),
+//                pyramidCWigD.setEmission(Sand3),
+//
+//                pyramidDWigA.setEmission(Sand4),
+//                pyramidDWigB.setEmission(Sand4),
+//                pyramidDWigC.setEmission(Sand4),
+//                pyramidDWigD.setEmission(Sand4),
+//
+//                pyramidEWigA.setEmission(Sand4),
+//                pyramidEWigB.setEmission(Sand4),
+//                pyramidEWigC.setEmission(Sand4),
+//                pyramidEWigD.setEmission(Sand4)
 
 
 //                sun.setEmission(new Color(java.awt.Color.orange))
 //                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(200).setKt(0.2).setKr(0.70)),
-                a1.setEmission(dune1),
-                a2.setEmission(dune2),
-                a3.setEmission(dune1),
-                a4.setEmission(dune3),
-                a5.setEmission(dune1),
-                a6.setEmission(dune2),
-                a7.setEmission(dune3),
-                a8.setEmission(dune2),
-                a9.setEmission(dune1),
-                a10.setEmission(dune3),
-                a11.setEmission(dune2),
-                a12.setEmission(dune3),
-                a13.setEmission(dune1),//a12
-                a14.setEmission(dune2),
-                a15.setEmission(dune3),
-                a16.setEmission(dune2),
-                a17.setEmission(dune1),
-                a18.setEmission(dune2),
-                a19.setEmission(dune3),
-                a20.setEmission(dune2),
-                a21.setEmission(dune2),
-                a22.setEmission(dune1),//a22
-                a23.setEmission(dune3),
-                a24.setEmission(dune1),
-                a25.setEmission(dune2),
-                a26.setEmission(dune3),
-                a27.setEmission(dune2),
-                a28.setEmission(dune3),
-                a29.setEmission(dune2),//
-                a30.setEmission(dune1),
-                a31.setEmission(dune3),
-                a32.setEmission(dune2),
+                a1.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a2.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a3.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a4.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a5.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a6.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a7.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a8.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a9.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a10.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a11.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a12.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a13.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//a12
+                a14.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a15.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a16.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a17.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a18.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a19.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a20.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a21.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a22.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//a22
+                a23.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a24.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a25.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a26.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a27.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a28.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a29.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//
+                a30.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a31.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a32.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
 
-                a33.setEmission(dune2),//
-                a34.setEmission(dune1),
-                a35.setEmission(dune3),
-                a36.setEmission(dune2),
-                a37.setEmission(dune1),//
-                a38.setEmission(dune2),//
-                a39.setEmission(dune3),
-                a40.setEmission(dune2),
-                a41.setEmission(dune2),//
-                a42.setEmission(dune1),
-                a43.setEmission(dune3),
-                a45.setEmission(dune2),
-                a44.setEmission(dune1),//a12
-                a46.setEmission(dune3),
-                a47.setEmission(dune3),
-                a48.setEmission(dune2),
-                a49.setEmission(dune1),
-                a50.setEmission(dune1),
+                a33.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//
+                a34.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a35.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a36.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a37.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//
+                a38.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//
+                a39.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a40.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a41.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//
+                a42.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a43.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a45.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a44.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),//a12
+                a46.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a47.setEmission(dune3).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a48.setEmission(dune2).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a49.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
+                a50.setEmission(dune1).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
 
 
                 cloudA1.setEmission(Cloud1).setMaterial(new Material().
                         setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
-                cloudA2.setEmission(Cloud3),
-                cloudA3.setEmission(Cloud1),
-                cloudA4.setEmission(Cloud3),
-                cloudA5.setEmission(Cloud2),
+                cloudA2.setEmission(Cloud3).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudA3.setEmission(Cloud1).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudA4.setEmission(Cloud3).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudA5.setEmission(Cloud2).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
 
-                cloudB1.setEmission(Cloud1),
-                cloudB2.setEmission(Cloud3),
-                cloudB3.setEmission(Cloud2),
-                cloudB4.setEmission(Cloud1),
-                cloudB5.setEmission(Cloud2),
+                cloudB1.setEmission(Cloud1).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudB2.setEmission(Cloud3).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudB3.setEmission(Cloud2).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudB4.setEmission(Cloud1).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudB5.setEmission(Cloud2).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
 
-                cloudC1.setEmission(Cloud2),
-                cloudC2.setEmission(Cloud1),
-                cloudC3.setEmission(Cloud2),
-                cloudC4.setEmission(Cloud3),
-                cloudC5.setEmission(Cloud1),
+                cloudC1.setEmission(Cloud2).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudC2.setEmission(Cloud1).setMaterial(new Material().
+                setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudC3.setEmission(Cloud2).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudC4.setEmission(Cloud3).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
+                cloudC5.setEmission(Cloud1).setMaterial(new Material().
+                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3)),
 
                 cloudD1.setEmission(Cloud3),
                 cloudD2.setEmission(Cloud1),
@@ -699,14 +388,19 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 cloudE2.setEmission(Cloud3),
                 cloudE3.setEmission(Cloud2),
                 cloudE4.setEmission(Cloud2),
-                cloudE5.setEmission(Cloud3),
+                cloudE5.setEmission(Cloud3)
 
-                wathera1.setEmission(new Color(CYAN)),
-                wathera2.setEmission(new Color(CYAN)),
-                wathera3.setEmission(new Color(CYAN)),
+//                wathera1
+//              .setEmission(Sky).setMaterial(new Material().
+//                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3).setKg(0.7).setKt(0.9)),
+//                wathera2,
+////                        .setEmission(Sky).setMaterial(new Material().
+////                        setKd(0.2).setKs(0.2).setShininess(10).setKr(0.3).setKg(0.7).setKt(0.9)),
+//                wathera3
+////                        .setEmission(Sky),
 
 
-                marblePillar.setEmission(marble)
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(30))
 //                a.setEmission(new Color(blue)),
 //                b.setEmission(new Color(yellow)),
 //                c.setEmission(new Color(orange)),
@@ -719,19 +413,19 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
 
         );
 
+       // scene.setAmbientLight(new AmbientLight(new Color(black), new Double3(0.8        )));
+//        scene.lights.add(
+//                new SpotLight(new Color(yellow), new Point(-100, -100, 500), new Vector(-1, -1, -2))
+//                        .setKl(1).setKq(1));
+           scene.lights.add( new SpotLight(new Color(blue),new Point(-1700,-260,500),new Vector(0,0,-10)).setSpecularN(50).setKq(0.5));
+           scene.lights.add( new SpotLight(new Color(white),new Point(-3000,-500,4000),new Vector(0,0,-1)));
 
         scene.lights.add(
-                new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2))
-                        .setKl(0.0004).setKq(0.0000006));
-       scene.lights.add( new SpotLight(new Color(600, 226, 227),new Point(-1700,-260,500),new Vector(0,0,-1)));
+                new PointLight(Sky,new Point(-1680,-340,0)));
+//                ) ) new Color(orange),new Point(-2500, 0, 400), new Vector(10, 0, 0)
+//                        ).setSpecularN(50));
 
-        scene.lights.add(
-                new PointLight(new Color(235,236,166),sun.getCenter()).setKl(0.5).setKq(0.3));
-        scene.lights.add(
-                new SpotLight(new Color(yellow),new Point(-2500, 0, 200), new Vector(10, 0, 0)
-                        ).setSpecularN(50));
-
-        camera.setImageWriter(new ImageWriter("שבנ", 500, 500)) //
+        camera.setImageWriter(new ImageWriter("picture1", 700, 500)) //
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage();
