@@ -252,6 +252,7 @@ public class RayTracerBasic extends RayTracerBase {
         // adds the refraction effect
         Double3 kkt = k.product( material.kT);
         if (!kkt.lowerThan( MIN_CALC_COLOR_K)) {
+            // Creating a new array of rays that are refracted from the point of intersection.
             Ray[] refractedRays = constructRefractedRays(gp.point, v, n.scale(-1), material.kG, glossinessRays);
             for (Ray refractedRay : refractedRays) {
                 color = color.add(calcGlobalEffect(refractedRay, level, material.kT, kkt)
