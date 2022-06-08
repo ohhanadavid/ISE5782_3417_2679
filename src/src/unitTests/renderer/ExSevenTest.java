@@ -559,14 +559,14 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
 
 //----------------------------------------------------------------------------------------------------------//
         Cylinder wathera1=new Cylinder
-                (new Ray(new Point(-1700,-260,0),new Vector(0,0, 1))
-                        ,50,0.01);
+                (new Ray(new Point(-1700,-260,-1),new Vector(0,0, 1))
+                        ,50,1);
         Cylinder wathera2=new Cylinder
-                (new Ray(new Point(-1650,-300,0),new Vector(0,0, 1))
-                        ,40,0.01);
+                (new Ray(new Point(-1650,-300,-1),new Vector(0,0, 1))
+                        ,40,1);
         Cylinder wathera3=new Cylinder
-                (new Ray(new Point(-1680,-340,0),new Vector(0,0, 1))
-                        ,60,0.01);
+                (new Ray(new Point(-1680,-340,-1),new Vector(0,0, 1))
+                        ,60,1);
 
 
         Cylinder marblePillar= new Cylinder( new Ray(new Point(-1980, 160, -15),new Vector(0.9,-2.1,0.55)),35,230);

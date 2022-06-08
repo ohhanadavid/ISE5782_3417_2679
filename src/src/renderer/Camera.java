@@ -278,9 +278,9 @@ public class Camera {
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
 //                    if(checkColor(nX,nY,j,i))
-                   imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
+                  // imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
 //                    else
-                    //               imageWriter.writePixel(j,i,castRaysAntiAliasing(nX,nY,j,i));
+                                   imageWriter.writePixel(j,i,castRaysAntiAliasing(nX,nY,j,i));
                 }
             }
         }
