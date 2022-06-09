@@ -431,5 +431,12 @@ public class RayTracerBasic extends RayTracerBase {
 
         return randomVectors;
     }
+    public Color averageColor(LinkedList<Ray> rays){
+        Color color=Color.BLACK;
+        for( Ray ray:rays){
+            color=color.add(traceRay(ray));
+        }
+        return color.reduce(Double.valueOf(rays.size()));
+    }
 
 }

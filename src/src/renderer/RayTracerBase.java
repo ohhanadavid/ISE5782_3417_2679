@@ -28,4 +28,7 @@ public abstract class RayTracerBase {
      */
     public abstract Color traceRay(Ray ray);
 
+
+    public abstract Color averageColor(LinkedList<Ray> rays);
 }
+

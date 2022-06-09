@@ -22,9 +22,8 @@ public class ExSevenTest {
     @Test
     private void dfdf(){
         Scene scene = new Scene("Test scene");
-        Camera camera = new Camera(new Point(-2500, 0, 300), new Vector(10, 0, 0), new Vector(0, 0, 1)) //
-                .setVPSize(900, 900).setVPDistance(1000)
-                ;
+        Camera camera = new Camera(new Point(-2500,0, 20), new Vector(10, 0, 0), new Vector(0, 0, 1)) //
+                .setVPSize(900, 900).setVPDistance(1000);
 
 
         Color Pyramid = new Color(245,245,245);
@@ -87,18 +86,18 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 ,new Point(-1257.659498487839528, 345.743267263261259, 0)
                 ,new Point(-976.098765765686153, 731.847691900152427, 675.800374275156287));
 
-        Triangle pyramidCWigA = new Triangle(new Point(-1000,-1000,0)
-                ,new Point(-1500, -1000, -0.000000000000061)
-                ,new Point(-1250, -750, 500));
-        Triangle pyramidCWigB =new Triangle(new Point(-1500, -1000, -0.000000000000061)
-                ,new Point(-1500, -500, -0.000000000000061)
-                ,new Point(-1250, -750, 500));
-        Triangle pyramidCWigC = new Triangle(new Point(-1500, -500, -0.000000000000061)
-                ,new Point(-1000, -500, 0)
-                ,new Point(-1250, -750, 500));
-        Triangle pyramidCWigD = new Triangle(new Point(-1000, -500, 0)
-                ,new Point(-1000,-1000,0)
-                ,new Point(-1250, -750, 500));
+//        Triangle pyramidCWigA = new Triangle(new Point(-1000,-1000,0)
+//                ,new Point(-1500, -1000, -0.000000000000061)
+//                ,new Point(-1250, -750, 500));
+//        Triangle pyramidCWigB =new Triangle(new Point(-1500, -1000, -0.000000000000061)
+//                ,new Point(-1500, -500, -0.000000000000061)
+//                ,new Point(-1250, -750, 500));
+//        Triangle pyramidCWigC = new Triangle(new Point(-1500, -500, -0.000000000000061)
+//                ,new Point(-1000, -500, 0)
+//                ,new Point(-1250, -750, 500));
+//        Triangle pyramidCWigD = new Triangle(new Point(-1000, -500, 0)
+//                ,new Point(-1000,-1000,0)
+//                ,new Point(-1250, -750, 500));
 
         Triangle pyramidDWigA = new Triangle(new Point(903.617579714595195,564.402427344720309,0)
                 ,new Point(617.524146711446519,529.32719915949292,0)
@@ -260,15 +259,15 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
                 //cd.setEmission(Sand3),
                 //bc.setEmission(new Color(WHITE)),
                 //ab.setEmission(Sand3),
-                //da.setEmission(new Color(WHITE))
+//                da.setEmission(new Color(WHITE))
                 pyramidBWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
                 pyramidBWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
                 pyramidBWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
                 pyramidBWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.1).setKs(0.1).setShininess(5)),
-                pyramidCWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
-                pyramidCWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
-                pyramidCWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
-                pyramidCWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+//                pyramidCWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+//                pyramidCWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+//                pyramidCWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
+//                pyramidCWigD.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(5)),
                 pyramidDWigA.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
                 pyramidDWigB.setEmission(new Color(java.awt.Color.BLUE) ).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
                 pyramidDWigC.setEmission(new Color(java.awt.Color.BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(20)),
@@ -434,7 +433,7 @@ Triangle pyramidAWigD = new Triangle(new Point(-200,0,0),new Point(0,0,200),new 
 //                ) ) new Color(orange),new Point(-2500, 0, 400), new Vector(10, 0, 0)
 //                        ).setSpecularN(50));
 
-        camera.setImageWriter(new ImageWriter("picture1", 700, 500)) //
+        camera.setImageWriter(new ImageWriter("picture15", 500, 500)) //
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage();
