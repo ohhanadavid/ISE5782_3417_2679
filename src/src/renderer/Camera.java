@@ -473,39 +473,52 @@ public class Camera {
         return this;
     }
 
-//    public Camera renderImage(){
-//
-//        //check that all the parameters OK
-//        try {
-//
-//            if (imageWriter == null) {
-//                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
-//            }
-//            if (rayTracer == null) {
-//                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
-//            }
-//
-//            //Rendering the image
-//            int nX = imageWriter.getNx();
-//            int nY = imageWriter.getNy();
-//
-//            for (int i = 0; i < nY; i++) {
-//                for (int j = 0; j < nX; j++) {
-////                    if(checkColor(nX,nY,j,i))
-// //                  imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
-//  //                  else
-//                                   imageWriter.writePixel(j,i,castRaysAntiAliasing(nX,nY,j,i));
-//                }
-//            }
-//        }
-//        catch (MissingResourceException e){
-//            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
-//        }
-//        return this;
+    public Camera renderImageAntiElising() {
+
+        //check that all the parameters OK
+        try {
+
+            if (imageWriter == null) {
+                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
+            }
+            if (rayTracer == null) {
+                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+            }
+
+            //Rendering the image
+            int nX = imageWriter.getNx();
+            int nY = imageWriter.getNy();
+
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+//                    if(checkColor(nX,nY,j,i))
+                    //                  imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
+                    //                  else
+                    imageWriter.writePixel(j, i, castRaysAntiAliasing(nX, nY, j, i));
+                }
+            }
+        } catch (MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
+        }
+        return this;
+    }
 
 
+/**
+ * > The function renderImage() returns a Camera object
+ *
+ * @return The camera object itself.
+ */
+public Camera renderImage(){
+        boolean flag =true;
+        if(flag)
+            renderImageAddaptive();
+        else
+            renderImageAntiElising();
+        return this;
+}
 
-    public Camera renderImage() {
+    public Camera renderImageAddaptive() {
         try {
             if (imageWriter == null) {
                 throw new MissingResourceException("Missing resource", ImageWriter.class.getName(), "");
@@ -548,6 +561,7 @@ public class Camera {
         }
         return color.reduce(Double.valueOf(rays.size()));
     }
+
 
 //    private Color castRay(int nX, int nY, int j, int i) {
 //
@@ -787,7 +801,17 @@ public class Camera {
 
         return;
     }
+    private Color castRaysAntiAliasing(int nX, int nY, int j, int i) {
+        List<Ray> beam = constructBeam(nX, nY, j, i);
+        return averageColor(beam);
+    }
 
+
+    private Color castRayforAntiElising(int nX, int nY, int j, int i){
+
+        Ray ray = constructRayThroughPixel(nX, nY, j, i);
+        return rayTracer.traceRay(ray);
+    }
     /**
      * Returns the next pixel to draw on multithreaded rendering.
      * If finished to draw all pixels, returns {@code null}.
@@ -882,27 +906,7 @@ public class Camera {
         public Pixel() {
         }
 
-
-
-//        /**
-//         * Saves the image according to image writer.
-//         */
-//        public void writeToImage() {
-//            imageWriter.writeToImage();
-//        }
-
-
-
-
-
-
     }
 
-    /**
-     * Pixel is an internal helper class whose objects are associated with a Render
-     * object that they are generated in scope of. It is used for multithreading in
-     * the Renderer and for follow up its progress.<br/>
-     * There is a main follow up object and several secondary objects - one in each
-     * thread.
-     */
+
 }
