@@ -214,7 +214,9 @@ public class ExSevenTest {
 
 
             scene.geometries.add(
-                    new Plane(new Point(0, -600, 0), new Point(0, -650, 0), new Point(-400, 0, 0)).setEmission(new Color(GRAY)).setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+                    new Plane(new Point(0, -600, 0), new Point(0, -650, 0), new Point(-400, 0, 0))
+                            .setEmission(new Color(GRAY))
+                            .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
                     //    new Plabe((new Point(-1700,-260,0.2)),new Point(-1650,-300,0.2),new Point(-1680,-340,0.2)).setEmission(Sky),
                     // new Plane(new Point(0,0,1500),new Point(2000,0,0),new Point(2000,200,0)).setEmission(LightSky),
 //                new Plane(new Point(0,-600,0),new Point(0,-650,0),new Point(-400,0,0)).setEmission(new Color(black)),
@@ -375,20 +377,21 @@ public class ExSevenTest {
                     cloudE4.setEmission(Cloud2).setMaterial(new Material().
                             setKd(0.2).setKs(0.2).setShininess(40).setKr(0.3).setKt(0.09)),
                     cloudE5.setEmission(Cloud3).setMaterial(new Material().
-                            setKd(0.2).setKs(0.2).setShininess(50).setKr(0.3).setKt(0.09)),
+                            setKd(0.2).setKs(0.2).setShininess(50).setKr(0.3).setKt(0.09))
 
-                    marblePillar.setEmission(marble).setMaterial(new Material().
-                            setKd(0.2).setKs(0.2).setShininess(120))
+
             );
 
-            scene.lights.add(new SpotLight(new Color(blue), new Point(-1700, -260, 500), new Vector(0, 0, -10)).setSpecularN(30).setKq(0.5));
-            scene.lights.add(new SpotLight(new Color(253, 184, 19), new Point(-3000, -500, 4000), new Vector(0, 0, -1)));
+            scene.lights.add(new SpotLight(new Color(blue), new Point(-1700, -260, 500),
+                    new Vector(0, 0, -10)).setSpecularN(30).setKq(0.5));
+            scene.lights.add(new SpotLight(new Color(253, 184, 19),
+                    new Point(-3000, -500, 4000), new Vector(0, 0, -1)));
             scene.lights.add(new SpotLight(new Color(CYAN), new Point(-3000, 300, 0), new Vector(1, 0, 1)));
             scene.lights.add(new DirectionalLight(new Color(253, 184, 19), new Vector(1, 0, -1)));
             scene.lights.add(new PointLight(Sky, new Point(-1680, -340, 0)));
 
 
-            camera.setImageWriter(new ImageWriter("project", 1500, 1500)) //
+            camera.setImageWriter(new ImageWriter("projectfocus", 1500, 1500)).setFocus(new Point(0,0,0),500) //
                     .setRayTracer(new RayTracerBasic(scene)
                     .setGlossinessRays(180))
                 //    .setNumOfRays(1)//
