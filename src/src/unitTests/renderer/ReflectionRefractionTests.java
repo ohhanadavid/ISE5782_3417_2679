@@ -113,7 +113,7 @@ public class ReflectionRefractionTests {
 	@Test
 	public void Bonus() {
 		Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setVPSize(600, 600).setVPDistance(1000).setNumOfRays(50);
+				.setVPSize(600, 600).setVPDistance(1000).setNumOfRays(2).move(0,0,30);
 
 		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), new Double3(0.15)));
 

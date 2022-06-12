@@ -1,7 +1,6 @@
 
 package src.renderer;
 
-import src.geometries.Intersectable.*;
 import src.primitives.Color;
 import src.primitives.Point;
 import src.primitives.Ray;
@@ -29,7 +28,6 @@ public class RayTracerBasic extends RayTracerBase {
     private static final Double3 INITIAL_K = new Double3(1.0);
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
-    private static final double EPS = 0.1;
     private int glossinessRays = 10;
 
     /**
@@ -187,36 +185,36 @@ public class RayTracerBasic extends RayTracerBase {
 
         return ktr;
     }
-
-
-    /**
-     * If the ray from the point to the light source intersects with any geometry, then the point is shaded
-     *
-     * @param lightSource The light source that we are checking if it is unshaded.
-     * @param gp          The point on the geometry that we're currently shading.
-     * @param l           The vector from the point to the light source.
-     * @param n           The normal vector to the surface at the intersection point.
-     * @param nv          the dot product of the normal vector and the vector from the camera to the point.
-     * @return the color of the point.
-     */
-    private boolean unshaded(LightSource lightSource, GeoPoint gp, Vector l, Vector n, double nv) {
-        Vector lightDirection = l.scale(-1); // from point to light source
-        Ray lightRay = new Ray(gp.point, lightDirection, n);
-
-        List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(lightRay);
-        if (intersections == null)
-            return true;
-
-        double lightDistance = lightSource.getDistance(lightRay.getP0());
-        for (var geoPoint : intersections)
-            if (geoPoint.point.distance(lightRay.getP0()) < lightDistance &&
-                    gp.geometry.getMaterial().kT == Double3.ZERO)
-                return false;
-
-        return true;
-    }
-
-
+//
+//
+//    /**
+//     * If the ray from the point to the light source intersects with any geometry, then the point is shaded
+//     *
+//     * @param lightSource The light source that we are checking if it is unshaded.
+//     * @param gp          The point on the geometry that we're currently shading.
+//     * @param l           The vector from the point to the light source.
+//     * @param n           The normal vector to the surface at the intersection point.
+//     * @param nv          the dot product of the normal vector and the vector from the camera to the point.
+//     * @return the color of the point.
+//     */
+//    private boolean unshaded(LightSource lightSource, GeoPoint gp, Vector l, Vector n, double nv) {
+//        Vector lightDirection = l.scale(-1); // from point to light source
+//        Ray lightRay = new Ray(gp.point, lightDirection, n);
+//
+//        List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(lightRay);
+//        if (intersections == null)
+//            return true;
+//
+//        double lightDistance = lightSource.getDistance(lightRay.getP0());
+//        for (var geoPoint : intersections)
+//            if (geoPoint.point.distance(lightRay.getP0()) < lightDistance &&
+//                    gp.geometry.getMaterial().kT == Double3.ZERO)
+//                return false;
+//
+//        return true;
+//    }
+//
+//
 
     /**
      * Calculates the reflection and the refraction
@@ -277,30 +275,6 @@ public class RayTracerBasic extends RayTracerBase {
         return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx)).scale(kx);
     }
 
-    /**
-     * construct a reflected ray from the geometry
-     * @param n normal vector of the point on the geometry
-     * @param point on the geometry
-     * @param ray from the geometry
-     * @return new reflected ray
-     */
-    private Ray constructReflectedRay(Vector n, Point point, Ray ray) {
-        Vector v = ray.getDir();
-        Vector vn = n.scale(-2 *  v.dotProduct(n));
-        Vector r = v.add(vn);
-        // use the constructor with 3 arguments to move the head
-        return new Ray(point, r, n);
-    }
-    /**
-     * construct the refracted ray of the point on the geometry
-     * @param n normal vector
-     * @param point on the geometry
-     * @param ray from the geometry
-     * @return new ray
-     */
-    private Ray constructRefractedRay(Vector n, Point point, Ray ray) {
-        return new Ray(point, ray.getDir(), n);
-    }
 
     /**
      * Constructs randomized reflection rays at the intersection point according to kG.
@@ -388,7 +362,6 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * Creates random vectors on the unit hemisphere with a given normal on the hemisphere's bottom.<br>
-     * source: https://my.eng.utah.edu/~cs6958/slides/pathtrace.pdf#page=18
      *
      * @param n normal to the hemisphere's bottom
      * @return the randomized vectors
@@ -437,7 +410,7 @@ public class RayTracerBasic extends RayTracerBase {
         for( Ray ray:rays){
             color=color.add(traceRay(ray));
         }
-        return color.reduce(Double.valueOf(rays.size()));
+        return color.reduce((double) rays.size());
     }
 
 }

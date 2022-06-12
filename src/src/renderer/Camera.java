@@ -1,15 +1,11 @@
 package src.renderer;
-
 import src.primitives.Color;
 import src.primitives.Point;
 import src.primitives.Ray;
 import src.primitives.Vector;
-import src.scene.Scene;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.MissingResourceException;
-
 import static src.primitives.Util.*;
 
 /**
@@ -28,9 +24,6 @@ public class Camera {
     private double distance;
     ImageWriter imageWriter;
     RayTracerBase rayTracer;
-    /**
-     * The number of rays sent by the camera.
-     */
     private int numOfRays = 1;
     private boolean focus = false;
     private Point focalPix = null;
@@ -192,9 +185,16 @@ public class Camera {
     }
 
 
+    /**
+     * Constructs a ray through a given pixel on the view plane.
+     *
+     * @param nX Total number of pixels in the x dimension.
+     * @param nY Total number of pixels in the y dimension.
+     * @param j The index of the pixel on the x dimension.
+     * @param i The index of the pixel on the y dimension.
+     */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-        Point pC = p0.add(vTo.scale(distance));
-        Point pIJ = pC;
+        Point pIJ = p0.add(vTo.scale(distance));
 
         double rY = alignZero(height / nY);
         double rX = alignZero(width / nX);
@@ -250,7 +250,6 @@ public class Camera {
         p = center.add(vRight.scale(xr));
         p = center.add(vUp.scale(yu));
         lcorner.add(new Ray(p0, p.subtract(p0)));
-        p = center;
 
         //left down
         p = center.add(vRight.scale(-xr));
@@ -364,33 +363,6 @@ public class Camera {
     }
 
     /**
-     * Rotates the camera around the axes with the given angles
-     *
-     * @param amount vector of angles
-     * @return the current camera
-     */
-    public Camera rotate(Vector amount) {
-        return rotate(amount.getX(), amount.getY(), amount.getZ());
-    }
-
-
-    /**
-     * Rotates the camera around the axes with the given angles
-     *
-     * @param x angles to rotate around the x axis
-     * @param y angles to rotate around the y axis
-     * @param z angles to rotate around the z axis
-     * @return the current camera
-     */
-    public Camera rotate(double x, double y, double z) {
-        vTo.rotateX(x).rotateY(y).rotateZ(z);
-        vUp.rotateX(x).rotateY(y).rotateZ(z);
-        vRight = vTo.crossProduct(vUp);
-
-        return this;
-    }
-
-    /**
      * Constructs a ray through a given pixel on the view plane for AA.
      *
      * @param nX Total number of pixels in the x dimension.
@@ -429,7 +401,7 @@ public class Camera {
      * set the focus
      *
      * @param fp     point
-     * @param length
+     * @param length double
      * @return the camera itself.
      */
     public Camera setFocus(Point fp, double length) {
@@ -458,11 +430,6 @@ public class Camera {
                 i <= focalPix.getY() + disFocal;
     }
 
-    public boolean isFocus() {
-        return focus;
-    }
-
-
     public Camera setImageWriter(ImageWriter imageWriterT) {
         this.imageWriter = imageWriterT;
         return this;
@@ -473,6 +440,11 @@ public class Camera {
         return this;
     }
 
+    /**
+     * > The function renderImage() returns a Camera object
+     *
+     * @return The camera object itself.
+     */
     public Camera renderImageAntiElising() {
 
         //check that all the parameters OK
@@ -518,6 +490,11 @@ public Camera renderImage(){
         return this;
 }
 
+    /**
+     * > The function renderImage() returns a Camera object
+     *
+     * @return The camera object itself.
+     */
     public Camera renderImageAddaptive() {
         try {
             if (imageWriter == null) {
@@ -561,37 +538,6 @@ public Camera renderImage(){
         }
         return color.reduce(Double.valueOf(rays.size()));
     }
-
-
-//    private Color castRay(int nX, int nY, int j, int i) {
-//
-//        Ray ray = constructRayThroughPixel(nX, nY, j, i);
-//        return rayTracer.traceRay(ray);
-//    }
-//
-//    /**
-//     * The function make the grid lines
-//     *
-//     * @param interval between the lines
-//     * @param color    of the lines
-//     */
-//    public void printGrid(int interval, Color color) {
-//        if (imageWriter == null) {
-//            throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
-//        }
-//
-//        int nX = imageWriter.getNx();
-//        int nY = imageWriter.getNy();
-//
-//        for (int i = 0; i < nY; i++) {
-//            for (int j = 0; j < nX; j++) {
-//
-//                if (i % interval == 0 || j % interval == 0) {
-//                    imageWriter.writePixel(j, i, color);
-//                }
-//            }
-//        }
-//    }
 
     //Turn on the function of the imageWriter writeToImage
     public void writeToImage() {
