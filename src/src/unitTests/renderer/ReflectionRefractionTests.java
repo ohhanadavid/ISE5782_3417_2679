@@ -171,10 +171,10 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(10).setKr(0.4)),
 				new Sphere( new Point(75, 75, 50),30) //
 						.setEmission(new Color(java.awt.Color.yellow)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(10).setKt(0.6)),
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(10).setKt(0.6).setKg(0.4)),
 				new Sphere( new Point(-350, -300, -400),400) //
 						.setEmission(new Color(0, 0, 100)) //
-						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.5)),
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.5).setKg(0.3)),
 				new Sphere( new Point(-350, -300, -400),200) //
 						.setEmission(new Color(100, 120, 120)) //
 						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
@@ -186,7 +186,7 @@ public class ReflectionRefractionTests {
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0),new Vector(0, 0, -1)) //
 				.setKq(2E-7)); //.setKq(0.000005));
 		scene.lights.add(new SpotLight(new Color(1020, 400, 400), new Point(-750, -750, -150), new Vector(-1, -1, -4)));
-		ImageWriter imageWriter = new ImageWriter("bonus", 600, 600);
+		ImageWriter imageWriter = new ImageWriter("bonus", 1000, 1000);
 
 				camera.setImageWriter(imageWriter)
 				.setRayTracer(new RayTracerBasic(scene))

@@ -73,7 +73,7 @@ public class Sphere extends Geometry {
         Point p0 = ray.getP0();
         Vector dir = ray.getDir();
         Vector distanceVec;
-        // distanceVec = 𝑂 − 𝑃0 distance from the center and the p0
+
         try {
             distanceVec = center.subtract(p0);
         } catch (IllegalArgumentException e) {

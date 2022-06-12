@@ -97,6 +97,7 @@ public class RayTracerBasic extends RayTracerBase {
                 .add(this.scene.ambientLight.getIntensity());
     }
 
+
     /**
      * It calculates the color of a point on a geometry, by calculating the color of the light sources that affect it
      *
